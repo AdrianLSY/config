@@ -1,0 +1,13 @@
+*
+!.gitignore
+!setup
+!btop/
+!btop/**
+!fish/
+!fish/**
+!hypr/
+!hypr/**
+!rofi/
+!rofi/**
+!waybar/
+!waybar/**

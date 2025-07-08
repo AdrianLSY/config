@@ -41,11 +41,12 @@ for lang in $languages
     asdf set $lang latest
 end
 
-git clone https://github.com/AdrianLSY/rofi.git
-cd rofi
+git clone https://github.com/AdrianLSY/rofi-themes.git
+cd rofi-themes
 chmod +x setup.sh
 ./setup.sh
 cd ..
+rm -rf rofi-themes
 
 for item in * .[^.]*
     if test $item = "." -o $item = ".."
