@@ -1,0 +1,63 @@
+sudo pacman -Syyu --noconfirm
+sudo pacman -S --noconfirm yay nemo zen-browser chromium flatpak github-cli docker keepassxc
+
+yay -Syyu --noconfirm
+yay -S --noconfirm ulauncher asdf-vm tableplus
+
+curl -f https://zed.dev/install.sh | sh
+curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+
+fish_add_path -U ~/.local/bin
+xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
+gsettings set org.nemo.desktop show-desktop-icons true
+gsettings set org.cinnamon.desktop.default-applications.terminal exec alacritty
+
+set flatpaks \
+    com.dropbox.Client \
+    com.spotify.Client \
+    com.ultimaker.cura \
+    com.sublimemerge.App \
+    com.getpostman.Postman \
+    org.mozilla.Thunderbird \
+    org.localsend.localsend_app \
+    io.podman_desktop.PodmanDesktop
+
+for pkg in $flatpaks
+    flatpak install -y flathub $pkg
+end
+
+set languages \
+    ruby \
+    rust \
+    python \
+    golang \
+    nodejs \
+    erlang \
+    elixir
+
+for lang in $languages
+    asdf plugin add $lang
+    asdf install $lang latest
+    asdf set $lang latest
+end
+
+git clone https://github.com/AdrianLSY/rofi.git
+cd rofi
+chmod +x setup.sh
+./setup.sh
+cd ..
+
+for item in * .[^.]*
+    if test $item = "." -o $item = ".."
+        continue
+    end
+    if test -e ~/.config/$item
+        rm -rf ~/.config/$item
+    end
+    cp -r $item ~/.config/
+end
+
+find ~/.config -type f -exec chmod 700 {} +
+
+git config --global user.email "adrianlow1998@gmail.com"
+git config --global user.name "Adrian Low"
