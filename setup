@@ -65,9 +65,8 @@ for pkg in "${pacman[@]}"; do
     fi
 done
 
-# 3. Check yay, asdf, flatpak presence
+# 3. Check yay & flatpak presence
 command -v yay >/dev/null 2>&1 || { echo >&2 "yay not found! Exiting."; exit 1; }
-command -v asdf >/dev/null 2>&1 || { echo >&2 "asdf not found! Exiting."; exit 1; }
 command -v flatpak >/dev/null 2>&1 || { echo >&2 "flatpak not found! Exiting."; exit 1; }
 
 # 4. Yay System Update
@@ -94,7 +93,10 @@ for pkg in "${flatpaks[@]}"; do
     fi
 done
 
-# 7. Install Languages via asdf
+# 7. Check asdf presence
+command -v asdf >/dev/null 2>&1 || { echo >&2 "asdf not found! Exiting."; exit 1; }
+
+# 8. Install Languages via asdf
 for lang in "${languages[@]}"; do
     if ! asdf plugin list | grep -q "^$lang$"; then
         echo "Adding asdf plugin for $lang..."
@@ -106,12 +108,12 @@ for lang in "${languages[@]}"; do
 done
 asdf reshim
 
-# 8. Git Config
+# 9. Git Config
 echo "Configuring git global user..."
 git config --global user.email "adrianlow1998@gmail.com"
 git config --global user.name "Adrian Low"
 
-# 9. Install Zed and Zoxide
+# 10. Install Zed and Zoxide
 if ! command -v zed >/dev/null 2>&1; then
     echo "Installing Zed editor..."
     curl -fsSL https://zed.dev/install.sh | sh
@@ -124,15 +126,15 @@ if command -v fish >/dev/null 2>&1; then
     fish -c 'fish_add_path -U ~/.local/bin' || true
 fi
 
-# 10. Add user to docker group
+# 11. Add user to docker group
 sudo usermod -aG docker "$USERNAME"
 
-# 11. Nemo config
+# 12. Nemo config
 gsettings set org.nemo.desktop show-desktop-icons true
 xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
 gsettings set org.cinnamon.desktop.default-applications.terminal exec alacritty
 
-# 12. Clone and install rofi-themes
+# 13. Clone and install rofi-themes
 if [ ! -d "rofi-themes" ]; then
     git clone https://github.com/AdrianLSY/rofi-themes.git
 fi
@@ -141,7 +143,7 @@ chmod +x setup.sh
 ./setup.sh
 cd ..
 
-# 13. Add configs
+# 14. Add configs
 for config in "${configs[@]}"; do
     if [ -d "$config" ]; then
         echo "Copying config for $config..."
@@ -156,11 +158,11 @@ cp .gitignore ~/.config/
 cp README.md ~/.config/
 cp setup ~/.config/
 
-# 14. Set permissions (dirs & scripts 700, configs 600)
+# 15. Set permissions (dirs & scripts 700, configs 600)
 echo "Updating file permissions"
 find "$HOME/.config" -type f -exec chmod 700 {} +
 
-# 15. Systemd service for wakeup
+# 16. Systemd service for wakeup
 echo "Creating ACPI wakeup script"
 if [ -f "$HOME/.config/hypr/scripts/wakeup" ]; then
     sudo tee /etc/systemd/system/wakeup.service > /dev/null << EOF
@@ -182,10 +184,10 @@ fi
 
 echo "Cleaning up package manager caches..."
 
-# 16 Disable UFW
+# 17 Disable UFW
 sudo ufw disable
 
-# 17 Cleanup
+# 18 Cleanup
 if command -v yay >/dev/null 2>&1; then
     yay -Sc --noconfirm
 fi
