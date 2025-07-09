@@ -96,7 +96,7 @@ done
 
 # 7. Install Languages via asdf
 for lang in "${languages[@]}"; do
-    if ! asdf plugin-list | grep -q "^$lang$"; then
+    if ! asdf plugin list | grep -q "^$lang$"; then
         echo "Adding asdf plugin for $lang..."
         asdf plugin add "$lang"
     fi
