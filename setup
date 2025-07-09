@@ -114,14 +114,14 @@ git config --global user.name "Adrian Low"
 # 9. Install Zed and Zoxide
 if ! command -v zed >/dev/null 2>&1; then
     echo "Installing Zed editor..."
-    (curl -fsSL https://zed.dev/install.sh | sh)
+    curl -fsSL https://zed.dev/install.sh | sh
 fi
 if ! command -v zoxide >/dev/null 2>&1; then
     echo "Installing Zoxide..."
-    (curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh)
+    curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 fi
 if command -v fish >/dev/null 2>&1; then
-    fish -c 'fish_add_path -U ~/.local/bin'
+    fish -c 'fish_add_path -U ~/.local/bin' || true
 fi
 
 # 10. Add user to docker group
