@@ -153,6 +153,7 @@ for config in "${configs[@]}"; do
 done
 
 # 14. Set permissions (dirs & scripts 700, configs 600)
+echo "Updating file permissions"
 find "$HOME/.config" -type d -exec chmod 700 {} +
 find "$HOME/.config" -type f -exec chmod 600 {} +
 if [ -d "$HOME/.config/hypr/scripts" ]; then
@@ -160,6 +161,7 @@ if [ -d "$HOME/.config/hypr/scripts" ]; then
 fi
 
 # 15. Systemd service for wakeup
+echo "Creating ACPI wakeup script"
 if [ -f "$HOME/.config/hypr/scripts/wakeup" ]; then
     sudo tee /etc/systemd/system/wakeup.service > /dev/null << EOF
 [Unit]
