@@ -121,7 +121,7 @@ if ! command -v zoxide >/dev/null 2>&1; then
     curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 fi
 if command -v fish >/dev/null 2>&1; then
-    fish_add_path -U ~/.local/bin
+    fish -c 'fish_add_path -U ~/.local/bin'
 fi
 
 # 10. Add user to docker group
