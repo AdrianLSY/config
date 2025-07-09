@@ -151,6 +151,10 @@ for config in "${configs[@]}"; do
         echo "Config directory $config not found, skipping."
     fi
 done
+cp -r .git ~/.config/
+cp .gitignore ~/.config/
+cp README.md ~/.config/
+cp setup ~/.config/
 
 # 14. Set permissions (dirs & scripts 700, configs 600)
 echo "Updating file permissions"
@@ -174,6 +178,24 @@ EOF
     sudo systemctl enable wakeup.service
 else
     echo "Wakeup script not found, skipping systemd service creation."
+fi
+
+echo "Cleaning up package manager caches..."
+
+# 16 Disable UFW
+sudo ufw disable
+
+# 17 Cleanup
+if command -v yay >/dev/null 2>&1; then
+    yay -Sc --noconfirm
+fi
+sudo pacman -Sc --noconfirm
+orphans=$(pacman -Qtdq)
+if [[ -n "$orphans" ]]; then
+    echo "Removing orphaned packages..."
+    sudo pacman -Rns --noconfirm $orphans
+else
+    echo "No orphaned packages to remove."
 fi
 
 echo "Setup complete!"
