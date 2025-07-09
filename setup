@@ -1,64 +1,188 @@
+#!/bin/bash
+set -e  # Exit on first error
+USERNAME="${SUDO_USER:-$USER}"
+
+echo "Starting system setup..."
+
+# Arrays
+pacman=(
+    yay
+    nemo
+    zen-browser
+    chromium
+    flatpak
+    github-cli
+    docker
+    keepassxc
+)
+
+yay=(
+    ulauncher
+    asdf-vm
+    tableplus
+    docker-desktop
+)
+
+flatpaks=(
+    com.dropbox.Client
+    com.spotify.Client
+    com.ultimaker.cura
+    com.sublimemerge.App
+    com.getpostman.Postman
+    org.mozilla.Thunderbird
+    org.localsend.localsend_app
+)
+
+languages=(
+    ruby
+    rust
+    erlang
+    elixir
+    golang
+    nodejs
+    python
+)
+
+configs=(
+    zed
+    fish
+    hypr
+    rofi
+    waybar
+)
+
+# 1. Pacman System Update
+echo "Updating system with pacman..."
 sudo pacman -Syyu --noconfirm
-sudo pacman -S --noconfirm yay nemo zen-browser chromium flatpak github-cli docker keepassxc
 
+# 2. Install Pacman Packages
+for pkg in "${pacman[@]}"; do
+    if ! pacman -Qi "$pkg" > /dev/null 2>&1; then
+        echo "Installing $pkg via pacman..."
+        sudo pacman -S --noconfirm "$pkg"
+    else
+        echo "$pkg already installed."
+    fi
+done
+
+# 3. Check yay, asdf, flatpak presence
+command -v yay >/dev/null 2>&1 || { echo >&2 "yay not found! Exiting."; exit 1; }
+command -v asdf >/dev/null 2>&1 || { echo >&2 "asdf not found! Exiting."; exit 1; }
+command -v flatpak >/dev/null 2>&1 || { echo >&2 "flatpak not found! Exiting."; exit 1; }
+
+# 4. Yay System Update
+echo "Updating system with yay..."
 yay -Syyu --noconfirm
-yay -S --noconfirm ulauncher asdf-vm tableplus
 
-curl -f https://zed.dev/install.sh | sh
-curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+# 5. Install Yay Packages
+for pkg in "${yay[@]}"; do
+    if ! yay -Qi "$pkg" > /dev/null 2>&1; then
+        echo "Installing $pkg via yay..."
+        yay -S --noconfirm "$pkg"
+    else
+        echo "$pkg already installed."
+    fi
+done
 
-fish_add_path -U ~/.local/bin
-xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
+# 6. Flatpak Installations
+for pkg in "${flatpaks[@]}"; do
+    if ! flatpak list | grep -q "$pkg"; then
+        echo "Installing $pkg via flatpak..."
+        flatpak install -y flathub "$pkg"
+    else
+        echo "$pkg already installed (flatpak)."
+    fi
+done
+
+# 7. Install Languages via asdf
+for lang in "${languages[@]}"; do
+    if ! asdf plugin-list | grep -q "^$lang$"; then
+        echo "Adding asdf plugin for $lang..."
+        asdf plugin add "$lang"
+    fi
+    echo "Installing $lang latest..."
+    asdf install "$lang" latest || true
+    asdf global "$lang" latest || true
+done
+asdf reshim
+
+# 8. Git Config
+echo "Configuring git global user..."
+git config --global user.email "adrianlow1998@gmail.com"
+git config --global user.name "Adrian Low"
+
+# 9. Install Zed and Zoxide
+if ! command -v zed >/dev/null 2>&1; then
+    echo "Installing Zed editor..."
+    curl -fsSL https://zed.dev/install.sh | sh
+fi
+if ! command -v zoxide >/dev/null 2>&1; then
+    echo "Installing Zoxide..."
+    curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+fi
+if command -v fish >/dev/null 2>&1; then
+    fish_add_path -U ~/.local/bin
+fi
+
+# 10. Add user to docker group
+sudo usermod -aG docker "$USERNAME"
+
+# 11. Nemo config
 gsettings set org.nemo.desktop show-desktop-icons true
+xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
 gsettings set org.cinnamon.desktop.default-applications.terminal exec alacritty
 
-set flatpaks \
-    com.dropbox.Client \
-    com.spotify.Client \
-    com.ultimaker.cura \
-    com.sublimemerge.App \
-    com.getpostman.Postman \
-    org.mozilla.Thunderbird \
-    org.localsend.localsend_app \
-    io.podman_desktop.PodmanDesktop
-
-for pkg in $flatpaks
-    flatpak install -y flathub $pkg
-end
-
-set languages \
-    ruby \
-    rust \
-    python \
-    golang \
-    nodejs \
-    erlang \
-    elixir
-
-for lang in $languages
-    asdf plugin add $lang
-    asdf install $lang latest
-    asdf set $lang latest
-end
-
-git clone https://github.com/AdrianLSY/rofi-themes.git
+# 12. Clone and install rofi-themes
+if [ ! -d "rofi-themes" ]; then
+    git clone https://github.com/AdrianLSY/rofi-themes.git
+fi
 cd rofi-themes
 chmod +x setup.sh
 ./setup.sh
 cd ..
-rm -rf rofi-themes
 
-for item in * .[^.]*
-    if test $item = "." -o $item = ".."
-        continue
-    end
-    if test -e ~/.config/$item
-        rm -rf ~/.config/$item
-    end
-    cp -r $item ~/.config/
-end
+# 13. Add configs
+for config in "${configs[@]}"; do
+    if [ -d "$config" ]; then
+        echo "Copying config for $config..."
+        rm -rf ~/.config/"$config"/
+        cp -r "$config" ~/.config/
+    else
+        echo "Config directory $config not found, skipping."
+    fi
+done
 
-find ~/.config -type f -exec chmod 700 {} +
+# 14. Set permissions (dirs & scripts 700, configs 600)
+find "$HOME/.config" -type d -exec chmod 700 {} +
+find "$HOME/.config" -type f -exec chmod 600 {} +
+if [ -d "$HOME/.config/hypr/scripts" ]; then
+    find "$HOME/.config/hypr/scripts" -type f -exec chmod 700 {} +
+fi
 
-git config --global user.email "adrianlow1998@gmail.com"
-git config --global user.name "Adrian Low"
+# 15. Systemd service for wakeup
+if [ -f "$HOME/.config/hypr/scripts/wakeup" ]; then
+    sudo tee /etc/systemd/system/wakeup.service > /dev/null << EOF
+[Unit]
+Description=Disable ACPI wakeup devices after boot
+After=multi-user.target
+
+[Service]
+Type=oneshot
+ExecStart=$HOME/.config/hypr/scripts/wakeup
+
+[Install]
+WantedBy=multi-user.target
+EOF
+    sudo systemctl enable wakeup.service
+else
+    echo "Wakeup script not found, skipping systemd service creation."
+fi
+
+echo "Setup complete!"
+
+read -p "Do you want to reboot now? [y/N] " confirm
+if [[ $confirm =~ ^[Yy]$ ]]; then
+    sudo reboot
+else
+    echo "Reboot skipped. You should reboot manually later."
+fi

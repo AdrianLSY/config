@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+devices=$(awk '$3 == "*enabled" {print $1}' /proc/acpi/wakeup)
+
+for dev in $devices; do
+    echo "$dev" | sudo tee /proc/acpi/wakeup > /dev/null
+done
