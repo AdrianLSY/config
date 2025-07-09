@@ -4,22 +4,22 @@ USERNAME="${SUDO_USER:-$USER}"
 
 echo "Starting system setup..."
 
-# Arrays
 pacman=(
     yay
     nemo
-    zen-browser
-    chromium
-    flatpak
-    github-cli
     docker
+    flatpak
+    chromium
     keepassxc
+    github-cli
+    zen-browser
+    nm-connection-editor
 )
 
 yay=(
-    ulauncher
     asdf-vm
     tableplus
+    ulauncher
     docker-desktop
 )
 
@@ -184,8 +184,13 @@ fi
 
 echo "Cleaning up package manager caches..."
 
-# 17 Disable UFW
-sudo ufw disable
+# 17. Misc
+# Power button triggers hybernation
+sudo sed -i '/^HandlePowerKey=/d' /etc/systemd/logind.conf && echo 'HandlePowerKey=hibernate' | sudo tee -a /etc/systemd/logind.conf > /dev/null
+# Skip systemd-boot os selelector
+sudo sed -i '/^timeout /d' /boot/loader/loader.conf && echo 'timeout 0' | sudo tee -a /boot/loader/loader.conf > /dev/null
+# Allows incomming connection from LAN devices
+sudo ufw allow from $(ip -4 addr show | awk '/inet/ && !/127.0.0.1/ {print $2}' | head -n1)
 
 # 18 Cleanup
 if command -v yay >/dev/null 2>&1; then
