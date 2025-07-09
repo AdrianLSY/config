@@ -14,13 +14,13 @@
     "custom/power": {
         "format": "󰐥 ",
         "tooltip": false,
-        "on-click": "~/.config/rofi/powermenu/type-1/powermenu.sh",
+        "on-click": "~/.config/rofi/powermenu/powermenu.sh",
     },
 
     "custom/search": {
         "format": "󰍉 ",
         "tooltip": false,
-        "on-click": "~/.config/rofi/launchers/type-5/launcher.sh",
+        "on-click": "~/.config/rofi/launchers/launcher.sh",
     },
 
     "hyprland/workspaces": {

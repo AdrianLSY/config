@@ -45,6 +45,7 @@ languages=(
 
 configs=(
     zed
+    btop
     fish
     hypr
     rofi
