@@ -102,7 +102,7 @@ for lang in "${languages[@]}"; do
     fi
     echo "Installing $lang latest..."
     asdf install "$lang" latest || true
-    asdf global "$lang" latest || true
+    asdf set "$lang" latest || true
 done
 asdf reshim
 
