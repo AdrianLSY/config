@@ -1,4 +1,7 @@
 *
+
+!setup.sh
 !README.md
 !.gitignore
-!setup.sh
+
+.DS_Store
