@@ -5,16 +5,11 @@
 !.gitignore
 
 !zed/
-!zed/**
 !btop/
-!btop/**
 !fish/
-!fish/**
 !hypr/
-!hypr/**
 !rofi/
-!rofi/**
 !setup/
-!setup/**
 !waybar/
-!waybar/**
+
+.DS_Store
