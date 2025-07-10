@@ -1,5 +1,4 @@
 #!/bin/bash
-
 set -e
 
 # Auto-elevate if not run as root
