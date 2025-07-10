@@ -1,6 +1,7 @@
 *
 !README.md
 !.gitignore
+!setup.sh
 !setup
 !btop/
 !btop/**
