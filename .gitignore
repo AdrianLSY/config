@@ -1,8 +1,11 @@
 *
+
+!setup.sh
 !README.md
 !.gitignore
-!setup.sh
-!setup
+
+!zed/
+!zed/**
 !btop/
 !btop/**
 !fish/
@@ -11,5 +14,7 @@
 !hypr/**
 !rofi/
 !rofi/**
+!setup/
+!setup/**
 !waybar/
 !waybar/**
