@@ -1,4 +1,6 @@
 #!/bin/bash
+# setup/.setup.sh
+
 set -e
 
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -10,7 +12,7 @@ ORDER=(
     pacman
     yay
     flatpak
-    apps
+    app
     asdf
     tweak
 )
@@ -32,7 +34,7 @@ for BASENAME in "${ORDER[@]}"; do
     if [[ -x "$SETUP_SH" ]]; then
         echo "Running $SETUP_SH..."
         LOGFILE="$SUBDIR/.setup.sh.log"
-        "$SETUP_SH" >"$LOGFILE" 2>&1
+        "$SETUP_SH" 2>&1 | tee "$LOGFILE"
         STATUS=$?
         if [[ $STATUS -eq 0 ]]; then
             echo "🟢 $BASENAME setup completed successfully."

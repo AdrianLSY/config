@@ -1,4 +1,6 @@
 #!/bin/bash
+# setup.sh
+
 set -e
 
 # Auto-elevate if not run as root
@@ -16,7 +18,7 @@ echo "🔧 Preparing environment..."
 find . -type f -exec chmod 700 {} +
 
 echo "🚀 Running $SETUP_SH..."
-if bash "$SETUP_SH" >"$LOGFILE" 2>&1; then
+if bash "$SETUP_SH" 2>&1 | tee "$LOGFILE"; then
     echo "🟢 $SETUP_SH completed successfully."
     rm -f "$LOGFILE"
 else

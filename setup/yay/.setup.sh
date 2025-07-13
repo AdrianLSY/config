@@ -1,4 +1,5 @@
 #!/bin/bash
+# setup/yay/.setup.sh
 
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SELF="$(basename "$0")"
