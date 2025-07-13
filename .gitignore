@@ -1,9 +1,10 @@
 *
-
+.DS_Store
 !setup.sh
 !README.md
 !.gitignore
 
+# Track everything in these directories
 !zed/
 !zed/**
 !btop/
@@ -18,5 +19,3 @@
 !setup/**
 !waybar/
 !waybar/**
-
-.DS_Store
