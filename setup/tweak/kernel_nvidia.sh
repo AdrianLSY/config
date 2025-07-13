@@ -4,13 +4,16 @@ set -e
 FILE="/boot/loader/entries/linux-cachyos.conf"
 
 REQUIRED_PARAMS=(
-  "pci=noaer"
-  "no_console_suspend"
-  "libata.force=noncq"
-  "usbcore.autosuspend=-1"
+  "nvidia_drm.modeset=1"
+  "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
 )
 
 MISSING_PARAMS=()
+
+if ! command -v nvidia-smi &> /dev/null; then
+  echo "nvidia-smi not found. NVIDIA drivers might not be installed. Exiting."
+  exit 1
+fi
 
 for param in "${REQUIRED_PARAMS[@]}"; do
   if ! sudo grep -qw "$param" "$FILE"; then
