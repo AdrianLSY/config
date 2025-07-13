@@ -1,5 +1,4 @@
 #!/bin/bash
-# setup/.setup.sh
 
 set -e
 
@@ -18,7 +17,6 @@ ORDER=(
 )
 
 FAILED=()
-SKIPPED=()
 SUCCESS=()
 
 for BASENAME in "${ORDER[@]}"; do
@@ -27,7 +25,6 @@ for BASENAME in "${ORDER[@]}"; do
 
     if [[ ! -d "$SUBDIR" ]]; then
         echo "⏭️  $BASENAME: Directory not found. Skipping."
-        SKIPPED+=("$BASENAME")
         continue
     fi
 
@@ -62,9 +59,6 @@ if (( ${#FAILED[@]} )); then
 fi
 if (( ${#SUCCESS[@]} )); then
     echo "✅ Installed: ${SUCCESS[*]}"
-fi
-if (( ${#SKIPPED[@]} )); then
-    echo "⏭️  Skipped:   ${SKIPPED[*]}"
 fi
 
 (( ${#FAILED[@]} )) && exit 1 || exit 0

@@ -7,7 +7,6 @@ SELF="$(basename "$0")"
 echo "Starting asdf installs..."
 
 FAILED=()
-SKIPPED=()
 SUCCESS=()
 
 for file in "$DIR"/*.sh; do
@@ -23,7 +22,6 @@ for file in "$DIR"/*.sh; do
     # Check if plugin already installed
     if asdf plugin list | grep -qx "$PKG"; then
         echo "🟢 $PKG plugin already added."
-        SKIPPED+=("$PKG")
         continue
     fi
 
@@ -50,9 +48,6 @@ if (( ${#FAILED[@]} )); then
 fi
 if (( ${#SUCCESS[@]} )); then
     echo "✅ Installed: ${SUCCESS[*]}"
-fi
-if (( ${#SKIPPED[@]} )); then
-    echo "⏭️  Skipped:   ${SKIPPED[*]}"
 fi
 
 # Exit nonzero if anything failed

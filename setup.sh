@@ -1,11 +1,11 @@
 #!/bin/bash
-# setup.sh
 
 set -e
 
-# Auto-elevate if not run as root
-if [[ $EUID -ne 0 ]]; then
-  exec sudo "$0" "$@"
+if [[ -n "$SUDO_USER" ]]; then
+  USER_HOME=$(eval echo "~$SUDO_USER")
+else
+  USER_HOME="$HOME"
 fi
 
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -28,7 +28,7 @@ else
 fi
 
 # Post setup: Move configs to ~/.config and update permissions
-if [[ "$PWD" != "$HOME/.config" ]]; then
+if [[ "$PWD" != "$USER_HOME/.config" ]]; then
     echo "📁 Copying configs to ~/.config..."
     for config in */; do
         if [[ -d "$config" ]]; then

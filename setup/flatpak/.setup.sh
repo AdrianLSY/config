@@ -1,69 +1,65 @@
 #!/bin/bash
-# setup/flatpak/.setup.sh
+
+set -e
+
+if [[ $EUID -eq 0 ]]; then
+  echo "Please do not run this script as root."
+  exit 1
+fi
 
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SELF="$(basename "$0")"
 
-echo "Starting setup for all modules..."
+echo "Updating flatpak remotes..."
+flatpak update --appstream -y
 
-# Order: pacman > yay > flatpak > apps > asdf > tweak
-ORDER=(
-    pacman
-    yay
-    flatpak
-    app
-    asdf
-    tweak
-)
+echo "Starting Flatpak installs..."
 
 FAILED=()
-SKIPPED=()
 SUCCESS=()
 
-for BASENAME in "${ORDER[@]}"; do
-    SUBDIR="$DIR/$BASENAME"
-    SETUP_SH="$SUBDIR/.setup.sh"
+LOGDIR="$DIR/logs"
+mkdir -p "$LOGDIR"
 
-    if [[ ! -d "$SUBDIR" ]]; then
-        echo "⏭️  $BASENAME: Directory not found. Skipping."
-        SKIPPED+=("$BASENAME")
+for file in "$DIR"/*.sh; do
+    BASENAME="$(basename "$file")"
+
+    # Skip hidden files, this script itself, and non-regular files
+    if [[ "$BASENAME" == .* ]] || [[ "$BASENAME" == "$SELF" ]] || [[ ! -f "$file" ]]; then
         continue
     fi
 
-    if [[ -x "$SETUP_SH" ]]; then
-        echo "Running $SETUP_SH..."
-        LOGFILE="$SUBDIR/.setup.sh.log"
-        "$SETUP_SH" >"$LOGFILE" 2>&1
-        STATUS=$?
-        if [[ $STATUS -eq 0 ]]; then
-            echo "🟢 $BASENAME setup completed successfully."
-            rm -f "$LOGFILE"
-            SUCCESS+=("$BASENAME")
-        else
-            echo "🔴 $BASENAME setup failed."
-            cat "$LOGFILE"
-            FAILED+=("$BASENAME")
-        fi
-    elif [[ -f "$SETUP_SH" ]]; then
-        echo "⏭️  $BASENAME: .setup.sh is not executable. Skipping."
-        SKIPPED+=("$BASENAME")
+    APP_ID="${BASENAME%.sh}"
+
+    if flatpak info "$APP_ID" &>/dev/null; then
+        echo "🟢 $APP_ID is already installed."
+        continue
+    fi
+
+    LOGFILE="$LOGDIR/$BASENAME.log"
+    echo "Installing $APP_ID..."
+    bash "$file" >"$LOGFILE" 2>&1
+    STATUS=$?
+    if [[ $STATUS -eq 0 ]]; then
+        echo "🟢 $APP_ID installed successfully."
+        rm -f "$LOGFILE"
+        SUCCESS+=("$APP_ID")
     else
-        echo "⏭️  $BASENAME: No .setup.sh found. Skipping."
-        SKIPPED+=("$BASENAME")
+        echo "🔴 $APP_ID was not installed"
+        cat "$LOGFILE"
+        FAILED+=("$APP_ID")
     fi
 done
 
-echo "All module setups complete!"
+echo "Flatpak installs complete!"
 
 # Summary
 if (( ${#FAILED[@]} )); then
-    echo "❌ Failed:   ${FAILED[*]}"
+    printf '❌ Failed:   %s\n' "${FAILED[@]}"
 fi
 if (( ${#SUCCESS[@]} )); then
-    echo "✅ Installed: ${SUCCESS[*]}"
-fi
-if (( ${#SKIPPED[@]} )); then
-    echo "⏭️  Skipped:   ${SKIPPED[*]}"
+    printf '✅ Installed: %s\n' "${SUCCESS[@]}"
 fi
 
+# Exit nonzero if anything failed
 (( ${#FAILED[@]} )) && exit 1 || exit 0

@@ -1,5 +1,4 @@
 #!/bin/bash
-# setup/tweak/.setup.sh
 
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SELF="$(basename "$0")"
@@ -8,7 +7,6 @@ echo "Starting system tweaks..."
 
 FAILED=()
 SUCCESS=()
-SKIPPED=()
 
 for file in "$DIR"/*.sh; do
     BASENAME="$(basename "$file")"
@@ -43,9 +41,6 @@ if (( ${#FAILED[@]} )); then
 fi
 if (( ${#SUCCESS[@]} )); then
     echo "✅ Ran:      ${SUCCESS[*]}"
-fi
-if (( ${#SKIPPED[@]} )); then
-    echo "⏭️  Skipped:   ${SKIPPED[*]}"
 fi
 
 # Exit nonzero if anything failed

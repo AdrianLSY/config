@@ -9,7 +9,6 @@ SELF="$(basename "$0")"
 echo "Starting generic app installs..."
 
 FAILED=()
-SKIPPED=()
 SUCCESS=()
 
 for file in "$DIR"/*.sh; do
@@ -25,7 +24,6 @@ for file in "$DIR"/*.sh; do
     # Check if already installed (using command)
     if command -v "$PKG" >/dev/null 2>&1; then
         echo "🟢 $PKG is already installed."
-        SKIPPED+=("$PKG")
         continue
     fi
 
@@ -51,9 +49,6 @@ if (( ${#FAILED[@]} )); then
 fi
 if (( ${#SUCCESS[@]} )); then
     echo "✅ Installed: ${SUCCESS[*]}"
-fi
-if (( ${#SKIPPED[@]} )); then
-    echo "⏭️  Skipped:   ${SKIPPED[*]}"
 fi
 
 # Exit nonzero if anything failed

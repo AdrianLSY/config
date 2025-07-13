@@ -10,7 +10,6 @@ sudo yay -Syyu --noconfirm
 echo "Starting yay installs..."
 
 FAILED=()
-SKIPPED=()
 SUCCESS=()
 
 for file in "$DIR"/*.sh; do
@@ -25,7 +24,6 @@ for file in "$DIR"/*.sh; do
 
     if yay -Q "$PKG" &>/dev/null; then
         echo "🟢 $PKG is already installed."
-        SKIPPED+=("$PKG")
         continue
     fi
 
@@ -51,9 +49,6 @@ if (( ${#FAILED[@]} )); then
 fi
 if (( ${#SUCCESS[@]} )); then
     echo "✅ Installed: ${SUCCESS[*]}"
-fi
-if (( ${#SKIPPED[@]} )); then
-    echo "⏭️  Skipped:   ${SKIPPED[*]}"
 fi
 
 # Exit nonzero if anything failed

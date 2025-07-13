@@ -1,5 +1,4 @@
 #!/bin/bash
-# setup/pacman/.setup.sh
 
 set -e
 
@@ -12,7 +11,6 @@ sudo pacman -Syyu --noconfirm
 echo "Starting pacman installs..."
 
 FAILED=()
-SKIPPED=()
 SUCCESS=()
 
 for file in "$DIR"/*.sh; do
@@ -27,7 +25,6 @@ for file in "$DIR"/*.sh; do
 
     if pacman -Q "$PKG" &>/dev/null; then
         echo "🟢 $PKG is already installed."
-        SKIPPED+=("$PKG")
         continue
     fi
 
@@ -53,9 +50,6 @@ if (( ${#FAILED[@]} )); then
 fi
 if (( ${#SUCCESS[@]} )); then
     echo "✅ Installed: ${SUCCESS[*]}"
-fi
-if (( ${#SKIPPED[@]} )); then
-    echo "⏭️  Skipped:   ${SKIPPED[*]}"
 fi
 
 # Exit nonzero if anything failed
