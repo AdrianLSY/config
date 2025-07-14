@@ -7,11 +7,11 @@
     min-height: 0;
     margin: 0;
     padding: 0;
-    color: #ffffff;
+    color: rgb(255, 255, 255);
 }
 
 window#waybar {
-    background-color: rgba(40, 40, 40, 0.95);
+    background-color: rgb(0, 0, 0);
 }
 
 #workspaces {
@@ -23,7 +23,7 @@ window#waybar {
 }
 
 #workspaces button.active {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgb(65, 65, 65);
 }
 
 .modules-left,
