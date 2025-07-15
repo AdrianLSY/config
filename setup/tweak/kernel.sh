@@ -21,3 +21,5 @@ done
 if [ ${#MISSING_PARAMS[@]} -gt 0 ]; then
   sudo sed -i "/^options / s|\$| ${MISSING_PARAMS[*]}|" "$FILE"
 fi
+
+sudo mkinitcpio -P
