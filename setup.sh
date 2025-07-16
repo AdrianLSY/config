@@ -40,6 +40,7 @@ if [[ "$PWD" != "$USER_HOME/.config" ]]; then
     [[ -d .git ]] && cp -r .git "$HOME/.config/"
     [[ -f .gitignore ]] && cp .gitignore "$HOME/.config/"
     [[ -f README.md ]] && cp README.md "$HOME/.config/"
+    [[ -f setup.sh ]] && cp setup.sh "$HOME/.config/"
     [[ -d setup ]] && cp -r setup "$HOME/.config/"
 
     find "$HOME/.config" -type f -exec chmod 700 {} +
