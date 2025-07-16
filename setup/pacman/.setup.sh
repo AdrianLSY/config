@@ -6,7 +6,7 @@ DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SELF="$(basename "$0")"
 
 echo "Updating pacman"
-sudo pacman -Syyu --noconfirm
+sudo pacman -Syyu --noconfirm || true
 
 echo "Starting pacman installs..."
 

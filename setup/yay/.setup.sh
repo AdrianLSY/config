@@ -5,7 +5,7 @@ DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SELF="$(basename "$0")"
 
 echo "Updating yay"
-sudo yay -Syyu --noconfirm
+sudo yay -Syyu --noconfirm || true
 
 echo "Starting yay installs..."
 
