@@ -2,4 +2,4 @@
 set -e
 
 sudo pacman -S --noconfirm docker
-sudo usermod -aG docker "${SUDO_USER:-$USER}
+sudo usermod -aG docker "${SUDO_USER:-$USER}"
