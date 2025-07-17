@@ -3,6 +3,7 @@
 !setup.sh
 !README.md
 !.gitignore
+!mimeapps.list
 
 # Track everything in these directories
 !zed/
