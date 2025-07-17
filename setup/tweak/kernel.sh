@@ -8,6 +8,7 @@ REQUIRED_PARAMS=(
   "no_console_suspend"
   "libata.force=noncq"
   "usbcore.autosuspend=-1"
+  "acpi_osi=Linux"
 )
 
 MISSING_PARAMS=()
