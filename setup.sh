@@ -38,10 +38,10 @@ if [[ "$PWD" != "$USER_HOME/.config" ]]; then
     done
     # Copy meta files if they exist
     [[ -d .git ]] && cp -r .git "$HOME/.config/"
-    [[ -f .gitignore ]] && cp .gitignore "$HOME/.config/"
-    [[ -f README.md ]] && cp README.md "$HOME/.config/"
-    [[ -f setup.sh ]] && cp setup.sh "$HOME/.config/"
     [[ -d setup ]] && cp -r setup "$HOME/.config/"
+    [[ -f setup.sh ]] && cp setup.sh "$HOME/.config/"
+    [[ -f README.md ]] && cp README.md "$HOME/.config/"
+    [[ -f .mimeapps.list ]] && cp .mimeapps.list "$HOME/.config/"
 
     find "$HOME/.config" -type f -exec chmod 700 {} +
 

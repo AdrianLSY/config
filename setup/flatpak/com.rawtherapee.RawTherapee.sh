@@ -1,4 +1,4 @@
 #!/bin/bash
 set -e
 
-flatpak install flathub com.rawtherapee.RawTherapee
+flatpak install -y flathub com.rawtherapee.RawTherapee
