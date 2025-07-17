@@ -28,7 +28,7 @@ for file in "$DIR"/*.sh; do
     fi
 
     LOGFILE="$DIR/$BASENAME.log"
-    bash "$file" >"$LOGFILE" 2>&1
+    bash "$file" >"$LOGFILE" 2>&1 | tee "$LOGFILE"
     STATUS=$?
     if [[ $STATUS -eq 0 ]]; then
         echo "🟢 $PKG installed successfully."
