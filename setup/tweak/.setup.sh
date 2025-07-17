@@ -19,7 +19,7 @@ for file in "$DIR"/*.sh; do
     LOGFILE="$DIR/$BASENAME.log"
     echo "Running $BASENAME..."
 
-    bash "$file" >"$LOGFILE" 2>&1 | tee "$LOGFILE"
+    bash "$file" 2>&1 | tee "$LOGFILE"
     STATUS=$?
 
     if [[ $STATUS -eq 0 ]]; then
