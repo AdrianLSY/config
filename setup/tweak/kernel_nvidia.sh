@@ -1,28 +1,30 @@
 #!/bin/bash
-set -e
+# Not needed for now.
 
-FILE="/boot/loader/entries/linux-cachyos.conf"
+# set -e
 
-REQUIRED_PARAMS=(
-  "nvidia_drm.modeset=1"
-  "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
-)
+# FILE="/boot/loader/entries/linux-cachyos.conf"
 
-MISSING_PARAMS=()
+# REQUIRED_PARAMS=(
+#   "nvidia_drm.modeset=1"
+#   "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
+# )
 
-if ! command -v nvidia-smi &> /dev/null; then
-  echo "nvidia-smi not found. NVIDIA drivers might not be installed. Exiting."
-  exit 1
-fi
+# MISSING_PARAMS=()
 
-for param in "${REQUIRED_PARAMS[@]}"; do
-  if ! sudo grep -qw "$param" "$FILE"; then
-    MISSING_PARAMS+=("$param")
-  fi
-done
+# if ! command -v nvidia-smi &> /dev/null; then
+#   echo "nvidia-smi not found. NVIDIA drivers might not be installed. Exiting."
+#   exit 1
+# fi
 
-if [ ${#MISSING_PARAMS[@]} -gt 0 ]; then
-  sudo sed -i "/^options / s|\$| ${MISSING_PARAMS[*]}|" "$FILE"
-fi
+# for param in "${REQUIRED_PARAMS[@]}"; do
+#   if ! sudo grep -qw "$param" "$FILE"; then
+#     MISSING_PARAMS+=("$param")
+#   fi
+# done
 
-sudo mkinitcpio -P
+# if [ ${#MISSING_PARAMS[@]} -gt 0 ]; then
+#   sudo sed -i "/^options / s|\$| ${MISSING_PARAMS[*]}|" "$FILE"
+# fi
+
+# sudo mkinitcpio -P
