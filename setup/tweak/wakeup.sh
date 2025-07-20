@@ -13,8 +13,12 @@
 # Why'd you leave the keys upon the table?
 # You wanted to
 # I don't think you trust
-# In my self-righteous suicide
-# I cry when angels deserve to
+# In
+# my
+# self-righteous suicide
+# I
+# cry
+# when angels deserve to
 # Die
 
 set -e
