@@ -32,7 +32,7 @@ for file in "$DIR"/*.sh; do
     APP_ID="${BASENAME%.sh}"
 
     if flatpak info "$APP_ID" &>/dev/null; then
-        echo "🟢 $APP_ID is already installed."
+        echo "⏭️ $APP_ID is already installed."
         continue
     fi
 

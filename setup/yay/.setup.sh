@@ -23,7 +23,7 @@ for file in "$DIR"/*.sh; do
     PKG="${BASENAME%.sh}"
 
     if yay -Q "$PKG" &>/dev/null; then
-        echo "🟢 $PKG is already installed."
+        echo "⏭️ $PKG is already installed."
         continue
     fi
 
