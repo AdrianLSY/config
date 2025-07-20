@@ -1,0 +1,9 @@
+#!/usr/bin/bash
+set -e
+
+EXCLUDES=(--exclude='*.lock' --exclude='*.sock' --exclude='*.pid')
+
+rsync -av --delete "${EXCLUDES[@]}" ~/.ssh/ ~/Documents/Dotfiles/.ssh/
+rsync -av --delete "${EXCLUDES[@]}" ~/.zen/ ~/Documents/Dotfiles/.zen/
+rsync -av --delete "${EXCLUDES[@]}" ~/.local/zed.app/ ~/Documents/Dotfiles/.local/zed.app/
+rsync -av --delete "${EXCLUDES[@]}" ~/.local/share/zed/ ~/Documents/Dotfiles/.local/share/zed/
