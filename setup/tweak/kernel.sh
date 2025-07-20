@@ -8,6 +8,7 @@ REQUIRED_PARAMS=(
   "no_console_suspend"
   "libata.force=noncq"
   "usbcore.autosuspend=-1"
+  "acpi_osi=Linux"
 )
 
 MISSING_PARAMS=()
@@ -21,3 +22,5 @@ done
 if [ ${#MISSING_PARAMS[@]} -gt 0 ]; then
   sudo sed -i "/^options / s|\$| ${MISSING_PARAMS[*]}|" "$FILE"
 fi
+
+sudo mkinitcpio -P

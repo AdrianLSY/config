@@ -5,7 +5,7 @@ DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SELF="$(basename "$0")"
 
 echo "Updating yay"
-sudo yay -Syyu --noconfirm
+sudo yay -Syyu --noconfirm || true
 
 echo "Starting yay installs..."
 
@@ -28,7 +28,7 @@ for file in "$DIR"/*.sh; do
     fi
 
     LOGFILE="$DIR/$BASENAME.log"
-    bash "$file" >"$LOGFILE" 2>&1
+    bash "$file" 2>&1 | tee "$LOGFILE"
     STATUS=$?
     if [[ $STATUS -eq 0 ]]; then
         echo "🟢 $PKG installed successfully."

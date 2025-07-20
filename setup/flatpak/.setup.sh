@@ -38,7 +38,7 @@ for file in "$DIR"/*.sh; do
 
     LOGFILE="$LOGDIR/$BASENAME.log"
     echo "Installing $APP_ID..."
-    bash "$file" >"$LOGFILE" 2>&1
+    bash "$file" 2>&1 | tee "$LOGFILE"
     STATUS=$?
     if [[ $STATUS -eq 0 ]]; then
         echo "🟢 $APP_ID installed successfully."
