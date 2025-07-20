@@ -27,33 +27,33 @@ else
     exit 1
 fi
 
-# # Post setup: Move configs to ~/.config and update permissions
-# if [[ "$PWD" != "$USER_HOME/.config" ]]; then
-#     echo "📁 Copying configs to ~/.config..."
-#     for config in */; do
-#         if [[ -d "$config" ]]; then
-#             rm -rf "$HOME/.config/$config"
-#             cp -r "$config" "$HOME/.config/"
-#         fi
-#     done
-#     # Copy meta files if they exist
-#     [[ -d .git ]] && { rm -rf "$HOME/.config/.git"; cp -r .git "$HOME/.config/"; }
-#     [[ -d setup ]] && { rm -rf "$HOME/.config/setup"; cp -r setup "$HOME/.config/"; }
-#     [[ -f setup.sh ]] && cp -f setup.sh "$HOME/.config/"
-#     [[ -f README.md ]] && cp -f README.md "$HOME/.config/"
-#     [[ -f .gitignore ]] && cp -f .gitignore "$HOME/.config/"
-#     [[ -f .mimeapps.list ]] && cp -f .mimeapps.list "$HOME/.config/"
+# Post setup: Move configs to ~/.config and update permissions
+if [[ "$PWD" != "$USER_HOME/.config" ]]; then
+    echo "📁 Copying configs to ~/.config..."
+    for config in */; do
+        if [[ -d "$config" ]]; then
+            rm -rf "$HOME/.config/$config"
+            cp -r "$config" "$HOME/.config/"
+        fi
+    done
+    # Copy meta files if they exist
+    [[ -d .git ]] && { rm -rf "$HOME/.config/.git"; cp -r .git "$HOME/.config/"; }
+    [[ -d setup ]] && { rm -rf "$HOME/.config/setup"; cp -r setup "$HOME/.config/"; }
+    [[ -f setup.sh ]] && cp -f setup.sh "$HOME/.config/"
+    [[ -f README.md ]] && cp -f README.md "$HOME/.config/"
+    [[ -f .gitignore ]] && cp -f .gitignore "$HOME/.config/"
+    [[ -f .mimeapps.list ]] && cp -f .mimeapps.list "$HOME/.config/"
 
-#     find "$HOME/.config" -type f -exec chmod 700 {} +
+    find "$HOME/.config" -type f -exec chmod 700 {} +
 
-#     echo "🟢 All configs copied and permissions set."
-# fi
+    echo "🟢 All configs copied and permissions set."
+fi
 
-# echo "✅ All done!"
+echo "✅ All done!"
 
-# read -p "🔄 Do you want to reboot now? [y/N] " confirm
-# if [[ $confirm =~ ^[Yy]$ ]]; then
-#     sudo reboot
-# else
-#     echo "⏭️  Reboot skipped. You should reboot manually later."
-# fi
+read -p "🔄 Do you want to reboot now? [y/N] " confirm
+if [[ $confirm =~ ^[Yy]$ ]]; then
+    sudo reboot
+else
+    echo "⏭️  Reboot skipped. You should reboot manually later."
+fi

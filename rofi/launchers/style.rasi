@@ -5,14 +5,6 @@ configuration {
     display-name: "";
   }
 
-  run {
-    display-name: "";
-  }
-
-  window {
-    display-name: "";
-  }
-
   timeout {
     delay: 10;
     action: "kb-cancel";
@@ -34,14 +26,6 @@ configuration {
   text-color: @fg;
 }
 
-window {
-  transparency: "real";
-}
-
-mainbox {
-  children: [inputbar, listview];
-}
-
 inputbar {
   background-color: @bg-alt;
   children: [prompt, entry];
@@ -55,10 +39,6 @@ entry {
 prompt {
   background-color: inherit;
   padding: 12px;
-}
-
-listview {
-  lines: 16;
 }
 
 element {

@@ -17,48 +17,28 @@ configuration {
   text-color: @fg;
 }
 
-window {
-  transparency: "real";
-  width: 300px;
-}
-
-mainbox {
-  children: [inputbar, listview];
-}
-
 inputbar {
   background-color: @bg-alt;
   children: [prompt, entry];
 }
 
+entry {
+  background-color: inherit;
+  padding: 12px 3px;
+}
+
 prompt {
   background-color: inherit;
   padding: 12px;
-  text-color: @fg;
 }
 
-entry {
-  background-color: inherit;
-  padding: 0;
-  caret-color: transparent;
-  color: transparent;
-  min-height: 0px;
-  min-width: 0px;
-  height: 0px;
-  margin: 0;
-  box-shadow: none;
-  border: 0;
-  outline: none;
-}
-
-listview {
-  lines: 5;
+element {
+  children: [element-icon, element-text];
 }
 
 element-text {
-  padding: 10px 0 10px 10px;
+  padding: 10px 0;
   text-color: @fg-alt;
-  horizontal-align: 0.0;
 }
 
 element-text selected {
