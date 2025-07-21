@@ -3,4 +3,4 @@
 
 set -e
 
-sudo pacman -S --noconfirm iptables
+sudo pacman -S --noconfirm qemu-full
