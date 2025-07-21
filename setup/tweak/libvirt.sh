@@ -9,3 +9,6 @@ sudo sed -i '/^unix_sock_rw_perms *=/d' "$FILE" && echo 'unix_sock_rw_perms = "0
 sudo usermod -a -G libvirt "${SUDO_USER:-$(whoami)}"
 sudo systemctl enable libvirtd
 sudo systemctl start libvirtd
+
+sudo virsh net-start default
+sudo virsh net-autostart default
