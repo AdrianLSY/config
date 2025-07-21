@@ -3,8 +3,7 @@
 dir="$HOME/.config/rofi/clipboard"
 theme='style'
 
-## Run
-wl-clipboard-history -l 50 | rofi \
-    -dmenu \
-    -theme "${dir}/${theme}.rasi" \
-    -p "󰅎" | wl-copy
+wl-clipboard-history -l 50 \
+    | rofi -dmenu -theme "${dir}/${theme}.rasi" -p "󰅎" \
+    | sed 's/^[0-9]\+,//' \
+    | wl-copy
