@@ -3,7 +3,7 @@ set -e
 
 EXCLUDES=(--exclude='*.lock' --exclude='*.sock' --exclude='*.pid')
 
-rsync -av --delete "${EXCLUDES[@]}" ~/.ssh/ ~/Documents/Dotfiles/.ssh/
-rsync -av --delete "${EXCLUDES[@]}" ~/.zen/ ~/Documents/Dotfiles/.zen/
-rsync -av --delete "${EXCLUDES[@]}" ~/.local/zed.app/ ~/Documents/Dotfiles/.local/zed.app/
-rsync -av --delete "${EXCLUDES[@]}" ~/.local/share/zed/ ~/Documents/Dotfiles/.local/share/zed/
+rsync -av --delete "${EXCLUDES[@]}" ~/.ssh/ /home/adrian/.local/share/Cryptomator/mnt/.ssh/
+rsync -av --delete "${EXCLUDES[@]}" ~/.zen/ /home/adrian/.local/share/Cryptomator/mnt/.zen/
+rsync -av --delete "${EXCLUDES[@]}" ~/.local/zed.app/ /home/adrian/.local/share/Cryptomator/mnt/Dotfiles/.local/zed.app/
+rsync -av --delete "${EXCLUDES[@]}" ~/.local/share/zed/ /home/adrian/.local/share/Cryptomator/mnt/Dotfiles/.local/share/zed/
