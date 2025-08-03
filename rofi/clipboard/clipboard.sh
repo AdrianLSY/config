@@ -27,7 +27,8 @@ done
 
 # Show rofi menu and copy selected entry
 wl-clipboard-history -l $limit \
+  | sed 's/^\([0-9]\+\),\(.*\)$/[\1] \2/' \
   | rofi -dmenu -theme "${dir}/${theme}.rasi" -p "󰅎" \
-  | sed 's/^[0-9]\+,//' \
+  | sed 's/^\[[0-9]\+\] //' \
   | awk 'NF' \
   | wl-copy
