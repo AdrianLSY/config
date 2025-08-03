@@ -1,6 +1,4 @@
-if status is-interactive
-    function zedd
-        zed $argv
-        exit
-    end
+function zedd
+    zed $argv
+    exit
 end
