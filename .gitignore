@@ -20,3 +20,5 @@
 !setup/**
 !waybar/
 !waybar/**
+!swaylock/
+!swaylock/**
