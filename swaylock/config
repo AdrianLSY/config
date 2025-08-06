@@ -1,0 +1,24 @@
+ignore-empty-password
+disable-caps-lock-text
+font=JetBrainsMono Nerd Font Medium
+
+color=000000
+
+indicator
+indicator-radius=120
+indicator-thickness=20
+
+clock
+timestr=%I:%M %p
+datestr=%A, %d %B
+
+ring-color=3f3f3f
+key-hl-color=3f3f3f
+line-color=3f3f3f
+separator-color=3f3f3f
+inside-color=000000
+bs-hl-color=000000
+layout-bg-color=000000
+layout-border-color=000000
+layout-text-color=000000
+text-color=FFFFFF
