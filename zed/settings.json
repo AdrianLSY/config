@@ -25,5 +25,19 @@
     "light": "One Light",
     "dark": "One Dark Pro"
   },
-  "autosave": "on_focus_change"
+  "autosave": "on_focus_change",
+  "ssh_connections": [
+    {
+      "host": "46.202.164.183",
+      "username": "root",
+      "nickname": "backend",
+      "args": ["-i", "~/.ssh/id_ed25519"]
+    },
+    {
+      "host": "62.72.13.169",
+      "username": "root",
+      "nickname": "dev-api",
+      "args": ["-i", "~/.ssh/id_ed25519"]
+    }
+  ]
 }
