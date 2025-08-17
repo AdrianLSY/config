@@ -1,21 +1,20 @@
 #!/bin/bash
 set -e
 
-# Allow all hidraw devices
-if [ ! -f "/etc/systemd/system/hidraw.service" ]; then
-    sudo tee /etc/systemd/system/hidraw.service > /dev/null << EOF
-[Unit]
-Description=Disable ACPI hidraw devices after boot
-After=multi-user.target
+# Create udev rule for hidraw devices
+UDEV_RULE_FILE="/etc/udev/rules.d/99-hidraw-permissions.rule"
 
-[Service]
-Type=oneshot
-ExecStart=$HOME/.config/hypr/scripts/hidraw
-
-[Install]
-WantedBy=multi-user.target
+if [ ! -f "$UDEV_RULE_FILE" ]; then
+    sudo tee "$UDEV_RULE_FILE" > /dev/null << 'EOF'
+KERNEL=="hidraw*", ACTION=="add", MODE="0755"
 EOF
-    sudo systemctl enable hidraw.service
 fi
 
-"$HOME/.config/hypr/scripts/hidraw"
+# Always reload udev rules to ensure they're active
+sudo udevadm control --reload-rules
+sudo udevadm trigger --subsystem-match=hidraw
+
+# Apply permissions to existing hidraw devices
+if ls /dev/hidraw* 1> /dev/null 2>&1; then
+    sudo chmod a+rx /dev/hidraw*
+fi
