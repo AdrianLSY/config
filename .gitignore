@@ -16,6 +16,8 @@
 !hypr/**
 !rofi/
 !rofi/**
+!tmux/
+!tmux/**
 !setup/
 !setup/**
 !waybar/
