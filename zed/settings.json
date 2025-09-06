@@ -1,31 +1,21 @@
 // Zed settings
-//
-// For information on how to configure Zed, see the Zed
-// documentation: https://zed.dev/docs/configuring-zed
-//
-// To see all of Zed's default settings without changing your
-// custom settings, run `zed: open default settings` from the
-// command palette (cmd-shift-p / ctrl-shift-p)
 {
   "icon_theme": "Material Icon Theme",
   "ssh_connections": [
     {
       "host": "192.168.0.3",
       "username": "adrian",
-      "projects": [
-        {
-          "paths": ["/home/adrian/zfs/services"]
-        }
-      ]
+      "projects": [{ "paths": ["/home/adrian/zfs/services"] }]
     }
   ],
+
   "agent": {
     "play_sound_when_agent_done": true,
     "always_allow_tool_actions": true,
     "model_parameters": [],
     "default_model": {
-      "provider": "zed.dev",
-      "model": "claude-sonnet-4"
+      "provider": "openai",
+      "model": "gpt-5-mini"
     }
   },
   "ui_font_size": 16,
@@ -36,5 +26,18 @@
     "light": "One Light",
     "dark": "One Dark Pro"
   },
-  "autosave": "on_focus_change"
+  "autosave": "on_focus_change",
+  "language_models": {
+    "openai": {
+      "available_models": [
+        {
+          "name": "gpt-5",
+          "display_name": "gpt-5 high",
+          "reasoning_effort": "high",
+          "max_tokens": 272000,
+          "max_completion_tokens": 20000
+        }
+      ]
+    }
+  }
 }
