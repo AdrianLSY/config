@@ -14,11 +14,17 @@
 !fish/**
 !hypr/
 !hypr/**
+!nvim/
+!nvim/**
 !rofi/
 !rofi/**
+!tmux/
+!tmux/**
 !setup/
 !setup/**
 !waybar/
 !waybar/**
 !swaylock/
 !swaylock/**
+
+fish/fish_variables
