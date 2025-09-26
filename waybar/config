@@ -9,7 +9,7 @@
     "spacing": 0,
     "modules-left": ["custom/power", "custom/search", "hyprland/workspaces"],
     "modules-center": [],
-    "modules-right": ["tray", "cpu", "custom/gpu", "memory", "disk", "network", "custom/sound", "clock"],
+    "modules-right": ["tray", "cpu", "custom/gpu", "memory", "disk", "custom/sound", "clock"],
 
     "custom/power": {
         "format": "󰐥 ",
@@ -71,12 +71,6 @@
         "spacing": 24,
         "show-passive-items": true,
         "reverse-direction": false
-    },
-
-    "network": {
-        "format": "󰖩",
-        "tooltip": "Network Settings",
-        "on-click": "nm-connection-editor",
     },
 
     "custom/sound": {

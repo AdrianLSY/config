@@ -40,7 +40,10 @@ function ghs
             git config --global gpg.ssh.allowedSignersFile ~/.ssh/allowed_signers
             git config --global commit.gpgsign true
             git config --global tag.gpgsign true
-            echo "✓ Git user/signing config set for Adrian-LSY"
+            if test -f ~/.ssh/config
+                sed -i '/^\s*IdentityFile\s\+/c\    IdentityFile ~/.ssh/adrian_rooftop_ed25519' ~/.ssh/config
+            end
+            echo "✓ Git & SSH config set for Adrian-LSY"
         case AdrianLSY
             git config --global user.name "Adrian Low"
             git config --global user.email "adrianlow1998@gmail.com"
@@ -49,7 +52,10 @@ function ghs
             git config --global gpg.ssh.allowedSignersFile ~/.ssh/allowed_signers
             git config --global commit.gpgsign true
             git config --global tag.gpgsign true
-            echo "✓ Git user/signing config set for AdrianLSY"
+            if test -f ~/.ssh/config
+                sed -i '/^\s*IdentityFile\s\+/c\    IdentityFile ~/.ssh/sites_ad_p3_ed25519' ~/.ssh/config
+            end
+            echo "✓ Git & SSH config set for AdrianLSY"
         case '*'
             echo "Unknown account: $account"
             return 1

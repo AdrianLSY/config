@@ -1,15 +1,15 @@
 // Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
 {
   "icon_theme": "Material Icon Theme",
-  "ssh_connections": [
-    {
-      "host": "192.168.0.3",
-      "username": "adrian",
-      "projects": [{ "paths": ["/home/adrian/zfs/services"] }]
-    }
-  ],
-
   "agent": {
+    "default_profile": "write",
     "play_sound_when_agent_done": true,
     "always_allow_tool_actions": true,
     "model_parameters": [],
@@ -18,8 +18,8 @@
       "model": "gpt-5-mini"
     }
   },
-  "ui_font_size": 16,
-  "buffer_font_size": 14,
+  "ui_font_size": 14,
+  "buffer_font_size": 12,
   "buffer_font_family": "Noto Sans Mono",
   "theme": {
     "mode": "dark",
@@ -27,17 +27,44 @@
     "dark": "One Dark Pro"
   },
   "autosave": "on_focus_change",
-  "language_models": {
-    "openai": {
-      "available_models": [
+  "ssh_connections": [
+    {
+      "host": "178.128.111.225",
+      "username": "root",
+      "args": ["-i", "~/.ssh/adrian_rooftop_ed25519"],
+      "projects": [
         {
-          "name": "gpt-5",
-          "display_name": "gpt-5 high",
-          "reasoning_effort": "high",
-          "max_tokens": 272000,
-          "max_completion_tokens": 20000
+          "paths": ["/root"]
+        },
+        {
+          "paths": ["/root/Vera-Plugboard"]
+        },
+        {
+          "paths": ["/root/plugboard-service"]
         }
-      ]
+      ],
+      "nickname": "plugboard"
+    },
+    {
+      "host": "46.202.164.183",
+      "username": "root",
+      "args": ["-i", "~/.ssh/adrian_rooftop_ed25519"],
+      "projects": [
+        {
+          "paths": ["/root/authentik"]
+        },
+        {
+          "paths": ["/root/waba-agent-state-machine/"]
+        }
+      ],
+      "nickname": "backend"
+    },
+    {
+      "host": "62.72.13.169",
+      "username": "root",
+      "args": ["-i", "~/.ssh/adrian_rooftop_ed25519"],
+      "projects": [],
+      "nickname": "dev-api"
     }
-  }
+  ]
 }
