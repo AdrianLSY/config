@@ -14,8 +14,8 @@
     "always_allow_tool_actions": true,
     "model_parameters": [],
     "default_model": {
-      "provider": "openai",
-      "model": "gpt-5-mini"
+      "provider": "anthropic",
+      "model": "claude-sonnet-4-5-latest"
     }
   },
   "ui_font_size": 14,
