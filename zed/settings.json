@@ -29,42 +29,18 @@
   "autosave": "on_focus_change",
   "ssh_connections": [
     {
-      "host": "178.128.111.225",
-      "username": "root",
-      "args": ["-i", "~/.ssh/adrian_rooftop_ed25519"],
+      "host": "192.168.0.3",
+      "username": "ubuntu",
+      "port": 22,
+      "args": [],
       "projects": [
         {
-          "paths": ["/root"]
-        },
-        {
-          "paths": ["/root/Vera-Plugboard"]
-        },
-        {
-          "paths": ["/root/plugboard-service"]
+          "paths": [
+            "/home/ubuntu"
+          ]
         }
       ],
-      "nickname": "plugboard"
-    },
-    {
-      "host": "46.202.164.183",
-      "username": "root",
-      "args": ["-i", "~/.ssh/adrian_rooftop_ed25519"],
-      "projects": [
-        {
-          "paths": ["/root/authentik"]
-        },
-        {
-          "paths": ["/root/waba-agent-state-machine/"]
-        }
-      ],
-      "nickname": "backend"
-    },
-    {
-      "host": "62.72.13.169",
-      "username": "root",
-      "args": ["-i", "~/.ssh/adrian_rooftop_ed25519"],
-      "projects": [],
-      "nickname": "dev-api"
+      "nickname": "Home Server"
     }
   ]
 }
