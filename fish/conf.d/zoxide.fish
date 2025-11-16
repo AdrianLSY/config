@@ -1,3 +1,5 @@
+set -gx PATH $HOME/.local/bin $PATH
+
 zoxide init fish | source
 function cd
     # Replaces cd with zoxide if argument is not a directory
