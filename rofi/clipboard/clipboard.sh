@@ -2,7 +2,7 @@
 
 dir="$HOME/.config/rofi/clipboard"
 theme='style'
-limit=20
+limit=50
 db="$HOME/.clipboard.sqlite"
 
 # Initialize database if it doesn't exist
