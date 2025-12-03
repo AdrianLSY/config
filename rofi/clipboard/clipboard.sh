@@ -2,7 +2,7 @@
 
 dir="$HOME/.config/rofi/clipboard"
 theme='style'
-limit=50
+limit=20
 db="$HOME/.clipboard.sqlite"
 table="c"
 id_col="id"

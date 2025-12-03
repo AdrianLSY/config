@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# Script to switch to workspace and ensure it's on the correct monitor
+WORKSPACE="$1"
+
+# Check if external monitor is connected
+MONITOR=$(hyprctl monitors | grep -E "DP-2|DP-3|HDMI-A-1" | head -1 | awk '{print $2}' | sed 's/://')
+
+if [ -n "$MONITOR" ]; then
+    # External monitor is connected
+    # Switch to workspace (this will create it if it doesn't exist)
+    hyprctl dispatch workspace "$WORKSPACE"
+
+    # Move the workspace to external monitor (unless it's workspace 11)
+    if [ "$WORKSPACE" != "11" ]; then
+        hyprctl dispatch moveworkspacetomonitor "$WORKSPACE $MONITOR"
+    fi
+else
+    # No external monitor, just switch to workspace
+    hyprctl dispatch workspace "$WORKSPACE"
+fi

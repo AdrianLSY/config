@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# Find active external monitor and update waybar config
+MONITOR=$(hyprctl monitors | grep -E "DP-2|DP-3|HDMI-A-1" | head -1 | awk '{print $2}' | sed 's/://')
+
+if [ -n "$MONITOR" ]; then
+    sed -i "s/\"output\": \".*\"/\"output\": \"$MONITOR\"/" ~/.config/waybar/config
+    killall waybar
+    hyprctl dispatch exec waybar
+else
+    sed -i "s/\"output\": \".*\"/\"output\": \"eDP-1\"/" ~/.config/waybar/config
+    killall waybar
+    hyprctl dispatch exec waybar
+fi
