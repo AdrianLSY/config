@@ -6,12 +6,12 @@ function ghu
         git checkout $main_branch
     end
 
-    git fetch --prune --recurse-submodules --jobs=8
+    git fetch --prune --recurse-submodules=on-demand --jobs=128
     set stale (git branch -vv | grep ': gone]' | awk '{print $1}' | grep -v "^$main_branch\$")
 
     if test (count $stale) -gt 0
         echo $stale | tr ' ' '\n' | xargs -r git branch -d
     end
 
-    git pull --recurse-submodules --jobs=8
+    git pull --recurse-submodules --jobs=128
 end
