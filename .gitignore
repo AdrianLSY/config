@@ -28,3 +28,12 @@
 !swaylock/**
 
 fish/fish_variables
+
+!qt6ct/
+!qt6ct/**
+!qt5ct/
+!qt5ct/**
+!gtk-4.0/
+!gtk-4.0/**
+!gtk-3.0/
+!gtk-3.0/**
