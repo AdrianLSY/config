@@ -4,7 +4,7 @@ SETUVAR --export SECRET_KEY_BASE:7eG05JReHXzxpqoDFilLk00lHuTz7qWMFnlnu1vB51FfR1h
 SETUVAR __done_min_cmd_duration:10000
 SETUVAR __done_notification_urgency_level:low
 SETUVAR __fish_initialized:4300
-SETUVAR fish_user_paths:/home/adrian/\x2epulumi/bin\x1e/home/adrian/\x2easdf/installs/elixir/1\x2e19\x2e1\x2dotp\x2d28/bin\x1e/home/adrian/\x2easdf/installs/erlang/28\x2e1\x2e1/erts\x2d16\x2e1\x2e1/bin\x1e/opt/docker\x2ddesktop/bin
+SETUVAR fish_user_paths:/home/adrian/\x2eopencode/bin\x1e/home/adrian/\x2epulumi/bin\x1e/home/adrian/\x2easdf/installs/elixir/1\x2e19\x2e1\x2dotp\x2d28/bin\x1e/home/adrian/\x2easdf/installs/erlang/28\x2e1\x2e1/erts\x2d16\x2e1\x2e1/bin\x1e/opt/docker\x2ddesktop/bin
 SETUVAR pure_begin_prompt_with_current_directory:true
 SETUVAR pure_check_for_new_release:false
 SETUVAR pure_color_at_sign:pure_color_mute
