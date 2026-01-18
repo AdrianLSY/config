@@ -40,3 +40,4 @@
 !alacritty/**
 
 fish/fish_variables
+!SECURE_BOOT.md
