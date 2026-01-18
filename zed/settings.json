@@ -1,12 +1,37 @@
-// Zed settings
-//
-// For information on how to configure Zed, see the Zed
-// documentation: https://zed.dev/docs/configuring-zed
-//
-// To see all of Zed's default settings without changing your
-// custom settings, run `zed: open default settings` from the
-// command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "language_models": {
+    "openai_compatible": {
+      "Qwen Model": {
+        "api_url": "https://dashscope-intl.aliyuncs.com/compatible-mode/v1",
+        "available_models": [
+          {
+            "name": "qwen-plus",
+            "max_tokens": 1000000,
+            "max_output_tokens": 32768,
+            "max_completion_tokens": 1000000,
+            "capabilities": {
+              "tools": true,
+              "images": false,
+              "parallel_tool_calls": false,
+              "prompt_cache_key": false,
+            },
+          },
+          {
+            "name": "qwen-max",
+            "max_tokens": 32768,
+            "max_output_tokens": 8192,
+            "max_completion_tokens": 30720,
+            "capabilities": {
+              "tools": true,
+              "images": false,
+              "parallel_tool_calls": false,
+              "prompt_cache_key": false,
+            },
+          },
+        ],
+      },
+    },
+  },
   "icon_theme": "Material Icon Theme",
   "agent": {
     "default_profile": "write",
@@ -24,21 +49,78 @@
   "theme": {
     "mode": "dark",
     "light": "One Light",
-    "dark": "One Dark Pro",
+    "dark": "One Dark Max",
   },
   "autosave": "on_focus_change",
+  "languages": {
+    "Python": {
+      "language_servers": ["basedpyright"],
+    },
+  },
+  "lsp": {
+    "basedpyright": {
+      "settings": {
+        "basedpyright": {
+          "typeCheckingMode": "strict",
+        },
+      },
+    },
+  },
   "ssh_connections": [
     {
-      "host": "server",
-      "username": "ubuntu",
-      "port": 22,
+      "host": "proxmox",
+      "username": "root",
       "args": [],
       "projects": [
         {
-          "paths": ["/home/ubuntu"],
+          "paths": ["/"],
         },
       ],
-      "nickname": "Home Server",
+      "nickname": "proxmox",
+    },
+    {
+      "host": "development",
+      "username": "development",
+      "args": [],
+      "projects": [
+        {
+          "paths": ["/home/development/"],
+        },
+      ],
+      "nickname": "development",
+    },
+    {
+      "host": "staging",
+      "username": "staging",
+      "args": [],
+      "projects": [
+        {
+          "paths": ["/home/staging/"],
+        },
+      ],
+      "nickname": "staging",
+    },
+    {
+      "host": "production",
+      "username": "production",
+      "args": [],
+      "projects": [
+        {
+          "paths": ["/home/production/"],
+        },
+      ],
+      "nickname": "production",
+    },
+    {
+      "host": "utility",
+      "username": "utility",
+      "args": [],
+      "projects": [
+        {
+          "paths": ["/home/utility/"],
+        },
+      ],
+      "nickname": "utility",
     },
   ],
 }

@@ -36,5 +36,7 @@
 !gtk-3.0/**
 !swaylock/
 !swaylock/**
+!alacritty/
+!alacritty/**
 
 fish/fish_variables
