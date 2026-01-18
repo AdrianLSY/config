@@ -1,7 +1,7 @@
 {
     "layer": "top",
     "position": "top",
-    "output": "DP-2",
+    "output": "DP-1",
     "height": 24,
     "margin-left": 0,
     "margin-bottom": 0,
@@ -19,7 +19,6 @@
         "custom/gpu",
         "memory",
         "disk",
-        "battery",
         "custom/sound",
         "clock"
     ],
@@ -81,19 +80,6 @@
         "format": "󰕾",
         "tooltip": "Sound Control",
         "on-click": "pavucontrol"
-    },
-    "battery": {
-        "interval": 1,
-        "format": "󰁹 {capacity:>3}%",
-        "format-charging": "󰂄 {capacity:>3}%",
-        "format-plugged": "󰂄 {capacity:>3}%",
-        "format-critical": "󰂃 {capacity:>3}%",
-        "tooltip-format": "Battery: {capacity}% ({time})",
-        "states": {
-            "warning": 30,
-            "critical": 15
-        },
-        "max-length": 10
     },
     "clock": {
         "format": "{:%a %d %b %I:%M %p}",
