@@ -1,5 +1,6 @@
 anchor=top-center
 layer=overlay
+output=DP-1
 background-color=#000000
 text-color=#ffffff
 border-radius=0,0,16,16
