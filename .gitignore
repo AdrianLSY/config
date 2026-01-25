@@ -16,6 +16,8 @@
 !fish/**
 !hypr/
 !hypr/**
+!kitty/
+!kitty/**
 !nvim/
 !nvim/**
 !rofi/
@@ -36,8 +38,6 @@
 !gtk-3.0/**
 !swaylock/
 !swaylock/**
-!alacritty/
-!alacritty/**
 
 fish/fish_variables
 !SECURE_BOOT.md

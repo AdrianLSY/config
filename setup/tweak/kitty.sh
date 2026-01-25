@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 set -e
 
-sudo pacman -Rns --noconfirm kitty
+gsettings set org.cinnamon.desktop.default-applications.terminal exec kitty
