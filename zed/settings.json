@@ -76,10 +76,17 @@
       "args": [],
       "projects": [
         {
-          "paths": ["/"],
+          "paths": [
+            "/"
+          ]
         },
+        {
+          "paths": [
+            "/root"
+          ]
+        }
       ],
-      "nickname": "proxmox",
+      "nickname": "proxmox"
     },
     {
       "host": "development",
@@ -87,10 +94,12 @@
       "args": [],
       "projects": [
         {
-          "paths": ["/home/development/"],
-        },
+          "paths": [
+            "/home/development/"
+          ]
+        }
       ],
-      "nickname": "development",
+      "nickname": "development"
     },
     {
       "host": "staging",
@@ -98,10 +107,12 @@
       "args": [],
       "projects": [
         {
-          "paths": ["/home/staging/"],
-        },
+          "paths": [
+            "/home/staging/"
+          ]
+        }
       ],
-      "nickname": "staging",
+      "nickname": "staging"
     },
     {
       "host": "production",
@@ -109,10 +120,12 @@
       "args": [],
       "projects": [
         {
-          "paths": ["/home/production/"],
-        },
+          "paths": [
+            "/home/production/"
+          ]
+        }
       ],
-      "nickname": "production",
+      "nickname": "production"
     },
     {
       "host": "utility",
@@ -120,10 +133,12 @@
       "args": [],
       "projects": [
         {
-          "paths": ["/home/utility/"],
-        },
+          "paths": [
+            "/home/utility/"
+          ]
+        }
       ],
-      "nickname": "utility",
-    },
+      "nickname": "utility"
+    }
   ],
 }
