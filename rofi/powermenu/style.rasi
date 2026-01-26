@@ -20,6 +20,8 @@ configuration {
 window {
   transparency: "real";
   width: 300px;
+  border: 1px;
+  border-color: #FFFFFF;
 }
 
 mainbox {

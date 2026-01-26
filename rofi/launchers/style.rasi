@@ -26,6 +26,11 @@ configuration {
   text-color: @fg;
 }
 
+window {
+  border: 1px;
+  border-color: #FFFFFF;
+}
+
 inputbar {
   background-color: @bg-alt;
   children: [prompt, entry];
