@@ -1,4 +1,4 @@
 #!/bin/bash
 set -e
 
-sudo pacman -S --noconfirn network-manager-applet
+sudo pacman -S --noconfirm network-manager-applet
