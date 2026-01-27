@@ -16,14 +16,16 @@
 !fish/**
 !hypr/
 !hypr/**
-!kitty/
-!kitty/**
 !nvim/
 !nvim/**
 !rofi/
 !rofi/**
 !tmux/
 !tmux/**
+!kitty/
+!kitty/**
+!micro/
+!micro/**
 !qt6ct/
 !qt6ct/**
 !qt5ct/
@@ -39,5 +41,8 @@
 !swaylock/
 !swaylock/**
 
+micro/syntax/
+micro/backups/
 fish/fish_variables
+
 !SECURE_BOOT.md

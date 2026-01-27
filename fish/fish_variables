@@ -1,5 +1,6 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
+SETUVAR --export MICRO_TRUECOLOR:1
 SETUVAR --export SECRET_KEY_BASE:7eG05JReHXzxpqoDFilLk00lHuTz7qWMFnlnu1vB51FfR1hePqca17F/99K1f8so
 SETUVAR __done_min_cmd_duration:10000
 SETUVAR __done_notification_urgency_level:low
