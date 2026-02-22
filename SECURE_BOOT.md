@@ -30,11 +30,11 @@ Secure Boot is a UEFI firmware feature that ensures only trusted software can bo
 2. **Key generation** (`setup/tweak/secure-boot.sh`)
    - Creates custom Secure Boot keys (PK, KEK, db)
    - Generates unique Owner UUID
-   - Keys stored in `/usr/share/secureboot/`
+   - Keys stored in `/var/lib/sbctl/keys/`
 
 3. **Boot component signing**
    - Systemd-boot bootloader: `/boot/EFI/BOOT/BOOTX64.EFI`, `/boot/EFI/systemd/systemd-bootx64.efi`
-   - All installed kernels: `/boot/vmlinuz-*`
+   - All installed kernels: `/boot/vmlinuz-*` and UKI-style kernels (`/boot/<machine-id>/<version>/linux`)
    - Verifies all signatures
 
 4. **Pacman hook setup**
@@ -106,10 +106,10 @@ Secure Boot is a UEFI firmware feature that ensures only trusted software can bo
 
 | Item | Location | Purpose |
 |------|----------|---------|
-| Keys | `/usr/share/secureboot/` | Your custom Secure Boot keys (PK, KEK, db) |
+| Keys | `/var/lib/sbctl/keys/` | Your custom Secure Boot keys (PK, KEK, db) |
 | Hook | `/usr/share/libalpm/hooks/zz-sbctl.hook` | Auto-signs EFI binaries on pacman updates |
 | Bootloaders | `/boot/EFI/BOOT/BOOTX64.EFI`<br>`/boot/EFI/systemd/systemd-bootx64.efi` | Signed bootloader binaries |
-| Kernels | `/boot/vmlinuz-*` | Signed kernel images |
+| Kernels | `/boot/vmlinuz-*`<br>`/boot/<machine-id>/<version>/linux` | Signed kernel images (vmlinuz and UKI-style) |
 | Config | `/boot/loader/` | systemd-boot configuration |
 
 ## Dual-Boot with Windows
@@ -336,27 +336,31 @@ When you run `./setup.sh`, the execution order is:
 2. `setup/tweak/.setup.sh`
    - Runs `secure-boot.sh`
    - Creates keys
-   - Signs boot components
-   - Generates instructions
+   - Signs boot components (bootloaders, vmlinuz and UKI-style kernels)
+   - Verifies all signatures
+   - Silent on success, errors go to stderr
 
 3. Main `setup.sh`
-   - Displays final instructions
    - Offers reboot option
 
 ### Idempotency
 
 The scripts are idempotent (safe to run multiple times):
 
-- **Keys**: Only created if `/usr/share/secureboot/` doesn't exist
+- **Keys**: Only created if `/var/lib/sbctl/keys/db/db.key` doesn't exist
 - **Signing**: Re-signs files even if already signed (safe operation)
-- **Verification**: Always runs to ensure current state is valid
+- **Already complete**: If Secure Boot is enabled and all files are signed, exits immediately with no output
+- **Partial state**: If Secure Boot is enabled but files are unsigned (e.g. hook missed a kernel update), re-signs and re-verifies
 
 ### Error Handling
 
-- **Non-UEFI systems**: Script exits with warning
-- **Missing sbctl**: Skips Secure Boot setup, warns user
-- **Already enabled**: Skips configuration, reports success
-- **Signing failures**: Warns but continues (logs errors)
+- **Non-UEFI systems**: Prints error to stderr, exits 0 (non-fatal skip)
+- **Missing sbctl**: Prints error to stderr, exits 0 (non-fatal skip)
+- **Missing systemd-boot**: Prints error to stderr, exits 0 (non-fatal skip)
+- **Key generation failure**: Prints error to stderr, exits 1
+- **Signing failures**: Prints per-file error to stderr, exits 1
+- **Unsigned files after signing**: Prints unsigned file list to stderr, exits 1
+- **Missing pacman hook**: Prints warning to stderr, continues
 
 ## References
 
@@ -376,6 +380,6 @@ For issues or questions:
 
 ---
 
-**Last Updated**: January 2026  
+**Last Updated**: February 2026  
 **Compatible With**: CachyOS Linux, Arch Linux, systemd-boot  
 **Maintainer**: Your system configuration repository
