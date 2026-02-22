@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
 
-sudo pacman -Rns --noconfirm alacritty
-sudo pacman -Rns --noconfirm nano-syntax-highlighting
-sudo pacman -Rns --noconfirm nano
+pacman -Q alacritty &>/dev/null && sudo pacman -Rns --noconfirm alacritty || true
+pacman -Q nano-syntax-highlighting &>/dev/null && sudo pacman -Rns --noconfirm nano-syntax-highlighting || true
+pacman -Q nano &>/dev/null && sudo pacman -Rns --noconfirm nano || true

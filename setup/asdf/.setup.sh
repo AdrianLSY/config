@@ -19,9 +19,9 @@ for file in "$DIR"/*.sh; do
 
     PKG="${BASENAME%.sh}"
 
-    # Check if plugin already installed
-    if asdf plugin list | grep -qx "$PKG"; then
-        echo "🟢 $PKG plugin already added."
+    # Check if plugin and at least one version are already installed
+    if asdf plugin list | grep -qx "$PKG" && asdf list "$PKG" 2>/dev/null | grep -q .; then
+        echo "⏭️ $PKG already installed."
         continue
     fi
 
