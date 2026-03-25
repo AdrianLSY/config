@@ -1,6 +1,6 @@
 {
   "terminal": {
-    "dock": "right"
+    "dock": "right",
   },
   "language_models": {
     "openai_compatible": {
@@ -46,6 +46,17 @@
       "model": "claude-sonnet-4-5-latest",
     },
   },
+  "agent_servers": {
+    "claude-acp": {
+      // Remove any other `claude-*` keys
+      "favorite_config_option_values": {
+        "mode": [
+          "bypassPermissions"
+        ]
+      },
+      "type": "registry",
+    },
+  },
   "ui_font_size": 15,
   "buffer_font_size": 14,
   "buffer_font_family": "Noto Sans Mono",
@@ -76,17 +87,13 @@
       "args": [],
       "projects": [
         {
-          "paths": [
-            "/"
-          ]
+          "paths": ["/"],
         },
         {
-          "paths": [
-            "/root"
-          ]
-        }
+          "paths": ["/root"],
+        },
       ],
-      "nickname": "proxmox"
+      "nickname": "proxmox",
     },
     {
       "host": "development",
@@ -94,12 +101,10 @@
       "args": [],
       "projects": [
         {
-          "paths": [
-            "/home/development/"
-          ]
-        }
+          "paths": ["/home/development/"],
+        },
       ],
-      "nickname": "development"
+      "nickname": "development",
     },
     {
       "host": "staging",
@@ -107,12 +112,10 @@
       "args": [],
       "projects": [
         {
-          "paths": [
-            "/home/staging/"
-          ]
-        }
+          "paths": ["/home/staging/"],
+        },
       ],
-      "nickname": "staging"
+      "nickname": "staging",
     },
     {
       "host": "production",
@@ -120,12 +123,10 @@
       "args": [],
       "projects": [
         {
-          "paths": [
-            "/home/production/"
-          ]
-        }
+          "paths": ["/home/production/"],
+        },
       ],
-      "nickname": "production"
+      "nickname": "production",
     },
     {
       "host": "utility",
@@ -133,12 +134,10 @@
       "args": [],
       "projects": [
         {
-          "paths": [
-            "/home/utility/"
-          ]
-        }
+          "paths": ["/home/utility/"],
+        },
       ],
-      "nickname": "utility"
-    }
+      "nickname": "utility",
+    },
   ],
 }
