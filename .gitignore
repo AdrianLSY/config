@@ -8,6 +8,7 @@
 # Track everything in these directories
 !zed/
 !zed/**
+zed/prompts/
 !setup/
 !setup/**
 !ghostty/
