@@ -28,7 +28,7 @@ for BASENAME in "${ORDER[@]}"; do
         echo "Running $SETUP_SH..."
         LOGFILE="$SUBDIR/.setup.sh.log"
         "$SETUP_SH" 2>&1 | tee "$LOGFILE"
-        STATUS=$?
+        STATUS=${PIPESTATUS[0]}
         if [[ $STATUS -eq 0 ]]; then
             echo "🟢 $BASENAME setup completed successfully."
             rm -f "$LOGFILE"

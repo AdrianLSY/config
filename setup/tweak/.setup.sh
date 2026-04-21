@@ -20,7 +20,7 @@ for file in "$DIR"/*.sh; do
     echo "Running $BASENAME..."
 
     bash "$file" 2>&1 | tee "$LOGFILE"
-    STATUS=$?
+    STATUS=${PIPESTATUS[0]}
 
     if [[ $STATUS -eq 0 ]]; then
         echo "🟢 $BASENAME ran successfully."
