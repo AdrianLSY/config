@@ -19,8 +19,8 @@
       "model": "claude-sonnet-4-5-latest",
     },
   },
-  "ui_font_size": 16,
-  "buffer_font_size": 14,
+  "ui_font_size": 15,
+  "buffer_font_size": 13,
   "buffer_font_family": "Noto Sans Mono",
   "theme": {
     "mode": "dark",
