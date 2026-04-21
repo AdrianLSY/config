@@ -1,0 +1,4 @@
+zedd() {
+  zed "$@"
+  exit
+}

@@ -13,3 +13,7 @@ zed/prompts/
 !setup/**
 !ghostty/
 !ghostty/**
+!zsh/
+!zsh/**
+zsh/.zshrc.zwc
+zsh/.zcompdump
