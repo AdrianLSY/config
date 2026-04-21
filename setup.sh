@@ -2,12 +2,6 @@
 
 set -e
 
-if [[ -n "$SUDO_USER" ]]; then
-  USER_HOME=$(eval echo "~$SUDO_USER")
-else
-  USER_HOME="$HOME"
-fi
-
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 LOGFILE="$DIR/.setup.sh.log"
 SETUP_SH="setup/.setup.sh"
@@ -28,7 +22,7 @@ else
 fi
 
 # Post setup: Move configs to ~/.config and update permissions
-if [[ "$PWD" != "$USER_HOME/.config" ]]; then
+if [[ "$PWD" != "$HOME/.config" ]]; then
     echo "📁 Copying configs to ~/.config..."
     for config in */; do
         if [[ -d "$config" ]]; then
@@ -42,7 +36,6 @@ if [[ "$PWD" != "$USER_HOME/.config" ]]; then
     [[ -f setup.sh ]] && cp -f setup.sh "$HOME/.config/"
     [[ -f README.md ]] && cp -f README.md "$HOME/.config/"
     [[ -f .gitignore ]] && cp -f .gitignore "$HOME/.config/"
-    [[ -f .mimeapps.list ]] && cp -f .mimeapps.list "$HOME/.config/"
 
     find "$HOME/.config" -type f -exec chmod 700 {} +
 
@@ -50,10 +43,3 @@ if [[ "$PWD" != "$USER_HOME/.config" ]]; then
 fi
 
 echo "✅ All done!"
-
-read -p "🔄 Do you want to reboot now? [y/N] " confirm
-if [[ $confirm =~ ^[Yy]$ ]]; then
-    sudo reboot
-else
-    echo "⏭️  Reboot skipped. You should reboot manually later."
-fi

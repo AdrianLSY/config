@@ -1,7 +1,0 @@
-alias ff='fastfetch'
-alias bios='sudo systemctl reboot --firmware-setup'
-alias uefi='sudo systemctl reboot --firmware-setup'
-alias lzd='lazydocker'
-alias lzg='lazygit'
-alias w11='sudo efibootmgr --bootnext 0000 && sudo reboot'
-alias ai='claude --dangerously-skip-permissions'

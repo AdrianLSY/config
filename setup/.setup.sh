@@ -8,11 +8,7 @@ SELF="$(basename "$0")"
 echo "Starting setup for all modules..."
 
 ORDER=(
-    pacman
-    yay
-    flatpak
-    app
-    asdf
+    brew
     tweak
 )
 
