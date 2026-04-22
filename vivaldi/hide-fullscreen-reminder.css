@@ -1,0 +1,4 @@
+/* Hide overlay info bubble + Fullscreen reminder */
+.overlayinfobubble {
+    display: none;
+}
