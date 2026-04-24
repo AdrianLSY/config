@@ -1,4 +1,16 @@
 {
+  "project_panel": {
+    "dock": "left",
+  },
+  "outline_panel": {
+    "dock": "left",
+  },
+  "collaboration_panel": {
+    "dock": "left",
+  },
+  "git_panel": {
+    "dock": "left",
+  },
   "agent_servers": {
     "claude-acp": {
       "type": "registry",
@@ -10,6 +22,8 @@
   },
   "icon_theme": "Material Icon Theme",
   "agent": {
+    "sidebar_side": "right",
+    "dock": "right",
     "default_profile": "write",
     "play_sound_when_agent_done": true,
     "always_allow_tool_actions": true,
@@ -19,8 +33,8 @@
       "model": "claude-sonnet-4-5-latest",
     },
   },
-  "ui_font_size": 15,
-  "buffer_font_size": 13,
+  "ui_font_size": 14,
+  "buffer_font_size": 12,
   "buffer_font_family": "Noto Sans Mono",
   "theme": {
     "mode": "dark",

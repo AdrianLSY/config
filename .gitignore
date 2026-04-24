@@ -17,5 +17,6 @@ zed/prompts/
 !zsh/**
 zsh/.zshrc.zwc
 zsh/.zcompdump
+zsh/.zsh_sessions/
 !vivaldi/
 !vivaldi/**
