@@ -1,3 +1,4 @@
+# Track these files
 *
 .DS_Store
 !setup.sh
@@ -8,15 +9,19 @@
 # Track everything in these directories
 !zed/
 !zed/**
-zed/prompts/
+!zsh/
+!zsh/**
 !setup/
 !setup/**
 !ghostty/
 !ghostty/**
-!zsh/
-!zsh/**
+!vivaldi/
+!vivaldi/**
+!aerospace/
+!aerospace/**
+
+# Ignore these specific directories
+zed/prompts/
 zsh/.zshrc.zwc
 zsh/.zcompdump
 zsh/.zsh_sessions/
-!vivaldi/
-!vivaldi/**
