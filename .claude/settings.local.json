@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C /Users/adrian/.config branch -a)",
+      "Bash(git -C /Users/adrian/.config log --oneline -20)",
+      "Bash(git -C /Users/adrian/.config diff HEAD setup/brew/font-jetbrains-mono.sh)",
+      "Bash(pake --version)",
+      "Bash(pake --help)",
+      "Read(//opt/homebrew/Cellar/pake/3.11.3/libexec/lib/node_modules/pake-cli/dist/**)",
+      "Read(//opt/homebrew/lib/node_modules/**)",
+      "Bash(chmod 700 /Users/adrian/.config/setup/pake/.setup.sh /Users/adrian/.config/setup/pake/discord.sh /Users/adrian/.config/setup/pake/whatsapp.sh /Users/adrian/.config/setup/pake/google-chat.sh /Users/adrian/.config/setup/pake/google-calendar.sh)",
+      "Bash(/Users/adrian/.config/setup/pake/.setup.sh)",
+      "Bash(ps -axo pid,rss,command)",
+      "Bash(ps -axo pid,ppid,rss,command)",
+      "Bash(vmmap --summary 59618)",
+      "Bash(brew uninstall *)",
+      "Bash(brew cleanup *)",
+      "Bash(brew search *)",
+      "Bash(brew info *)",
+      "WebFetch(domain:app.betaflight.com)",
+      "WebSearch",
+      "WebFetch(domain:am32.ca)",
+      "WebFetch(domain:esc-configurator.com)",
+      "WebFetch(domain:wiki.am32.ca)",
+      "WebFetch(domain:oscarliang.com)"
+    ]
+  }
+}

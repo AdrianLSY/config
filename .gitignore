@@ -3,6 +3,7 @@
 .DS_Store
 !setup.sh
 !README.md
+!CLAUDE.md
 !.gitignore
 !starship.toml
 
@@ -15,6 +16,8 @@
 !setup/**
 !ghostty/
 !ghostty/**
+!.claude/
+!.claude/**
 !vivaldi/
 !vivaldi/**
 !aerospace/
