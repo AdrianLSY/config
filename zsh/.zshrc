@@ -42,3 +42,5 @@ done
 if [[ ! -f $ZDOTDIR/.zshrc.zwc || $ZDOTDIR/.zshrc -nt $ZDOTDIR/.zshrc.zwc ]]; then
   zcompile $ZDOTDIR/.zshrc
 fi
+
+. "$HOME/.local/bin/env"
