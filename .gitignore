@@ -8,6 +8,8 @@
 !starship.toml
 
 # Track everything in these directories
+!bin/
+!bin/**
 !zed/
 !zed/**
 !zsh/

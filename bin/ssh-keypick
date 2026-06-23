@@ -1,0 +1,545 @@
+#!/usr/bin/env zsh
+#
+# ssh-keypick — automatically pick the right SSH key for a host. (zsh)
+#
+# Invoked by OpenSSH `Match exec`, one stanza per key:
+#
+#     Match exec "ssh-keypick resolve %h %p %r ~/.ssh/id_a"
+#         IdentityFile ~/.ssh/id_a
+#         IdentitiesOnly yes
+#
+# `resolve` exits 0 only for the key that authenticates to the target, so the
+# matching stanza pins that one key. It refuses (exit non-zero) for hosts you
+# have already configured (the exclusion gate, which prevents disturbing your
+# git-account selection), and remembers results in a flat-text store.
+#
+# Written in zsh. Control flow, matching and globbing are native zsh; tabular
+# record parsing (store, config seeding) is delegated to awk — the right tool
+# for that, and it keeps the tested parsing logic intact.
+#
+# Subcommands: resolve | generate | install | list | pin | forget | exclusions | help
+
+emulate -R zsh          # predictable option set regardless of ~/.zshenv
+setopt no_unset         # like `set -u`: error on referencing an unset variable
+
+# --------------------------------------------------------------------------
+# Configuration constants (all overridable via the environment for testing)
+# --------------------------------------------------------------------------
+typeset SSH_DIR=${KEYPICK_SSH_DIR:-$HOME/.ssh}
+typeset STORE=${KEYPICK_DB:-$SSH_DIR/keypick.db}
+typeset SSH_CONFIG=${KEYPICK_SSH_CONFIG:-$SSH_DIR/config}
+typeset STATE_DIR=${KEYPICK_STATE_DIR:-$SSH_DIR/keypick.d}
+typeset LOG=${KEYPICK_LOG:-$SSH_DIR/keypick.log}
+typeset EXCLUDE=${KEYPICK_EXCLUDE:-$SSH_DIR/keypick.exclude}
+
+typeset -i MAX_PROBES=${KEYPICK_MAX_PROBES:-6}
+typeset -i CONNECT_TIMEOUT=${KEYPICK_CONNECT_TIMEOUT:-5}
+typeset -i NEG_STALE=${KEYPICK_NEG_STALE:-604800}      # 7 days
+typeset -i ATTEMPT_TTL=${KEYPICK_ATTEMPT_TTL:-120}
+
+typeset MARK_BEGIN="# >>> keypick managed block (do not edit between markers) >>>"
+typeset MARK_END="# <<< keypick managed block <<<"
+typeset EXC_BEGIN="# >>> keypick seeded exclusions (auto; edit ABOVE this line) >>>"
+typeset EXC_END="# <<< keypick seeded exclusions <<<"
+typeset TAB=$'\t'
+# Capture the script path at TOP LEVEL: inside a function $0 is the function
+# name (FUNCTION_ARGZERO), so self_path must not compute it there.
+typeset SELF=${0:A}
+
+# --------------------------------------------------------------------------
+# Logging — NEVER write to stdout: `Match exec` consumes only the exit code.
+# --------------------------------------------------------------------------
+log()  { print -r -- "$(date '+%Y-%m-%dT%H:%M:%S') $*" >>$LOG 2>/dev/null || true }
+warn() { log "WARN: $*"; print -r -- "ssh-keypick: $*" >&2 }
+die()  { print -r -- "ssh-keypick: $*" >&2; exit 2 }
+
+# --------------------------------------------------------------------------
+# Small helpers
+# --------------------------------------------------------------------------
+expand_tilde() {
+    case $1 in
+        (\~)    print -r -- $HOME ;;
+        (\~/*)  print -r -- $HOME/${1#\~/} ;;
+        (*)     print -r -- $1 ;;
+    esac
+}
+
+same_path() { [[ "$(expand_tilde $1)" == "$(expand_tilde $2)" ]] }
+
+# Absolute path to this script (used in generated config). Override w/ KEYPICK_BIN.
+self_path() { print -r -- ${KEYPICK_BIN:-$SELF} }
+
+# Filesystem-safe token for a target, used to name per-target state files.
+target_token() { local t="${1}_${2}_${3}"; print -r -- "${t//[^A-Za-z0-9._-]/_}" }
+
+# List private key files in SSH_DIR (absolute paths), one per line.
+enumerate_keys() {
+    local f
+    for f in $SSH_DIR/*(.N); do          # .=regular files, N=nullglob (no error if empty)
+        case ${f:t} in
+            (*.pub|config|known_hosts|known_hosts.old|authorized_keys) continue ;;
+            (allowed_signers|keypick.db|keypick.log|keypick.exclude) continue ;;
+        esac
+        [[ "$(head -n 1 -- $f 2>/dev/null)" == *"PRIVATE KEY"* ]] && print -r -- $f
+    done
+}
+
+count_keys() { enumerate_keys | grep -c . || true }
+
+# Returns 0 (true) if the key file is passphrase-protected.
+key_is_encrypted() {
+    ssh-keygen -y -P '' -f $1 >/dev/null 2>&1 </dev/null && return 1
+    return 0
+}
+
+# Returns 0 (true) if the key's identity is loaded in the running agent.
+key_in_agent() {
+    local keyfile=$1
+    [[ -f ${keyfile}.pub ]] && keyfile=${keyfile}.pub
+    local fp=$(ssh-keygen -lf $keyfile 2>/dev/null | awk '{print $2}')
+    [[ -n $fp ]] || return 1
+    ssh-add -l 2>/dev/null | grep -q -- $fp
+}
+
+# --------------------------------------------------------------------------
+# Exclusions — hosts ssh-keypick refuses to touch (conflict avoidance)
+# --------------------------------------------------------------------------
+# Exit 0 if host is on the exclusion list. Matches host only (ignores port/user),
+# case-insensitively, with ssh-style glob (*,?) and leading-! negation. NOTE: in
+# zsh a pattern held in a VARIABLE is matched literally unless forced with the
+# ${~...} flag, so the comparisons below use ${~pat} to actually glob. Fails
+# CLOSED (treats the host as excluded) if the file exists but is unreadable.
+host_excluded() {
+    if [[ -e $EXCLUDE && ! -r $EXCLUDE ]]; then
+        warn "exclude file $EXCLUDE is unreadable; treating host as excluded"
+        return 0
+    fi
+    [[ -f $EXCLUDE ]] || return 1
+    local host=${(L)1} line pat
+    host=${host//[[:space:]]/}              # hostnames carry no whitespace
+    host=${host%.}                          # strip one trailing FQDN dot
+    local -a pats
+    local -i pos neg
+    while IFS= read -r line || [[ -n $line ]]; do
+        [[ -z $line || $line == \#* ]] && continue
+        pats=(${(s: :)${${line//,/ }//$TAB/ }})   # commas AND tabs -> spaces, then split
+        pos=0; neg=0
+        for pat in $pats; do
+            pat=${(L)pat}
+            if [[ $pat == \!* ]]; then
+                [[ $host == ${~${pat#\!}} ]] && neg=1
+            else
+                [[ $host == ${~pat} ]] && pos=1
+            fi
+        done
+        (( neg == 0 && pos == 1 )) && return 0
+    done < $EXCLUDE
+    return 1
+}
+
+# Print every config file to parse: the main config plus any Include'd files
+# (one level; globs and ~ expanded relative to SSH_DIR). Best-effort.
+collect_config_files() {
+    [[ -f $1 ]] || return 0
+    print -r -- $1
+    local kw rest pat inc
+    grep -iE '^[[:space:]]*Include[[:space:]]' $1 2>/dev/null | while read -r kw rest; do
+        for pat in ${(s: :)rest}; do
+            case $pat in
+                (\~/*) pat=$HOME/${pat#\~/} ;;
+                (/*) ;;
+                (*) pat=$SSH_DIR/$pat ;;
+            esac
+            local -a incs=( ${~pat}(N) )    # glob-expand, nullglob
+            for inc in $incs; do [[ -f $inc ]] && print -r -- $inc; done
+        done
+    done
+}
+
+# Rebuild the exclusion file: preserve user lines, regenerate the seeded block
+# from every Host/Match-host stanza that already pins an IdentityFile (skipping
+# keypick's own managed block) plus the github.com defaults.
+seed_exclusions() {
+    local f seeded
+    seeded=$(collect_config_files $SSH_CONFIG | while IFS= read -r f; do
+        [[ -f $f ]] && awk -v b="$MARK_BEGIN" -v e="$MARK_END" '
+            function flush() { if (hasid && pats != "") { print pats; if (hn!="") print hn } }
+            $0==b { inblk=1; next }
+            $0==e { inblk=0; next }
+            inblk { next }
+            {
+                nf=split($0, t, /[ \t]+/); i=1; while (i<=nf && t[i]=="") i++
+                if (i>nf) next
+                kw=tolower(t[i])
+                if (kw=="host") { flush(); hasid=0; hn=""; pats=""
+                    for (j=i+1;j<=nf;j++) if (t[j]!="") pats=(pats==""?t[j]:pats "\n" t[j]) }
+                else if (kw=="match") { flush(); hasid=0; hn=""; pats=""
+                    for (j=i+1;j<=nf;j++) if (tolower(t[j])=="host" && (j+1)<=nf) {
+                        m=split(t[j+1], pp, ","); for (k=1;k<=m;k++) if (pp[k]!="") pats=(pats==""?pp[k]:pats "\n" pp[k]) } }
+                else if (kw=="identityfile") { hasid=1 }
+                else if (kw=="hostname") { if ((i+1)<=nf) hn=t[i+1] }
+            }
+            END { flush() }
+        ' $f
+    done)
+
+    local user_lines=""
+    [[ -f $EXCLUDE ]] && user_lines=$(awk -v b="$EXC_BEGIN" -v e="$EXC_END" \
+        '$0==b{inblk=1} inblk==0{print} $0==e{inblk=0}' $EXCLUDE)
+
+    mkdir -p ${EXCLUDE:h}
+    local tmp; tmp=$(mktemp "${EXCLUDE}.XXXXXX") || { warn "mktemp failed"; return 1 }
+    {
+        [[ -n $user_lines ]] && print -r -- $user_lines
+        print -r -- $EXC_BEGIN
+        print -r -- "# Hosts ssh-keypick will NOT touch, so your explicit key/config wins."
+        print -r -- "# Auto-generated from IdentityFile stanzas + defaults. Add your own ABOVE."
+        { print -l -r -- github.com ssh.github.com; print -r -- $seeded } | awk 'NF' | sort -u
+        print -r -- $EXC_END
+    } >$tmp
+    chmod 600 $tmp
+    mv $tmp $EXCLUDE
+    log "seeded exclusions into $EXCLUDE"
+}
+
+# --------------------------------------------------------------------------
+# Mapping store  (host \t port \t user \t result \t epoch ; result = path|NONE)
+# --------------------------------------------------------------------------
+store_lookup() {  # host port user -> prints "result\tepoch"; exit 0 if found
+    [[ -f $STORE ]] || return 1
+    awk -F '\t' -v h="$1" -v p="$2" -v u="$3" '
+        $1==h && $2==p && $3==u { res=$4; ts=$5; found=1 }
+        END { if (found) { print res "\t" ts; exit 0 } else exit 1 }
+    ' $STORE
+}
+
+store_put() {  # host port user result
+    local h=$1 p=$2 u=$3 result=$4
+    local ts=$(date +%s)
+    mkdir -p ${STORE:h}
+    local tmp; tmp=$(mktemp "${STORE}.XXXXXX") || { warn "mktemp failed"; return 1 }
+    [[ -f $STORE ]] && awk -F '\t' -v h="$h" -v p="$p" -v u="$u" \
+        '!($1==h && $2==p && $3==u)' $STORE >$tmp
+    print -r -- "$h$TAB$p$TAB$u$TAB$result$TAB$ts" >>$tmp
+    chmod 600 $tmp
+    mv $tmp $STORE
+    log "store_put $h:$p:$u -> $result"
+}
+
+store_forget() {  # host port user -> exit 0 if a record was removed
+    [[ -f $STORE ]] || return 1
+    local tmp; tmp=$(mktemp "${STORE}.XXXXXX") || return 1
+    awk -F '\t' -v h="$1" -v p="$2" -v u="$3" '
+        $1==h && $2==p && $3==u { n++; next } { print }
+        END { print n+0 > "/dev/stderr" }
+    ' $STORE 2>"${tmp}.n" >$tmp
+    local -i n=$(<"${tmp}.n"); rm -f "${tmp}.n"
+    chmod 600 $tmp; mv $tmp $STORE
+    (( n > 0 ))
+}
+
+# --------------------------------------------------------------------------
+# Per-target probe-attempt state (bounds probing within one connection)
+# --------------------------------------------------------------------------
+attempt_file()    { print -r -- "$STATE_DIR/attempts/$(target_token $1 $2 $3)" }
+untestable_file() { print -r -- "$STATE_DIR/untestable/$(target_token $1 $2 $3)" }
+
+file_mtime() { stat -f %m $1 2>/dev/null || stat -c %Y $1 2>/dev/null || print -r -- 0 }
+
+# Echo current attempt count, honouring TTL (stale counters read as 0).
+attempt_get() {
+    local f=$(attempt_file $1 $2 $3)
+    [[ -f $f ]] || { print -r -- 0; return }
+    local -a parts=(${(s: :)"$(<$f)"})       # "epoch count"
+    local fe=${parts[1]:-0} fc=${parts[2]:-0}
+    [[ $fe == <-> ]] || fe=0                  # guard arithmetic against a corrupt file
+    [[ $fc == <-> ]] || fc=0
+    local -i now=$(date +%s)
+    if (( now - fe > ATTEMPT_TTL )); then print -r -- 0; else print -r -- $fc; fi
+}
+
+attempt_inc() {
+    local f=$(attempt_file $1 $2 $3)
+    mkdir -p ${f:h}; chmod 700 $STATE_DIR 2>/dev/null || true
+    local -i cur=$(attempt_get $1 $2 $3)
+    print -r -- "$(date +%s) $((cur + 1))" >$f
+}
+
+untestable_mark() { local f=$(untestable_file $1 $2 $3); mkdir -p ${f:h}; : >$f }
+
+# True if an untestable candidate was seen for this target within the TTL.
+untestable_seen() {
+    local f=$(untestable_file $1 $2 $3)
+    [[ -f $f ]] || return 1
+    local -i now=$(date +%s) mt=$(file_mtime $f)
+    (( now - mt <= ATTEMPT_TTL ))
+}
+
+cleanup_state() { rm -f "$(attempt_file $1 $2 $3)" "$(untestable_file $1 $2 $3)" }
+
+# --------------------------------------------------------------------------
+# Probe: does this identity authenticate to the target?
+#   exit 0 = authenticated, 1 = rejected, 2 = connection error (don't count)
+# --------------------------------------------------------------------------
+probe() {  # host port user identity use_agent
+    local ph=$1 pp=$2 pu=$3 pid=$4 agent=$5
+    local -a agentopt=()
+    [[ $agent == 1 ]] || agentopt=(-o IdentityAgent=none)
+
+    # -F /dev/null is the primary recursion guard: the probe reads no config, so
+    # the Match exec blocks are never evaluated for it. SSH_KEYPICK_PROBING is a
+    # belt-and-suspenders sentinel. We use `ssh -v` and look for the auth-success
+    # line (not the remote command's exit code), because servers like GitHub
+    # authenticate fine but refuse shell/exec.
+    local out
+    out=$(SSH_KEYPICK_PROBING=1 ssh -v -F /dev/null -i $pid $agentopt \
+            -o IdentitiesOnly=yes \
+            -o PreferredAuthentications=publickey \
+            -o BatchMode=yes \
+            -o PasswordAuthentication=no \
+            -o KbdInteractiveAuthentication=no \
+            -o StrictHostKeyChecking=accept-new \
+            -o ConnectTimeout=$CONNECT_TIMEOUT \
+            -p $pp "$pu@$ph" true 2>&1 </dev/null)
+    log "probe $pu@$ph:$pp via $pid (agent=$agent)"
+
+    # Success wording varies by OpenSSH version: older "Authentication succeeded
+    # (publickey)", newer (10.x) "Authenticated to <host> ... using publickey".
+    if print -r -- $out | grep -qE "Authentication succeeded|Authenticated to "; then
+        return 0
+    fi
+    if print -r -- $out | grep -qiE \
+        "Connection (timed out|refused|closed)|Could not resolve|No route to host|Network is unreachable|Operation timed out|kex_exchange"; then
+        log "probe connection error for $pu@$ph:$pp"
+        return 2
+    fi
+    return 1
+}
+
+# --------------------------------------------------------------------------
+# resolve host port user keypath   (the Match exec entrypoint)
+# --------------------------------------------------------------------------
+cmd_resolve() {
+    (( $# == 4 )) || die "resolve needs: host port user keypath"
+    local host=$1 port=$2 user=$3
+    local keypath=$(expand_tilde $4)
+
+    # Recursion guard.
+    [[ ${SSH_KEYPICK_PROBING:-} == 1 ]] && exit 1
+
+    [[ $port == <-> ]] || port=22
+    [[ -n $user ]] || user=$(id -un)
+
+    # ---- exclusion gate ----
+    # Never inject a key for a host the user has already configured (or a default
+    # like github.com): exit non-zero so keypick contributes NO IdentityFile and
+    # the user's explicit Host stanza / per-repo core.sshCommand is the sole key.
+    if host_excluded $host; then
+        log "excluded: $host (explicit config / default) — leaving key choice to ssh"
+        exit 1
+    fi
+
+    [[ -f $keypath ]] || { log "candidate missing: $keypath"; exit 1 }
+
+    # ---- cache ----
+    local rec result ts
+    if rec=$(store_lookup $host $port $user); then
+        result=${rec%%$TAB*}; ts=${rec##*$TAB}
+        if [[ $result == NONE ]]; then
+            (( $(date +%s) - ts < NEG_STALE )) && exit 1   # known: no key (fresh)
+        else
+            if same_path $result $keypath; then exit 0; else exit 1; fi
+        fi
+    fi
+
+    # ---- cache miss: maybe probe this candidate ----
+    local -i total=$(count_keys)
+    local -i cap=$MAX_PROBES
+    (( total > 0 && total < cap )) && cap=$total
+
+    if (( $(attempt_get $host $port $user) >= cap )); then
+        untestable_seen $host $port $user || store_put $host $port $user NONE
+        cleanup_state $host $port $user
+        exit 1
+    fi
+
+    # ---- testability (passphrase / agent awareness) ----
+    local probe_id; local -i use_agent
+    if key_is_encrypted $keypath; then
+        if key_in_agent $keypath; then
+            probe_id=${keypath}.pub; [[ -f $probe_id ]] || probe_id=$keypath
+            use_agent=1
+        else
+            untestable_mark $host $port $user
+            warn "$keypath is passphrase-protected and not loaded in the agent; cannot test (run ssh-add)"
+            exit 1
+        fi
+    else
+        probe_id=$keypath; use_agent=0
+    fi
+
+    # ---- probe ----
+    local -i rc=0
+    probe $host $port $user $probe_id $use_agent || rc=$?
+    case $rc in
+        (0) store_put $host $port $user $keypath; cleanup_state $host $port $user; exit 0 ;;
+        (2) exit 1 ;;                       # connection error: don't count, don't cache
+        (*) attempt_inc $host $port $user
+            if (( $(attempt_get $host $port $user) >= cap )); then
+                untestable_seen $host $port $user || store_put $host $port $user NONE
+                cleanup_state $host $port $user
+            fi
+            exit 1 ;;
+    esac
+}
+
+# --------------------------------------------------------------------------
+# generate — emit the managed Match exec block (one stanza per key)
+# --------------------------------------------------------------------------
+cmd_generate() {
+    local self=$(self_path) k disp
+    print -r -- $MARK_BEGIN
+    enumerate_keys | while IFS= read -r k; do
+        disp="~/.ssh/${k:t}"
+        print -r -- "Match exec \"$self resolve %h %p %r $disp\""
+        print -r -- "    IdentityFile $disp"
+        print -r -- "    IdentitiesOnly yes"
+        print
+    done
+    print -r -- $MARK_END
+}
+
+# --------------------------------------------------------------------------
+# install — inject/refresh the managed block at the top of ssh config
+# --------------------------------------------------------------------------
+cmd_install() {
+    local cfg=$SSH_CONFIG
+    local block=$(cmd_generate)
+    mkdir -p ${cfg:h}
+
+    local rest=""
+    if [[ -f $cfg ]]; then
+        cp $cfg "${cfg}.keypick.bak.$(date +%Y%m%d%H%M%S)"
+        rest=$(awk -v b="$MARK_BEGIN" -v e="$MARK_END" '
+            $0==b { inblk=1 }
+            inblk==0 { print }
+            $0==e { inblk=0 }
+        ' $cfg)
+    fi
+
+    local tmp; tmp=$(mktemp "${cfg}.XXXXXX") || die "mktemp failed"
+    print -r -- $block >$tmp
+    print >>$tmp                              # blank line after the block
+    [[ -n $rest ]] && print -r -- $rest >>$tmp
+    chmod 600 $tmp
+    mv $tmp $cfg
+    print -r -- "ssh-keypick: installed managed block into $cfg" >&2
+
+    # Seed the exclusion list (the git-account conflict guard).
+    seed_exclusions
+    print -r -- "ssh-keypick: seeded exclusions into $EXCLUDE" >&2
+}
+
+# --------------------------------------------------------------------------
+# list — show stored mappings
+# --------------------------------------------------------------------------
+cmd_list() {
+    if [[ ! -f $STORE || ! -s $STORE ]]; then
+        print -r -- "No mappings yet ($STORE)"
+        return 0
+    fi
+    printf '%-30s %-6s %-12s %s\n' HOST PORT USER KEY
+    awk -F '\t' '{
+        key = ($4 == "NONE") ? "(no key — password/other)" : $4
+        printf "%-30s %-6s %-12s %s\n", $1, $2, $3, key
+    }' $STORE
+}
+
+# --------------------------------------------------------------------------
+# exclusions — show the hosts ssh-keypick refuses to touch
+# --------------------------------------------------------------------------
+cmd_exclusions() {
+    [[ ${1:-} == --reseed ]] && seed_exclusions
+    if [[ ! -f $EXCLUDE ]]; then
+        print -r -- "No exclusions file yet ($EXCLUDE). Run: ssh-keypick install"
+        return 0
+    fi
+    print -r -- "ssh-keypick will NOT touch these hosts (your own config decides the key):"
+    grep -vE '^[[:space:]]*(#|$)' $EXCLUDE | sed 's/^/  /'
+}
+
+# --------------------------------------------------------------------------
+# pin / forget — manual overrides
+# --------------------------------------------------------------------------
+cmd_pin() {
+    local p=22 u=$(id -un) host="" key=""
+    while (( $# )); do
+        case $1 in
+            (--port)   [[ -n ${2:-} ]] || die "--port needs a value"; p=$2; shift 2 ;;
+            (--user)   [[ -n ${2:-} ]] || die "--user needs a value"; u=$2; shift 2 ;;
+            (--port=*) p=${1#--port=}; shift ;;
+            (--user=*) u=${1#--user=}; shift ;;
+            (*) if [[ -z $host ]]; then host=$1
+                elif [[ -z $key ]]; then key=$1
+                else die "unexpected argument: $1"; fi; shift ;;
+        esac
+    done
+    [[ -n $host && -n $key ]] || die "usage: ssh-keypick pin [--port P] [--user U] <host> <keypath>"
+    store_put $host $p $u "$(expand_tilde $key)"
+    print -r -- "ssh-keypick: pinned $u@$host:$p -> $key" >&2
+}
+
+cmd_forget() {
+    local p=22 u=$(id -un) host=""
+    while (( $# )); do
+        case $1 in
+            (--port)   [[ -n ${2:-} ]] || die "--port needs a value"; p=$2; shift 2 ;;
+            (--user)   [[ -n ${2:-} ]] || die "--user needs a value"; u=$2; shift 2 ;;
+            (--port=*) p=${1#--port=}; shift ;;
+            (--user=*) u=${1#--user=}; shift ;;
+            (*) if [[ -z $host ]]; then host=$1; else die "unexpected argument: $1"; fi; shift ;;
+        esac
+    done
+    [[ -n $host ]] || die "usage: ssh-keypick forget [--port P] [--user U] <host>"
+    if store_forget $host $p $u; then
+        print -r -- "ssh-keypick: forgot $u@$host:$p" >&2
+    else
+        print -r -- "ssh-keypick: no entry for $u@$host:$p" >&2
+    fi
+}
+
+usage() {
+    cat <<'EOF'
+ssh-keypick — automatically pick the right SSH key per host.
+
+USAGE:
+  ssh-keypick resolve <host> <port> <user> <keypath>   (called by Match exec)
+  ssh-keypick generate                                 print the managed config block
+  ssh-keypick install                                  inject/refresh it in ~/.ssh/config
+  ssh-keypick list                                     show learned host->key mappings
+  ssh-keypick pin   [--port P] [--user U] <host> <key> manually map a host to a key
+  ssh-keypick forget[--port P] [--user U] <host>       drop a mapping (re-discover next time)
+  ssh-keypick exclusions [--reseed]                    show hosts keypick won't touch
+  ssh-keypick help                                     this text
+
+The store lives at ~/.ssh/keypick.db (one record per line, hand-editable).
+Excluded hosts live at ~/.ssh/keypick.exclude (your explicit config wins there).
+EOF
+}
+
+# --------------------------------------------------------------------------
+# dispatch
+# --------------------------------------------------------------------------
+(( $# >= 1 )) || { usage; exit 2 }
+sub=$1; shift
+case $sub in
+    (resolve)            cmd_resolve "$@" ;;
+    (generate)           cmd_generate "$@" ;;
+    (install)            cmd_install "$@" ;;
+    (list)               cmd_list "$@" ;;
+    (pin)                cmd_pin "$@" ;;
+    (forget)             cmd_forget "$@" ;;
+    (exclusions)         cmd_exclusions "$@" ;;
+    (help|-h|--help)     usage ;;
+    (*)                  die "unknown subcommand: $sub (try: ssh-keypick help)" ;;
+esac
