@@ -47,11 +47,17 @@ typeset TAB=$'\t'
 typeset SELF=${0:A}
 
 # --------------------------------------------------------------------------
-# Logging — NEVER write to stdout: `Match exec` consumes only the exit code.
+# Logging — NEVER write to stdout: `Match exec` consumes only the exit code and
+# swallows our stdout. Our STDERR, however, is passed straight through to the
+# user's terminal during `ssh`, so it doubles as the user-facing feedback channel.
 # --------------------------------------------------------------------------
 log()  { print -r -- "$(date '+%Y-%m-%dT%H:%M:%S') $*" >>$LOG 2>/dev/null || true }
 warn() { log "WARN: $*"; print -r -- "ssh-keypick: $*" >&2 }
 die()  { print -r -- "ssh-keypick: $*" >&2; exit 2 }
+
+# One concise line to the terminal (stderr) so keypick isn't a silent black box:
+# it names the key it picked. Mirrored to the log; set KEYPICK_QUIET=1 to mute.
+notify() { [[ -n ${KEYPICK_QUIET:-} ]] && return 0; log "NOTIFY: $*"; print -r -- "ssh-keypick: $*" >&2 }
 
 # --------------------------------------------------------------------------
 # Small helpers
@@ -348,7 +354,11 @@ cmd_resolve() {
         if [[ $result == NONE ]]; then
             (( $(date +%s) - ts < NEG_STALE )) && exit 1   # known: no key (fresh)
         else
-            if same_path $result $keypath; then exit 0; else exit 1; fi
+            if same_path $result $keypath; then
+                notify "$user@$host → ${result/#$HOME/~} (cached)"; exit 0
+            else
+                exit 1
+            fi
         fi
     fi
 
@@ -379,10 +389,12 @@ cmd_resolve() {
     fi
 
     # ---- probe ----
+    notify "$host: no stored key — probing ${keypath:t}…"
     local -i rc=0
     probe $host $port $user $probe_id $use_agent || rc=$?
     case $rc in
-        (0) store_put $host $port $user $keypath; cleanup_state $host $port $user; exit 0 ;;
+        (0) store_put $host $port $user $keypath; cleanup_state $host $port $user
+            notify "$user@$host → ${keypath/#$HOME/~} (learned)"; exit 0 ;;
         (2) exit 1 ;;                       # connection error: don't count, don't cache
         (*) attempt_inc $host $port $user
             if (( $(attempt_get $host $port $user) >= cap )); then
@@ -524,6 +536,9 @@ USAGE:
 
 The store lives at ~/.ssh/keypick.db (one record per line, hand-editable).
 Excluded hosts live at ~/.ssh/keypick.exclude (your explicit config wins there).
+
+On connect, keypick prints one stderr line naming the key it picked (tagged
+"cached" or "learned"); excluded/declined hosts stay silent. KEYPICK_QUIET=1 mutes it.
 EOF
 }
 
