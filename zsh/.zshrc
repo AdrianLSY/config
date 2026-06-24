@@ -6,12 +6,6 @@ source $ZINIT_HOME/zinit.zsh
 eval "$(starship init zsh)"
 export STARSHIP_LOG=error
 
-# Autocomplete settings
-zstyle ':autocomplete:*' verbose no
-
-# Must load first
-zinit light marlonrichert/zsh-autocomplete
-
 # Async plugins
 zinit ice wait lucid
 zinit light zsh-users/zsh-autosuggestions
