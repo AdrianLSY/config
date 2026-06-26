@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repo is
 
-Personal `~/.config` dotfiles plus a bootstrap installer (`setup.sh`) for setting up a fresh OS. Each top-level directory (`zsh/`, `zed/`, `ghostty/`, `aerospace/`, `vivaldi/`, `git/`, `gh/`, `micro/`, `raycast/`, `cagent/`, `openspec/`) is the live config for one app and is consumed in-place from `~/.config/<app>/`.
+Personal `~/.config` dotfiles plus a bootstrap installer (`setup.sh`) for setting up a fresh OS. Each top-level app directory (`zsh/`, `zed/`, `ghostty/`, `aerospace/`, `vivaldi/`, `micro/`) is the live config for one app and is consumed in-place from `~/.config/<app>/`. `bin/` holds helper scripts and `setup/` is the bootstrap installer.
 
 Branches map to machines: `macos`, `cachyos-home`, `cachyos-work`. `main` is the shared base. Per-machine changes go on the machine branch — do not merge them to `main` unless they're truly cross-platform.
 

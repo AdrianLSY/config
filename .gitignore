@@ -24,6 +24,8 @@
 !vivaldi/**
 !aerospace/
 !aerospace/**
+!micro/
+!micro/**
 
 # Ignore these specific directories
 .DS_Store
@@ -31,4 +33,7 @@
 zed/prompts/
 zsh/.zshrc.zwc
 zsh/.zcompdump
+zsh/.zsh_history
 zsh/.zsh_sessions/
+micro/backups/
+micro/buffers/
