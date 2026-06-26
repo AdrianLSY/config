@@ -27,6 +27,15 @@ ZSH=/bin/zsh
 WINDOW=3600   # last_success must be older than 1h to trigger
 RETRY=600     # last_attempt must be older than 10min to retry after failure
 
+# Don't let an unattended `brew upgrade` touch self-updating GUI casks (Docker,
+# Chrome, ...). Recent Homebrew upgrades `auto_updates true` casks by default,
+# which quits the running app via an AppleScript quit event and then needs sudo
+# to swap the bundle -- headless, sudo fails, the upgrade never completes, and
+# it retries every $RETRY seconds, quitting the app (e.g. Docker Desktop -> the
+# Linux VM + daemon) on every run. These casks update themselves; brew should
+# leave them alone. https://docs.brew.sh/Manpage (search NO_UPGRADE_AUTO_UPDATES)
+export HOMEBREW_NO_UPGRADE_AUTO_UPDATES_CASKS=1
+
 if [ -f "$LOCK" ] && kill -0 "$(cat "$LOCK" 2>/dev/null)" 2>/dev/null; then
   exit 0
 fi
