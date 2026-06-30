@@ -40,6 +40,6 @@ When editing this file, keep the `command git ...` calls — bare `git` would re
 
 - `ghp "msg"`: `git add . && git commit -m "msg" && git push` (sets upstream on first push).
 - `ghu`: on the current repo + every submodule in parallel, fetches origin, fast-forwards (or hard-resets) the default branch, and deletes branches whose upstreams are gone.
-- `ai`: alias for `claude --dangerously-skip-permissions`.
+- `ai`: alias for `claude --settings '{"ultracode":true}' --dangerously-skip-permissions`. The `--settings '{"ultracode":true}'` turns on ultracode (xhigh effort + standing dynamic-workflow orchestration) at launch — this is the only way to activate it from the CLI, since `--effort ultracode` is not valid (the parser collapses it to plain `xhigh`) and ultracode is session-scoped (no persisted default).
 - `aerospace/aerospace.toml` references `adrianlsy.github.io/AeroSpace` — this is a personal fork (`AdrianLSY/tap/aerospace-adrianlsy`), not the upstream `nikitabobko/AeroSpace`. Hover-to-raise (`[auto-raise]`) is fork-specific and won't work on upstream builds.
 - `.gitignore` is allowlist-style (`*` then `!` exceptions). New tracked directories must be added explicitly with both `!dir/` and `!dir/**`.

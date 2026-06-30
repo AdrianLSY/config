@@ -1,3 +1,3 @@
 ai() {
-  claude --dangerously-skip-permissions "$@"
+  claude --settings '{"ultracode":true}' --dangerously-skip-permissions "$@"
 }
