@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Personal `~/.config` dotfiles plus a bootstrap installer (`setup.sh`) for setting up a fresh OS. Each top-level app directory (`zsh/`, `zed/`, `ghostty/`, `aerospace/`, `vivaldi/`, `micro/`) is the live config for one app and is consumed in-place from `~/.config/<app>/`. `bin/` holds helper scripts and `setup/` is the bootstrap installer.
 
-Branches map to machines: `macos`, `cachyos-home`, `cachyos-work`. `main` is the shared base. Per-machine changes go on the machine branch — do not merge them to `main` unless they're truly cross-platform.
+Branches map to machines: `macos`, `cachyos-home`, `cachyos-work`. **`main` tracks `macos`**: on 2026-07-01 the ~1yr-stale `main` was fast-forwarded to `macos` in full, so `main == macos` and `macos` is the canonical working line (this retired the earlier "lean cross-platform base" model). Land work on `macos`, then fast-forward `main` to match. The `cachyos-*` branches are separate Linux lines — **never merge `main`/`macos` into them wholesale**, since `main` now carries macOS-only config (`aerospace/`, `linearmouse/`) and `defaults` tweaks that break on Linux; port only the cross-platform bits.
 
 ## Bootstrap flow
 
