@@ -6,6 +6,7 @@
 !CLAUDE.md
 !.gitignore
 !starship.toml
+!.pre-commit-config.yaml
 
 # Track everything in these directories
 !bin/
