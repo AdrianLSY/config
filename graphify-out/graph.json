@@ -1,0 +1,5954 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {
+    "hyperedges": [
+      {
+        "id": "opsx_change_lifecycle",
+        "label": "OpenSpec Change Lifecycle (explore, propose, apply, archive)",
+        "nodes": [
+          "_claude_commands_opsx_explore_explore_mode",
+          "_claude_commands_opsx_propose_propose_change",
+          "_claude_commands_opsx_apply_apply_change",
+          "_claude_commands_opsx_archive_archive_change"
+        ],
+        "relation": "participate_in",
+        "confidence": "INFERRED",
+        "confidence_score": 0.85,
+        "source_file": ".claude/commands/opsx/apply.md"
+      },
+      {
+        "id": "graphify_full_pipeline_flow",
+        "label": "graphify Full Build Pipeline",
+        "nodes": [
+          "_claude_skills_graphify_skill_detect_files",
+          "_claude_skills_graphify_skill_extract_step",
+          "_claude_skills_graphify_skill_merge_ast_semantic",
+          "_claude_skills_graphify_skill_build_cluster",
+          "_claude_skills_graphify_skill_label_communities",
+          "_claude_skills_graphify_skill_obsidian_html",
+          "_claude_skills_graphify_skill_manifest_cleanup"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": ".claude/skills/graphify/SKILL.md"
+      },
+      {
+        "id": "graphify_export_backends",
+        "label": "Graph Export Backends",
+        "nodes": [
+          "_claude_skills_graphify_references_exports_neo4j",
+          "_claude_skills_graphify_references_exports_falkordb",
+          "_claude_skills_graphify_references_exports_svg",
+          "_claude_skills_graphify_references_exports_graphml",
+          "_claude_skills_graphify_references_exports_wiki",
+          "_claude_skills_graphify_references_exports_mcp_server"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": ".claude/skills/graphify/references/exports.md"
+      },
+      {
+        "id": "graphify_query_interaction_flow",
+        "label": "Query / Path / Explain Interaction Flow",
+        "nodes": [
+          "_claude_skills_graphify_references_query_query_flow",
+          "_claude_skills_graphify_references_query_query_expansion",
+          "_claude_skills_graphify_references_query_bfs_dfs",
+          "_claude_skills_graphify_references_query_path",
+          "_claude_skills_graphify_references_query_explain",
+          "_claude_skills_graphify_references_query_save_result"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": ".claude/skills/graphify/references/query.md"
+      },
+      {
+        "id": "secrets_defense_pipeline",
+        "label": "Two-Layer Secrets Defense Pipeline",
+        "nodes": [
+          "readme_allowlist_gitignore",
+          "pre_commit_config_gitleaks_hook",
+          "setup_brew_gitleaks",
+          "setup_tweak_pre_commit"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "README.md"
+      },
+      {
+        "id": "claude_bootstrap_cascade",
+        "label": "Bootstrap Cascade (setup.sh -> module runner -> package/tweak runners)",
+        "nodes": [
+          "claude_top_level_setup_sh",
+          "claude_setup_dot_setup_sh",
+          "claude_brew_setup_sh",
+          "claude_tweak_setup_sh"
+        ],
+        "relation": "participate_in",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "source_file": "CLAUDE.md"
+      },
+      {
+        "id": "claude_zsh_config_chain",
+        "label": "zsh Config Chain (zsh.sh sets ZDOTDIR, .zshrc loads rc.d functions)",
+        "nodes": [
+          "claude_tweak_zsh_sh",
+          "claude_zshrc_loader",
+          "claude_rc_d_functions"
+        ],
+        "relation": "form",
+        "confidence": "EXTRACTED",
+        "confidence_score": 0.85,
+        "source_file": "CLAUDE.md"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "label": "linearmouse.json",
+      "file_type": "code",
+      "source_file": "linearmouse/linearmouse.json",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "linearmouse_linearmouse",
+      "community": 8,
+      "norm_label": "linearmouse.json"
+    },
+    {
+      "label": "$schema",
+      "file_type": "code",
+      "source_file": "linearmouse/linearmouse.json",
+      "source_location": "L2",
+      "_origin": "ast",
+      "id": "linearmouse_linearmouse_schema",
+      "community": 8,
+      "norm_label": "$schema"
+    },
+    {
+      "label": "schemes",
+      "file_type": "code",
+      "source_file": "linearmouse/linearmouse.json",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "linearmouse_linearmouse_schemes",
+      "community": 8,
+      "norm_label": "schemes"
+    },
+    {
+      "label": "setup.sh",
+      "file_type": "code",
+      "source_file": "setup.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup",
+      "community": 9,
+      "norm_label": "setup.sh"
+    },
+    {
+      "label": "setup.sh script",
+      "file_type": "code",
+      "source_file": "setup.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_sh__entry",
+      "community": 9,
+      "norm_label": "setup.sh script"
+    },
+    {
+      "label": "ensure_clt()",
+      "file_type": "code",
+      "source_file": "setup.sh",
+      "source_location": "L24",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "_origin": "ast",
+      "id": "setup_ensure_clt",
+      "community": 9,
+      "norm_label": "ensure_clt()"
+    },
+    {
+      "label": ".setup.sh",
+      "file_type": "code",
+      "source_file": "setup/.setup.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_setup",
+      "community": 65,
+      "norm_label": ".setup.sh"
+    },
+    {
+      "label": ".setup.sh script",
+      "file_type": "code",
+      "source_file": "setup/.setup.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_setup_sh__entry",
+      "community": 65,
+      "norm_label": ".setup.sh script"
+    },
+    {
+      "label": ".setup.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/.setup.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_setup",
+      "community": 50,
+      "norm_label": ".setup.sh"
+    },
+    {
+      "label": ".setup.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/.setup.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_setup_sh__entry",
+      "community": 50,
+      "norm_label": ".setup.sh script"
+    },
+    {
+      "label": "aerospace-adrianlsy.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/aerospace-adrianlsy.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_aerospace_adrianlsy",
+      "community": 13,
+      "norm_label": "aerospace-adrianlsy.sh"
+    },
+    {
+      "label": "aerospace-adrianlsy.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/aerospace-adrianlsy.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_aerospace_adrianlsy_sh__entry",
+      "community": 13,
+      "norm_label": "aerospace-adrianlsy.sh script"
+    },
+    {
+      "label": "aldente.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/aldente.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_aldente",
+      "community": 14,
+      "norm_label": "aldente.sh"
+    },
+    {
+      "label": "aldente.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/aldente.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_aldente_sh__entry",
+      "community": 14,
+      "norm_label": "aldente.sh script"
+    },
+    {
+      "label": "appcleaner.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/appcleaner.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_appcleaner",
+      "community": 15,
+      "norm_label": "appcleaner.sh"
+    },
+    {
+      "label": "appcleaner.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/appcleaner.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_appcleaner_sh__entry",
+      "community": 15,
+      "norm_label": "appcleaner.sh script"
+    },
+    {
+      "label": "awscli.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/awscli.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_awscli",
+      "community": 16,
+      "norm_label": "awscli.sh"
+    },
+    {
+      "label": "awscli.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/awscli.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_awscli_sh__entry",
+      "community": 16,
+      "norm_label": "awscli.sh script"
+    },
+    {
+      "label": "bambu-studio.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/bambu-studio.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_bambu_studio",
+      "community": 17,
+      "norm_label": "bambu-studio.sh"
+    },
+    {
+      "label": "bambu-studio.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/bambu-studio.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_bambu_studio_sh__entry",
+      "community": 17,
+      "norm_label": "bambu-studio.sh script"
+    },
+    {
+      "label": "betterdisplay.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/betterdisplay.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_betterdisplay",
+      "community": 18,
+      "norm_label": "betterdisplay.sh"
+    },
+    {
+      "label": "betterdisplay.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/betterdisplay.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_betterdisplay_sh__entry",
+      "community": 18,
+      "norm_label": "betterdisplay.sh script"
+    },
+    {
+      "label": "bruno.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/bruno.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_bruno",
+      "community": 19,
+      "norm_label": "bruno.sh"
+    },
+    {
+      "label": "bruno.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/bruno.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_bruno_sh__entry",
+      "community": 19,
+      "norm_label": "bruno.sh script"
+    },
+    {
+      "label": "bun.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/bun.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_bun",
+      "community": 20,
+      "norm_label": "bun.sh"
+    },
+    {
+      "label": "bun.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/bun.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_bun_sh__entry",
+      "community": 20,
+      "norm_label": "bun.sh script"
+    },
+    {
+      "label": "claude-code.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/claude-code.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_claude_code",
+      "community": 22,
+      "norm_label": "claude-code.sh"
+    },
+    {
+      "label": "claude-code.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/claude-code.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_claude_code_sh__entry",
+      "community": 22,
+      "norm_label": "claude-code.sh script"
+    },
+    {
+      "label": "claude.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/claude.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_claude",
+      "community": 21,
+      "norm_label": "claude.sh"
+    },
+    {
+      "label": "claude.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/claude.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_claude_sh__entry",
+      "community": 21,
+      "norm_label": "claude.sh script"
+    },
+    {
+      "label": "cloudflared.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/cloudflared.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_cloudflared",
+      "community": 23,
+      "norm_label": "cloudflared.sh"
+    },
+    {
+      "label": "cloudflared.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/cloudflared.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_cloudflared_sh__entry",
+      "community": 23,
+      "norm_label": "cloudflared.sh script"
+    },
+    {
+      "label": "cryptomator.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/cryptomator.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_cryptomator",
+      "community": 24,
+      "norm_label": "cryptomator.sh"
+    },
+    {
+      "label": "cryptomator.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/cryptomator.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_cryptomator_sh__entry",
+      "community": 24,
+      "norm_label": "cryptomator.sh script"
+    },
+    {
+      "label": "direnv.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/direnv.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_direnv",
+      "community": 25,
+      "norm_label": "direnv.sh"
+    },
+    {
+      "label": "direnv.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/direnv.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_direnv_sh__entry",
+      "community": 25,
+      "norm_label": "direnv.sh script"
+    },
+    {
+      "label": "docker-desktop.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/docker-desktop.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_docker_desktop",
+      "community": 27,
+      "norm_label": "docker-desktop.sh"
+    },
+    {
+      "label": "docker-desktop.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/docker-desktop.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_docker_desktop_sh__entry",
+      "community": 27,
+      "norm_label": "docker-desktop.sh script"
+    },
+    {
+      "label": "docker.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/docker.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_docker",
+      "community": 26,
+      "norm_label": "docker.sh"
+    },
+    {
+      "label": "docker.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/docker.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_docker_sh__entry",
+      "community": 26,
+      "norm_label": "docker.sh script"
+    },
+    {
+      "label": "dropbox.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/dropbox.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_dropbox",
+      "community": 28,
+      "norm_label": "dropbox.sh"
+    },
+    {
+      "label": "dropbox.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/dropbox.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_dropbox_sh__entry",
+      "community": 28,
+      "norm_label": "dropbox.sh script"
+    },
+    {
+      "label": "duti.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/duti.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_duti",
+      "community": 29,
+      "norm_label": "duti.sh"
+    },
+    {
+      "label": "duti.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/duti.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_duti_sh__entry",
+      "community": 29,
+      "norm_label": "duti.sh script"
+    },
+    {
+      "label": "esptool.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/esptool.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_esptool",
+      "community": 30,
+      "norm_label": "esptool.sh"
+    },
+    {
+      "label": "esptool.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/esptool.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_esptool_sh__entry",
+      "community": 30,
+      "norm_label": "esptool.sh script"
+    },
+    {
+      "label": "ghostty.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/ghostty.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_ghostty",
+      "community": 31,
+      "norm_label": "ghostty.sh"
+    },
+    {
+      "label": "ghostty.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/ghostty.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_ghostty_sh__entry",
+      "community": 31,
+      "norm_label": "ghostty.sh script"
+    },
+    {
+      "label": "github.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/github.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_github",
+      "community": 32,
+      "norm_label": "github.sh"
+    },
+    {
+      "label": "github.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/github.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_github_sh__entry",
+      "community": 32,
+      "norm_label": "github.sh script"
+    },
+    {
+      "label": "gitleaks.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/gitleaks.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_gitleaks",
+      "community": 5,
+      "norm_label": "gitleaks.sh"
+    },
+    {
+      "label": "gitleaks.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/gitleaks.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_gitleaks_sh__entry",
+      "community": 5,
+      "norm_label": "gitleaks.sh script"
+    },
+    {
+      "label": "go.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/go.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_go",
+      "community": 33,
+      "norm_label": "go.sh"
+    },
+    {
+      "label": "go.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/go.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_go_sh__entry",
+      "community": 33,
+      "norm_label": "go.sh script"
+    },
+    {
+      "label": "iina.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/iina.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_iina",
+      "community": 34,
+      "norm_label": "iina.sh"
+    },
+    {
+      "label": "iina.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/iina.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_iina_sh__entry",
+      "community": 34,
+      "norm_label": "iina.sh script"
+    },
+    {
+      "label": "keepassxc.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/keepassxc.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_keepassxc",
+      "community": 35,
+      "norm_label": "keepassxc.sh"
+    },
+    {
+      "label": "keepassxc.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/keepassxc.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_keepassxc_sh__entry",
+      "community": 35,
+      "norm_label": "keepassxc.sh script"
+    },
+    {
+      "label": "libpq.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/libpq.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_libpq",
+      "community": 36,
+      "norm_label": "libpq.sh"
+    },
+    {
+      "label": "libpq.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/libpq.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_libpq_sh__entry",
+      "community": 36,
+      "norm_label": "libpq.sh script"
+    },
+    {
+      "label": "linearmouse.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/linearmouse.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_linearmouse",
+      "community": 37,
+      "norm_label": "linearmouse.sh"
+    },
+    {
+      "label": "linearmouse.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/linearmouse.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_linearmouse_sh__entry",
+      "community": 37,
+      "norm_label": "linearmouse.sh script"
+    },
+    {
+      "label": "localsend.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/localsend.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_localsend",
+      "community": 38,
+      "norm_label": "localsend.sh"
+    },
+    {
+      "label": "localsend.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/localsend.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_localsend_sh__entry",
+      "community": 38,
+      "norm_label": "localsend.sh script"
+    },
+    {
+      "label": "logitech-g-hub.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/logitech-g-hub.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_logitech_g_hub",
+      "community": 39,
+      "norm_label": "logitech-g-hub.sh"
+    },
+    {
+      "label": "logitech-g-hub.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/logitech-g-hub.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_logitech_g_hub_sh__entry",
+      "community": 39,
+      "norm_label": "logitech-g-hub.sh script"
+    },
+    {
+      "label": "micro.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/micro.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_micro",
+      "community": 40,
+      "norm_label": "micro.sh"
+    },
+    {
+      "label": "micro.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/micro.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_micro_sh__entry",
+      "community": 40,
+      "norm_label": "micro.sh script"
+    },
+    {
+      "label": "mole.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/mole.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_mole",
+      "community": 41,
+      "norm_label": "mole.sh"
+    },
+    {
+      "label": "mole.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/mole.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_mole_sh__entry",
+      "community": 41,
+      "norm_label": "mole.sh script"
+    },
+    {
+      "label": "obsidian.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/obsidian.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_obsidian",
+      "community": 42,
+      "norm_label": "obsidian.sh"
+    },
+    {
+      "label": "obsidian.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/obsidian.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_obsidian_sh__entry",
+      "community": 42,
+      "norm_label": "obsidian.sh script"
+    },
+    {
+      "label": "openjdk.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/openjdk.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_openjdk",
+      "community": 43,
+      "norm_label": "openjdk.sh"
+    },
+    {
+      "label": "openjdk.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/openjdk.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_openjdk_sh__entry",
+      "community": 43,
+      "norm_label": "openjdk.sh script"
+    },
+    {
+      "label": "openspec.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/openspec.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_openspec",
+      "community": 44,
+      "norm_label": "openspec.sh"
+    },
+    {
+      "label": "openspec.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/openspec.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_openspec_sh__entry",
+      "community": 44,
+      "norm_label": "openspec.sh script"
+    },
+    {
+      "label": "pre-commit.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/pre-commit.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_pre_commit",
+      "community": 5,
+      "norm_label": "pre-commit.sh"
+    },
+    {
+      "label": "pre-commit.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/pre-commit.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_pre_commit_sh__entry",
+      "community": 5,
+      "norm_label": "pre-commit.sh script"
+    },
+    {
+      "label": "pulumi.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/pulumi.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_pulumi",
+      "community": 45,
+      "norm_label": "pulumi.sh"
+    },
+    {
+      "label": "pulumi.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/pulumi.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_pulumi_sh__entry",
+      "community": 45,
+      "norm_label": "pulumi.sh script"
+    },
+    {
+      "label": "python.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/python.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_python",
+      "community": 46,
+      "norm_label": "python.sh"
+    },
+    {
+      "label": "python.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/python.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_python_sh__entry",
+      "community": 46,
+      "norm_label": "python.sh script"
+    },
+    {
+      "label": "raycast.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/raycast.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_raycast",
+      "community": 47,
+      "norm_label": "raycast.sh"
+    },
+    {
+      "label": "raycast.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/raycast.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_raycast_sh__entry",
+      "community": 47,
+      "norm_label": "raycast.sh script"
+    },
+    {
+      "label": "ruby.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/ruby.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_ruby",
+      "community": 48,
+      "norm_label": "ruby.sh"
+    },
+    {
+      "label": "ruby.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/ruby.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_ruby_sh__entry",
+      "community": 48,
+      "norm_label": "ruby.sh script"
+    },
+    {
+      "label": "rust.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/rust.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_rust",
+      "community": 49,
+      "norm_label": "rust.sh"
+    },
+    {
+      "label": "rust.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/rust.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_rust_sh__entry",
+      "community": 49,
+      "norm_label": "rust.sh script"
+    },
+    {
+      "label": "spotify.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/spotify.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_spotify",
+      "community": 51,
+      "norm_label": "spotify.sh"
+    },
+    {
+      "label": "spotify.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/spotify.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_spotify_sh__entry",
+      "community": 51,
+      "norm_label": "spotify.sh script"
+    },
+    {
+      "label": "sshpass.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/sshpass.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_sshpass",
+      "community": 52,
+      "norm_label": "sshpass.sh"
+    },
+    {
+      "label": "sshpass.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/sshpass.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_sshpass_sh__entry",
+      "community": 52,
+      "norm_label": "sshpass.sh script"
+    },
+    {
+      "label": "starship.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/starship.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_starship",
+      "community": 53,
+      "norm_label": "starship.sh"
+    },
+    {
+      "label": "starship.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/starship.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_starship_sh__entry",
+      "community": 53,
+      "norm_label": "starship.sh script"
+    },
+    {
+      "label": "stats.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/stats.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_stats",
+      "community": 54,
+      "norm_label": "stats.sh"
+    },
+    {
+      "label": "stats.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/stats.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_stats_sh__entry",
+      "community": 54,
+      "norm_label": "stats.sh script"
+    },
+    {
+      "label": "steam.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/steam.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_steam",
+      "community": 55,
+      "norm_label": "steam.sh"
+    },
+    {
+      "label": "steam.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/steam.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_steam_sh__entry",
+      "community": 55,
+      "norm_label": "steam.sh script"
+    },
+    {
+      "label": "tailscale.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/tailscale.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_tailscale",
+      "community": 56,
+      "norm_label": "tailscale.sh"
+    },
+    {
+      "label": "tailscale.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/tailscale.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_tailscale_sh__entry",
+      "community": 56,
+      "norm_label": "tailscale.sh script"
+    },
+    {
+      "label": "thunderbird.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/thunderbird.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_thunderbird",
+      "community": 57,
+      "norm_label": "thunderbird.sh"
+    },
+    {
+      "label": "thunderbird.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/thunderbird.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_thunderbird_sh__entry",
+      "community": 57,
+      "norm_label": "thunderbird.sh script"
+    },
+    {
+      "label": "tiger-cli.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/tiger-cli.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_tiger_cli",
+      "community": 58,
+      "norm_label": "tiger-cli.sh"
+    },
+    {
+      "label": "tiger-cli.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/tiger-cli.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_tiger_cli_sh__entry",
+      "community": 58,
+      "norm_label": "tiger-cli.sh script"
+    },
+    {
+      "label": "topnotch.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/topnotch.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_topnotch",
+      "community": 59,
+      "norm_label": "topnotch.sh"
+    },
+    {
+      "label": "topnotch.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/topnotch.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_topnotch_sh__entry",
+      "community": 59,
+      "norm_label": "topnotch.sh script"
+    },
+    {
+      "label": "transmission.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/transmission.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_transmission",
+      "community": 60,
+      "norm_label": "transmission.sh"
+    },
+    {
+      "label": "transmission.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/transmission.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_transmission_sh__entry",
+      "community": 60,
+      "norm_label": "transmission.sh script"
+    },
+    {
+      "label": "ultimaker-cura.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/ultimaker-cura.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_ultimaker_cura",
+      "community": 61,
+      "norm_label": "ultimaker-cura.sh"
+    },
+    {
+      "label": "ultimaker-cura.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/ultimaker-cura.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_ultimaker_cura_sh__entry",
+      "community": 61,
+      "norm_label": "ultimaker-cura.sh script"
+    },
+    {
+      "label": "uv.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/uv.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_uv",
+      "community": 62,
+      "norm_label": "uv.sh"
+    },
+    {
+      "label": "uv.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/uv.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_uv_sh__entry",
+      "community": 62,
+      "norm_label": "uv.sh script"
+    },
+    {
+      "label": "vivaldi.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/vivaldi.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_vivaldi",
+      "community": 63,
+      "norm_label": "vivaldi.sh"
+    },
+    {
+      "label": "vivaldi.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/vivaldi.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_vivaldi_sh__entry",
+      "community": 63,
+      "norm_label": "vivaldi.sh script"
+    },
+    {
+      "label": "zed.sh",
+      "file_type": "code",
+      "source_file": "setup/brew/zed.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_zed",
+      "community": 64,
+      "norm_label": "zed.sh"
+    },
+    {
+      "label": "zed.sh script",
+      "file_type": "code",
+      "source_file": "setup/brew/zed.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_brew_zed_sh__entry",
+      "community": 64,
+      "norm_label": "zed.sh script"
+    },
+    {
+      "label": ".setup.sh",
+      "file_type": "code",
+      "source_file": "setup/tweak/.setup.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_tweak_setup",
+      "community": 73,
+      "norm_label": ".setup.sh"
+    },
+    {
+      "label": ".setup.sh script",
+      "file_type": "code",
+      "source_file": "setup/tweak/.setup.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_tweak_setup_sh__entry",
+      "community": 73,
+      "norm_label": ".setup.sh script"
+    },
+    {
+      "label": "betterdisplay-rgb.sh",
+      "file_type": "code",
+      "source_file": "setup/tweak/betterdisplay-rgb.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_tweak_betterdisplay_rgb",
+      "community": 66,
+      "norm_label": "betterdisplay-rgb.sh"
+    },
+    {
+      "label": "betterdisplay-rgb.sh script",
+      "file_type": "code",
+      "source_file": "setup/tweak/betterdisplay-rgb.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_tweak_betterdisplay_rgb_sh__entry",
+      "community": 66,
+      "norm_label": "betterdisplay-rgb.sh script"
+    },
+    {
+      "label": "dock.sh",
+      "file_type": "code",
+      "source_file": "setup/tweak/dock.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_tweak_dock",
+      "community": 67,
+      "norm_label": "dock.sh"
+    },
+    {
+      "label": "dock.sh script",
+      "file_type": "code",
+      "source_file": "setup/tweak/dock.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_tweak_dock_sh__entry",
+      "community": 67,
+      "norm_label": "dock.sh script"
+    },
+    {
+      "label": "duti.sh",
+      "file_type": "code",
+      "source_file": "setup/tweak/duti.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_tweak_duti",
+      "community": 68,
+      "norm_label": "duti.sh"
+    },
+    {
+      "label": "duti.sh script",
+      "file_type": "code",
+      "source_file": "setup/tweak/duti.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_tweak_duti_sh__entry",
+      "community": 68,
+      "norm_label": "duti.sh script"
+    },
+    {
+      "label": "finder.sh",
+      "file_type": "code",
+      "source_file": "setup/tweak/finder.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_tweak_finder",
+      "community": 69,
+      "norm_label": "finder.sh"
+    },
+    {
+      "label": "finder.sh script",
+      "file_type": "code",
+      "source_file": "setup/tweak/finder.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_tweak_finder_sh__entry",
+      "community": 69,
+      "norm_label": "finder.sh script"
+    },
+    {
+      "label": "ghostty.sh",
+      "file_type": "code",
+      "source_file": "setup/tweak/ghostty.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_tweak_ghostty",
+      "community": 70,
+      "norm_label": "ghostty.sh"
+    },
+    {
+      "label": "ghostty.sh script",
+      "file_type": "code",
+      "source_file": "setup/tweak/ghostty.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_tweak_ghostty_sh__entry",
+      "community": 70,
+      "norm_label": "ghostty.sh script"
+    },
+    {
+      "label": "graphify.sh",
+      "file_type": "code",
+      "source_file": "setup/tweak/graphify.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_tweak_graphify",
+      "community": 71,
+      "norm_label": "graphify.sh"
+    },
+    {
+      "label": "graphify.sh script",
+      "file_type": "code",
+      "source_file": "setup/tweak/graphify.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_tweak_graphify_sh__entry",
+      "community": 71,
+      "norm_label": "graphify.sh script"
+    },
+    {
+      "label": "pre-commit.sh",
+      "file_type": "code",
+      "source_file": "setup/tweak/pre-commit.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_tweak_pre_commit",
+      "community": 5,
+      "norm_label": "pre-commit.sh"
+    },
+    {
+      "label": "pre-commit.sh script",
+      "file_type": "code",
+      "source_file": "setup/tweak/pre-commit.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_tweak_pre_commit_sh__entry",
+      "community": 5,
+      "norm_label": "pre-commit.sh script"
+    },
+    {
+      "label": "screenshot-shortcuts.sh",
+      "file_type": "code",
+      "source_file": "setup/tweak/screenshot-shortcuts.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_tweak_screenshot_shortcuts",
+      "community": 72,
+      "norm_label": "screenshot-shortcuts.sh"
+    },
+    {
+      "label": "screenshot-shortcuts.sh script",
+      "file_type": "code",
+      "source_file": "setup/tweak/screenshot-shortcuts.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_tweak_screenshot_shortcuts_sh__entry",
+      "community": 72,
+      "norm_label": "screenshot-shortcuts.sh script"
+    },
+    {
+      "label": "ssh-keypick.sh",
+      "file_type": "code",
+      "source_file": "setup/tweak/ssh-keypick.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_tweak_ssh_keypick",
+      "community": 10,
+      "norm_label": "ssh-keypick.sh"
+    },
+    {
+      "label": "ssh-keypick.sh script",
+      "file_type": "code",
+      "source_file": "setup/tweak/ssh-keypick.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_tweak_ssh_keypick_sh__entry",
+      "community": 10,
+      "norm_label": "ssh-keypick.sh script"
+    },
+    {
+      "label": "has_private_keys()",
+      "file_type": "code",
+      "source_file": "setup/tweak/ssh-keypick.sh",
+      "source_location": "L48",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "_origin": "ast",
+      "id": "setup_tweak_ssh_keypick_has_private_keys",
+      "community": 10,
+      "norm_label": "has_private_keys()"
+    },
+    {
+      "label": "update-schedule.sh",
+      "file_type": "code",
+      "source_file": "setup/tweak/update-schedule.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_tweak_update_schedule",
+      "community": 74,
+      "norm_label": "update-schedule.sh"
+    },
+    {
+      "label": "update-schedule.sh script",
+      "file_type": "code",
+      "source_file": "setup/tweak/update-schedule.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_tweak_update_schedule_sh__entry",
+      "community": 74,
+      "norm_label": "update-schedule.sh script"
+    },
+    {
+      "label": "zsh.sh",
+      "file_type": "code",
+      "source_file": "setup/tweak/zsh.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "setup_tweak_zsh",
+      "community": 75,
+      "norm_label": "zsh.sh"
+    },
+    {
+      "label": "zsh.sh script",
+      "file_type": "code",
+      "source_file": "setup/tweak/zsh.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "setup_tweak_zsh_sh__entry",
+      "community": 75,
+      "norm_label": "zsh.sh script"
+    },
+    {
+      "label": "One Dark Max.json",
+      "file_type": "code",
+      "source_file": "zed/themes/One Dark Max.json",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "zed_themes_one_dark_max",
+      "community": 7,
+      "norm_label": "one dark max.json"
+    },
+    {
+      "label": "$schema",
+      "file_type": "code",
+      "source_file": "zed/themes/One Dark Max.json",
+      "source_location": "L2",
+      "_origin": "ast",
+      "id": "zed_themes_one_dark_max_schema",
+      "community": 7,
+      "norm_label": "$schema"
+    },
+    {
+      "label": "name",
+      "file_type": "code",
+      "source_file": "zed/themes/One Dark Max.json",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "zed_themes_one_dark_max_name",
+      "community": 7,
+      "norm_label": "name"
+    },
+    {
+      "label": "author",
+      "file_type": "code",
+      "source_file": "zed/themes/One Dark Max.json",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "zed_themes_one_dark_max_author",
+      "community": 7,
+      "norm_label": "author"
+    },
+    {
+      "label": "themes",
+      "file_type": "code",
+      "source_file": "zed/themes/One Dark Max.json",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "zed_themes_one_dark_max_themes",
+      "community": 7,
+      "norm_label": "themes"
+    },
+    {
+      "label": "Graphify Skill Trigger",
+      "file_type": "concept",
+      "source_file": ".claude/CLAUDE.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "claude_claude_claude_graphify_trigger",
+      "community": 2,
+      "norm_label": "graphify skill trigger"
+    },
+    {
+      "label": "OPSX Apply Change Command",
+      "file_type": "document",
+      "source_file": ".claude/commands/opsx/apply.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_commands_opsx_apply_apply_change",
+      "community": 2,
+      "norm_label": "opsx apply change command"
+    },
+    {
+      "label": "openspec instructions apply",
+      "file_type": "concept",
+      "source_file": ".claude/commands/opsx/apply.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_commands_opsx_apply_apply_instructions",
+      "community": 2,
+      "norm_label": "openspec instructions apply"
+    },
+    {
+      "label": "openspec status --json",
+      "file_type": "concept",
+      "source_file": ".claude/commands/opsx/apply.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_commands_opsx_apply_status_json",
+      "community": 2,
+      "norm_label": "openspec status --json"
+    },
+    {
+      "label": "Workspace Planning Guard",
+      "file_type": "rationale",
+      "source_file": ".claude/commands/opsx/apply.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_commands_opsx_apply_workspace_guard",
+      "community": 2,
+      "norm_label": "workspace planning guard"
+    },
+    {
+      "label": "OPSX Archive Change Command",
+      "file_type": "document",
+      "source_file": ".claude/commands/opsx/archive.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_commands_opsx_archive_archive_change",
+      "community": 2,
+      "norm_label": "opsx archive change command"
+    },
+    {
+      "label": "Delta Spec Sync",
+      "file_type": "concept",
+      "source_file": ".claude/commands/opsx/archive.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_commands_opsx_archive_delta_spec_sync",
+      "community": 2,
+      "norm_label": "delta spec sync"
+    },
+    {
+      "label": "OPSX Explore Mode Command",
+      "file_type": "document",
+      "source_file": ".claude/commands/opsx/explore.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_commands_opsx_explore_explore_mode",
+      "community": 2,
+      "norm_label": "opsx explore mode command"
+    },
+    {
+      "label": "Explore Mode: Thinking Not Implementing Stance",
+      "file_type": "rationale",
+      "source_file": ".claude/commands/opsx/explore.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_commands_opsx_explore_thinking_not_implementing",
+      "community": 2,
+      "norm_label": "explore mode: thinking not implementing stance"
+    },
+    {
+      "label": "OPSX Propose Change Command",
+      "file_type": "document",
+      "source_file": ".claude/commands/opsx/propose.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_commands_opsx_propose_propose_change",
+      "community": 2,
+      "norm_label": "opsx propose change command"
+    },
+    {
+      "label": "OpenSpec Change Artifacts",
+      "file_type": "concept",
+      "source_file": ".claude/commands/opsx/propose.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_commands_opsx_propose_artifacts",
+      "community": 2,
+      "norm_label": "openspec change artifacts"
+    },
+    {
+      "label": "tasks.md Artifact",
+      "file_type": "concept",
+      "source_file": ".claude/commands/opsx/propose.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_commands_opsx_propose_tasks_md",
+      "community": 2,
+      "norm_label": "tasks.md artifact"
+    },
+    {
+      "label": "proposal.md Artifact",
+      "file_type": "concept",
+      "source_file": ".claude/commands/opsx/propose.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_commands_opsx_propose_proposal_md",
+      "community": 2,
+      "norm_label": "proposal.md artifact"
+    },
+    {
+      "label": "design.md Artifact",
+      "file_type": "concept",
+      "source_file": ".claude/commands/opsx/propose.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_commands_opsx_propose_design_md",
+      "community": 2,
+      "norm_label": "design.md artifact"
+    },
+    {
+      "label": "graphify Pipeline",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_skill_graphify_pipeline",
+      "community": 3,
+      "norm_label": "graphify pipeline"
+    },
+    {
+      "label": "Fast Path (existing graph)",
+      "file_type": "rationale",
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_skill_fast_path",
+      "community": 3,
+      "norm_label": "fast path (existing graph)"
+    },
+    {
+      "label": "Python Interpreter Detection",
+      "file_type": "rationale",
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_skill_interpreter_detection",
+      "community": 3,
+      "norm_label": "python interpreter detection"
+    },
+    {
+      "label": "Detect Files (Step 2)",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_skill_detect_files",
+      "community": 3,
+      "norm_label": "detect files (step 2)"
+    },
+    {
+      "label": "Corpus Size Gate",
+      "file_type": "rationale",
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_skill_corpus_size_gate",
+      "community": 3,
+      "norm_label": "corpus size gate"
+    },
+    {
+      "label": "Extract Entities and Relationships (Step 3)",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_skill_extract_step",
+      "community": 1,
+      "norm_label": "extract entities and relationships (step 3)"
+    },
+    {
+      "label": "No API Key Required",
+      "file_type": "rationale",
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_skill_no_api_key",
+      "community": 1,
+      "norm_label": "no api key required"
+    },
+    {
+      "label": "AST Structural Extraction (Part A)",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_skill_ast_extraction",
+      "community": 1,
+      "norm_label": "ast structural extraction (part a)"
+    },
+    {
+      "label": "Semantic Extraction (Part B)",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_skill_semantic_extraction",
+      "community": 1,
+      "norm_label": "semantic extraction (part b)"
+    },
+    {
+      "label": "Parallel Subagent Dispatch",
+      "file_type": "rationale",
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_skill_parallel_subagents",
+      "community": 1,
+      "norm_label": "parallel subagent dispatch"
+    },
+    {
+      "label": "Extraction Cache Check (Step B0)",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_skill_extraction_cache",
+      "community": 1,
+      "norm_label": "extraction cache check (step b0)"
+    },
+    {
+      "label": "Merge AST + Semantic (Part C)",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_skill_merge_ast_semantic",
+      "community": 1,
+      "norm_label": "merge ast + semantic (part c)"
+    },
+    {
+      "label": "Build, Cluster, Analyze (Step 4)",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_skill_build_cluster",
+      "community": 0,
+      "norm_label": "build, cluster, analyze (step 4)"
+    },
+    {
+      "label": "Shrink-Guard (#479)",
+      "file_type": "rationale",
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_skill_shrink_guard",
+      "community": 0,
+      "norm_label": "shrink-guard (#479)"
+    },
+    {
+      "label": "Empty Graph Guard",
+      "file_type": "rationale",
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_skill_empty_graph_guard",
+      "community": 0,
+      "norm_label": "empty graph guard"
+    },
+    {
+      "label": "Graph Health Check (Step 4.5)",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_skill_health_check",
+      "community": 0,
+      "norm_label": "graph health check (step 4.5)"
+    },
+    {
+      "label": "Label Communities (Step 5)",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_skill_label_communities",
+      "community": 0,
+      "norm_label": "label communities (step 5)"
+    },
+    {
+      "label": "Obsidian Vault + HTML Output (Step 6)",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_skill_obsidian_html",
+      "community": 0,
+      "norm_label": "obsidian vault + html output (step 6)"
+    },
+    {
+      "label": "Save Manifest, Cost Tracker, Cleanup (Step 9)",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_skill_manifest_cleanup",
+      "community": 0,
+      "norm_label": "save manifest, cost tracker, cleanup (step 9)"
+    },
+    {
+      "label": "Honesty Rules",
+      "file_type": "rationale",
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_skill_honesty_rules",
+      "community": 1,
+      "norm_label": "honesty rules"
+    },
+    {
+      "label": "EXTRACTED/INFERRED/AMBIGUOUS Audit Trail",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_skill_confidence_taxonomy",
+      "community": 1,
+      "norm_label": "extracted/inferred/ambiguous audit trail"
+    },
+    {
+      "label": "Community Detection",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_skill_community_detection",
+      "community": 0,
+      "norm_label": "community detection"
+    },
+    {
+      "label": "God Nodes",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_skill_god_nodes",
+      "community": 0,
+      "norm_label": "god nodes"
+    },
+    {
+      "label": "Directed Graph Mode",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_skill_directed_mode",
+      "community": 0,
+      "norm_label": "directed graph mode"
+    },
+    {
+      "label": "Deep Mode",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_skill_deep_mode",
+      "community": 1,
+      "norm_label": "deep mode"
+    },
+    {
+      "label": "Source File Root Relativization",
+      "file_type": "rationale",
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_skill_root_relativization",
+      "community": 1,
+      "norm_label": "source file root relativization"
+    },
+    {
+      "label": "graphify add URL",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/references/add-watch.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_references_add_watch_add_url",
+      "community": 0,
+      "norm_label": "graphify add url"
+    },
+    {
+      "label": "ingest() URL Fetcher",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/references/add-watch.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_references_add_watch_ingest",
+      "community": 0,
+      "norm_label": "ingest() url fetcher"
+    },
+    {
+      "label": "Folder Watch Mode",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/references/add-watch.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_references_add_watch_watch",
+      "community": 1,
+      "norm_label": "folder watch mode"
+    },
+    {
+      "label": "Watch Debounce",
+      "file_type": "rationale",
+      "source_file": ".claude/skills/graphify/references/add-watch.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_references_add_watch_debounce",
+      "community": 1,
+      "norm_label": "watch debounce"
+    },
+    {
+      "label": "Wiki Export",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/references/exports.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_references_exports_wiki",
+      "community": 0,
+      "norm_label": "wiki export"
+    },
+    {
+      "label": "Neo4j Cypher Export",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/references/exports.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_references_exports_neo4j",
+      "community": 11,
+      "norm_label": "neo4j cypher export"
+    },
+    {
+      "label": "FalkorDB Cypher Export",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/references/exports.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_references_exports_falkordb",
+      "community": 11,
+      "norm_label": "falkordb cypher export"
+    },
+    {
+      "label": "SVG Export",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/references/exports.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_references_exports_svg",
+      "community": 78,
+      "norm_label": "svg export"
+    },
+    {
+      "label": "GraphML Export",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/references/exports.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_references_exports_graphml",
+      "community": 77,
+      "norm_label": "graphml export"
+    },
+    {
+      "label": "MCP stdio Server",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/references/exports.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_references_exports_mcp_server",
+      "community": 3,
+      "norm_label": "mcp stdio server"
+    },
+    {
+      "label": "Token Reduction Benchmark",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/references/exports.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_references_exports_benchmark",
+      "community": 76,
+      "norm_label": "token reduction benchmark"
+    },
+    {
+      "label": "Extraction Subagent Prompt",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/references/extraction-spec.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_references_extraction_spec_subagent_prompt",
+      "community": 1,
+      "norm_label": "extraction subagent prompt"
+    },
+    {
+      "label": "Node ID Format Rule",
+      "file_type": "rationale",
+      "source_file": ".claude/skills/graphify/references/extraction-spec.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_references_extraction_spec_node_id_format",
+      "community": 1,
+      "norm_label": "node id format rule"
+    },
+    {
+      "label": "Confidence Score Rubric",
+      "file_type": "rationale",
+      "source_file": ".claude/skills/graphify/references/extraction-spec.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_references_extraction_spec_confidence_rubric",
+      "community": 1,
+      "norm_label": "confidence score rubric"
+    },
+    {
+      "label": "source_file Verbatim Rule",
+      "file_type": "rationale",
+      "source_file": ".claude/skills/graphify/references/extraction-spec.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_references_extraction_spec_source_file_rule",
+      "community": 1,
+      "norm_label": "source_file verbatim rule"
+    },
+    {
+      "label": "Hyperedge Extraction Rule",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/references/extraction-spec.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_references_extraction_spec_hyperedge_rule",
+      "community": 1,
+      "norm_label": "hyperedge extraction rule"
+    },
+    {
+      "label": "Semantic Similarity Edge",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/references/extraction-spec.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_references_extraction_spec_semantic_similarity",
+      "community": 1,
+      "norm_label": "semantic similarity edge"
+    },
+    {
+      "label": "Call Edge Direction Rule",
+      "file_type": "rationale",
+      "source_file": ".claude/skills/graphify/references/extraction-spec.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_references_extraction_spec_call_direction",
+      "community": 1,
+      "norm_label": "call edge direction rule"
+    },
+    {
+      "label": "graphify clone",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/references/github-and-merge.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_references_github_and_merge_clone",
+      "community": 3,
+      "norm_label": "graphify clone"
+    },
+    {
+      "label": "merge-graphs Cross-Repo Merge",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/references/github-and-merge.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_references_github_and_merge_merge_graphs",
+      "community": 3,
+      "norm_label": "merge-graphs cross-repo merge"
+    },
+    {
+      "label": "Monorepo Multi-Subfolder Extraction",
+      "file_type": "rationale",
+      "source_file": ".claude/skills/graphify/references/github-and-merge.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_references_github_and_merge_monorepo",
+      "community": 3,
+      "norm_label": "monorepo multi-subfolder extraction"
+    },
+    {
+      "label": "Post-Commit Auto-Rebuild Hook",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/references/hooks.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_references_hooks_commit_hook",
+      "community": 1,
+      "norm_label": "post-commit auto-rebuild hook"
+    },
+    {
+      "label": "Native CLAUDE.md Integration",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/references/hooks.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_references_hooks_claude_integration",
+      "community": 79,
+      "norm_label": "native claude.md integration"
+    },
+    {
+      "label": "graphify query",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/references/query.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_references_query_query_flow",
+      "community": 3,
+      "norm_label": "graphify query"
+    },
+    {
+      "label": "Constrained Query Expansion",
+      "file_type": "rationale",
+      "source_file": ".claude/skills/graphify/references/query.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_references_query_query_expansion",
+      "community": 3,
+      "norm_label": "constrained query expansion"
+    },
+    {
+      "label": "BFS/DFS Traversal Modes",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/references/query.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_references_query_bfs_dfs",
+      "community": 3,
+      "norm_label": "bfs/dfs traversal modes"
+    },
+    {
+      "label": "Inline NetworkX Traversal Fallback",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/references/query.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_references_query_networkx_fallback",
+      "community": 3,
+      "norm_label": "inline networkx traversal fallback"
+    },
+    {
+      "label": "graphify path (Shortest Path)",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/references/query.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_references_query_path",
+      "community": 3,
+      "norm_label": "graphify path (shortest path)"
+    },
+    {
+      "label": "graphify explain (Single Node)",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/references/query.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_references_query_explain",
+      "community": 3,
+      "norm_label": "graphify explain (single node)"
+    },
+    {
+      "label": "save-result Feedback Loop",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/references/query.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_references_query_save_result",
+      "community": 3,
+      "norm_label": "save-result feedback loop"
+    },
+    {
+      "label": "Work Memory (Self-Improving Loop)",
+      "file_type": "rationale",
+      "source_file": ".claude/skills/graphify/references/query.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_references_query_work_memory",
+      "community": 3,
+      "norm_label": "work memory (self-improving loop)"
+    },
+    {
+      "label": "reflect LESSONS.md",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/references/query.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_references_query_reflect_lessons",
+      "community": 3,
+      "norm_label": "reflect lessons.md"
+    },
+    {
+      "label": "Video/Audio Transcription (Step 2.5)",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/references/transcribe.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_references_transcribe_transcribe",
+      "community": 0,
+      "norm_label": "video/audio transcription (step 2.5)"
+    },
+    {
+      "label": "Whisper Domain-Hint Prompt",
+      "file_type": "rationale",
+      "source_file": ".claude/skills/graphify/references/transcribe.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_references_transcribe_whisper_prompt",
+      "community": 0,
+      "norm_label": "whisper domain-hint prompt"
+    },
+    {
+      "label": "Incremental Update (--update)",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/references/update.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_references_update_incremental_update",
+      "community": 0,
+      "norm_label": "incremental update (--update)"
+    },
+    {
+      "label": "build_merge Replace-on-Re-extract",
+      "file_type": "rationale",
+      "source_file": ".claude/skills/graphify/references/update.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_references_update_build_merge",
+      "community": 0,
+      "norm_label": "build_merge replace-on-re-extract"
+    },
+    {
+      "label": "Code-Only Change Skip",
+      "file_type": "rationale",
+      "source_file": ".claude/skills/graphify/references/update.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_references_update_code_only_skip",
+      "community": 0,
+      "norm_label": "code-only change skip"
+    },
+    {
+      "label": "prune_sources Deletion Pruning",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/references/update.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_references_update_prune_sources",
+      "community": 0,
+      "norm_label": "prune_sources deletion pruning"
+    },
+    {
+      "label": "Graph Diff",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/references/update.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_references_update_graph_diff",
+      "community": 0,
+      "norm_label": "graph diff"
+    },
+    {
+      "label": "Cluster-Only Re-clustering",
+      "file_type": "concept",
+      "source_file": ".claude/skills/graphify/references/update.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_graphify_references_update_cluster_only",
+      "community": 0,
+      "norm_label": "cluster-only re-clustering"
+    },
+    {
+      "label": "openspec-apply-change Skill",
+      "file_type": "document",
+      "source_file": ".claude/skills/openspec-apply-change/SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "openspec",
+      "contributor": null,
+      "id": "_claude_skills_openspec_apply_change_skill_apply_skill",
+      "community": 2,
+      "norm_label": "openspec-apply-change skill"
+    },
+    {
+      "label": "openspec CLI",
+      "file_type": "concept",
+      "source_file": ".claude/skills/openspec-apply-change/SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_openspec_apply_change_skill_openspec_cli",
+      "community": 2,
+      "norm_label": "openspec cli"
+    },
+    {
+      "label": "openspec-archive-change Skill",
+      "file_type": "document",
+      "source_file": ".claude/skills/openspec-archive-change/SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "openspec",
+      "contributor": null,
+      "id": "_claude_skills_openspec_archive_change_skill_archive_skill",
+      "community": 2,
+      "norm_label": "openspec-archive-change skill"
+    },
+    {
+      "label": "openspec-sync-specs Skill",
+      "file_type": "concept",
+      "source_file": ".claude/skills/openspec-archive-change/SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "_claude_skills_openspec_archive_change_openspec_sync_specs",
+      "community": 2,
+      "norm_label": "openspec-sync-specs skill"
+    },
+    {
+      "label": "openspec-explore Skill",
+      "file_type": "document",
+      "source_file": ".claude/skills/openspec-explore/SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "openspec",
+      "contributor": null,
+      "id": "_claude_skills_openspec_explore_skill_explore_skill",
+      "community": 2,
+      "norm_label": "openspec-explore skill"
+    },
+    {
+      "label": "openspec-propose Skill",
+      "file_type": "document",
+      "source_file": ".claude/skills/openspec-propose/SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "openspec",
+      "contributor": null,
+      "id": "_claude_skills_openspec_propose_skill_propose_skill",
+      "community": 2,
+      "norm_label": "openspec-propose skill"
+    },
+    {
+      "label": "gitleaks pre-commit hook",
+      "file_type": "concept",
+      "source_file": ".pre-commit-config.yaml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "pre_commit_config_gitleaks_hook",
+      "community": 5,
+      "norm_label": "gitleaks pre-commit hook"
+    },
+    {
+      "label": "secure-config-and-merge OpenSpec Change",
+      "file_type": "concept",
+      "source_file": ".pre-commit-config.yaml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "claude_secure_config_and_merge",
+      "community": 5,
+      "norm_label": "secure-config-and-merge openspec change"
+    },
+    {
+      "label": "Allowlist-style .gitignore",
+      "file_type": "rationale",
+      "source_file": "README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "readme_allowlist_gitignore",
+      "community": 5,
+      "norm_label": "allowlist-style .gitignore"
+    },
+    {
+      "label": "Two-Layer Secrets Defense",
+      "file_type": "rationale",
+      "source_file": "README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "readme_secrets_defense",
+      "community": 5,
+      "norm_label": "two-layer secrets defense"
+    },
+    {
+      "label": "setup.sh Bootstrap Flow",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "readme_bootstrap",
+      "community": 5,
+      "norm_label": "setup.sh bootstrap flow"
+    },
+    {
+      "label": "Copy-into-~/.config Install Model",
+      "file_type": "rationale",
+      "source_file": "README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "readme_copy_install_model",
+      "community": 5,
+      "norm_label": "copy-into-~/.config install model"
+    },
+    {
+      "label": "~/.config Dotfiles Repo",
+      "file_type": "concept",
+      "source_file": "CLAUDE.md",
+      "source_location": "What this repo is",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "claude_config_dotfiles_repo",
+      "community": 4,
+      "norm_label": "~/.config dotfiles repo"
+    },
+    {
+      "label": "Top-level App Config Directories",
+      "file_type": "concept",
+      "source_file": "CLAUDE.md",
+      "source_location": "What this repo is",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "claude_app_config_dirs",
+      "community": 4,
+      "norm_label": "top-level app config directories"
+    },
+    {
+      "label": "Branch Model (main == macOS)",
+      "file_type": "rationale",
+      "source_file": "CLAUDE.md",
+      "source_location": "What this repo is / Branches",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "claude_branch_model",
+      "community": 4,
+      "norm_label": "branch model (main == macos)"
+    },
+    {
+      "label": "Bootstrap Flow",
+      "file_type": "concept",
+      "source_file": "CLAUDE.md",
+      "source_location": "Bootstrap flow",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "claude_bootstrap_flow",
+      "community": 4,
+      "norm_label": "bootstrap flow"
+    },
+    {
+      "label": "Top-level setup.sh Entry Point",
+      "file_type": "concept",
+      "source_file": "CLAUDE.md",
+      "source_location": "Bootstrap flow step 1",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "claude_top_level_setup_sh",
+      "community": 4,
+      "norm_label": "top-level setup.sh entry point"
+    },
+    {
+      "label": "setup/.setup.sh Module Runner",
+      "file_type": "concept",
+      "source_file": "CLAUDE.md",
+      "source_location": "Bootstrap flow step 2",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "claude_setup_dot_setup_sh",
+      "community": 4,
+      "norm_label": "setup/.setup.sh module runner"
+    },
+    {
+      "label": "ORDER Array (brew, tweak)",
+      "file_type": "concept",
+      "source_file": "CLAUDE.md",
+      "source_location": "Bootstrap flow step 2",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "claude_order_array",
+      "community": 4,
+      "norm_label": "order array (brew, tweak)"
+    },
+    {
+      "label": "setup/brew/.setup.sh Runner",
+      "file_type": "concept",
+      "source_file": "CLAUDE.md",
+      "source_location": "Bootstrap flow step 3",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "claude_brew_setup_sh",
+      "community": 4,
+      "norm_label": "setup/brew/.setup.sh runner"
+    },
+    {
+      "label": "Brew List Skip Check (filename == package name)",
+      "file_type": "rationale",
+      "source_file": "CLAUDE.md",
+      "source_location": "Bootstrap flow step 3",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "claude_brew_skip_check",
+      "community": 4,
+      "norm_label": "brew list skip check (filename == package name)"
+    },
+    {
+      "label": "setup/tweak/.setup.sh Runner",
+      "file_type": "concept",
+      "source_file": "CLAUDE.md",
+      "source_location": "Bootstrap flow step 4",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "claude_tweak_setup_sh",
+      "community": 4,
+      "norm_label": "setup/tweak/.setup.sh runner"
+    },
+    {
+      "label": "Tweak Idempotency Requirement",
+      "file_type": "rationale",
+      "source_file": "CLAUDE.md",
+      "source_location": "Bootstrap flow step 4 / Adding things",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "claude_tweak_idempotency",
+      "community": 4,
+      "norm_label": "tweak idempotency requirement"
+    },
+    {
+      "label": "Runner Logging + Summary Pattern",
+      "file_type": "rationale",
+      "source_file": "CLAUDE.md",
+      "source_location": "Bootstrap flow",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "claude_runner_logging_pattern",
+      "community": 4,
+      "norm_label": "runner logging + summary pattern"
+    },
+    {
+      "label": "Allowlist-style .gitignore",
+      "file_type": "concept",
+      "source_file": "CLAUDE.md",
+      "source_location": "Adding things / Other notable bits",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "claude_gitignore_allowlist",
+      "community": 4,
+      "norm_label": "allowlist-style .gitignore"
+    },
+    {
+      "label": "zsh Layout (ZDOTDIR in repo)",
+      "file_type": "concept",
+      "source_file": "CLAUDE.md",
+      "source_location": "zsh layout",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "claude_zsh_layout",
+      "community": 6,
+      "norm_label": "zsh layout (zdotdir in repo)"
+    },
+    {
+      "label": "tweak/zsh.sh (writes ~/.zshenv)",
+      "file_type": "concept",
+      "source_file": "CLAUDE.md",
+      "source_location": "zsh layout",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "claude_tweak_zsh_sh",
+      "community": 6,
+      "norm_label": "tweak/zsh.sh (writes ~/.zshenv)"
+    },
+    {
+      "label": ".zshrc Plugin + rc.d Loader",
+      "file_type": "concept",
+      "source_file": "CLAUDE.md",
+      "source_location": "zsh layout / Adding things",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "claude_zshrc_loader",
+      "community": 6,
+      "norm_label": ".zshrc plugin + rc.d loader"
+    },
+    {
+      "label": "zsh/rc.d/ Function+Alias Files",
+      "file_type": "concept",
+      "source_file": "CLAUDE.md",
+      "source_location": "Adding things / zsh layout",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "claude_rc_d_functions",
+      "community": 6,
+      "norm_label": "zsh/rc.d/ function+alias files"
+    },
+    {
+      "label": "Multi-account git Function",
+      "file_type": "concept",
+      "source_file": "CLAUDE.md",
+      "source_location": "Multi-account git",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "claude_git_multi_account",
+      "community": 6,
+      "norm_label": "multi-account git function"
+    },
+    {
+      "label": "Two-account Push-access Resolution",
+      "file_type": "rationale",
+      "source_file": "CLAUDE.md",
+      "source_location": "Multi-account git",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "claude_git_account_resolution",
+      "community": 6,
+      "norm_label": "two-account push-access resolution"
+    },
+    {
+      "label": "command git Recursion Guard",
+      "file_type": "rationale",
+      "source_file": "CLAUDE.md",
+      "source_location": "Multi-account git",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "claude_command_git_recursion_guard",
+      "community": 6,
+      "norm_label": "command git recursion guard"
+    },
+    {
+      "label": "ghs Re-stamp Command",
+      "file_type": "concept",
+      "source_file": "CLAUDE.md",
+      "source_location": "Multi-account git",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "claude_ghs_alias",
+      "community": 6,
+      "norm_label": "ghs re-stamp command"
+    },
+    {
+      "label": "ghp Add-Commit-Push Alias",
+      "file_type": "concept",
+      "source_file": "CLAUDE.md",
+      "source_location": "Other notable bits",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "claude_ghp_alias",
+      "community": 6,
+      "norm_label": "ghp add-commit-push alias"
+    },
+    {
+      "label": "ghu Update-All Alias",
+      "file_type": "concept",
+      "source_file": "CLAUDE.md",
+      "source_location": "Other notable bits",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "claude_ghu_alias",
+      "community": 6,
+      "norm_label": "ghu update-all alias"
+    },
+    {
+      "label": "ai Alias (ultracode launch)",
+      "file_type": "concept",
+      "source_file": "CLAUDE.md",
+      "source_location": "Other notable bits",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "claude_ai_alias",
+      "community": 12,
+      "norm_label": "ai alias (ultracode launch)"
+    },
+    {
+      "label": "ultracode Activation Rationale",
+      "file_type": "rationale",
+      "source_file": "CLAUDE.md",
+      "source_location": "Other notable bits",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "claude_ultracode_activation",
+      "community": 12,
+      "norm_label": "ultracode activation rationale"
+    },
+    {
+      "label": "AeroSpace Personal Fork Dependency",
+      "file_type": "rationale",
+      "source_file": "CLAUDE.md",
+      "source_location": "Other notable bits",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "claude_aerospace_fork",
+      "community": 4,
+      "norm_label": "aerospace personal fork dependency"
+    },
+    {
+      "label": "graphify Knowledge-graph Workflow",
+      "file_type": "concept",
+      "source_file": "CLAUDE.md",
+      "source_location": "graphify",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "id": "claude_graphify_workflow",
+      "community": 4,
+      "norm_label": "graphify knowledge-graph workflow"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "linearmouse/linearmouse.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "linearmouse_linearmouse",
+      "target": "linearmouse_linearmouse_schema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "linearmouse/linearmouse.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "linearmouse_linearmouse",
+      "target": "linearmouse_linearmouse_schemes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "setup.sh",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "setup",
+      "target": "setup_ensure_clt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup",
+      "target": "setup_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "setup.sh",
+      "source_location": "L43",
+      "weight": 1.0,
+      "context": "call",
+      "source": "setup_sh__entry",
+      "target": "setup_ensure_clt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/.setup.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_setup",
+      "target": "setup_setup_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/.setup.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_setup",
+      "target": "setup_brew_setup_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/aerospace-adrianlsy.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_aerospace_adrianlsy",
+      "target": "setup_brew_aerospace_adrianlsy_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/aldente.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_aldente",
+      "target": "setup_brew_aldente_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/appcleaner.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_appcleaner",
+      "target": "setup_brew_appcleaner_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/awscli.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_awscli",
+      "target": "setup_brew_awscli_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/bambu-studio.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_bambu_studio",
+      "target": "setup_brew_bambu_studio_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/betterdisplay.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_betterdisplay",
+      "target": "setup_brew_betterdisplay_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/bruno.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_bruno",
+      "target": "setup_brew_bruno_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/bun.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_bun",
+      "target": "setup_brew_bun_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/claude-code.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_claude_code",
+      "target": "setup_brew_claude_code_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/claude.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_claude",
+      "target": "setup_brew_claude_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/cloudflared.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_cloudflared",
+      "target": "setup_brew_cloudflared_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/cryptomator.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_cryptomator",
+      "target": "setup_brew_cryptomator_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/direnv.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_direnv",
+      "target": "setup_brew_direnv_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/docker-desktop.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_docker_desktop",
+      "target": "setup_brew_docker_desktop_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/docker.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_docker",
+      "target": "setup_brew_docker_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/dropbox.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_dropbox",
+      "target": "setup_brew_dropbox_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/duti.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_duti",
+      "target": "setup_brew_duti_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/esptool.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_esptool",
+      "target": "setup_brew_esptool_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/ghostty.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_ghostty",
+      "target": "setup_brew_ghostty_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/github.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_github",
+      "target": "setup_brew_github_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".pre-commit-config.yaml",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "pre_commit_config_gitleaks_hook",
+      "target": "setup_brew_gitleaks"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "readme_bootstrap",
+      "target": "setup_brew_gitleaks"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "readme_secrets_defense",
+      "target": "setup_brew_gitleaks"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/gitleaks.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_gitleaks",
+      "target": "setup_brew_gitleaks_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/go.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_go",
+      "target": "setup_brew_go_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/iina.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_iina",
+      "target": "setup_brew_iina_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/keepassxc.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_keepassxc",
+      "target": "setup_brew_keepassxc_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/libpq.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_libpq",
+      "target": "setup_brew_libpq_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/linearmouse.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_linearmouse",
+      "target": "setup_brew_linearmouse_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/localsend.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_localsend",
+      "target": "setup_brew_localsend_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/logitech-g-hub.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_logitech_g_hub",
+      "target": "setup_brew_logitech_g_hub_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/micro.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_micro",
+      "target": "setup_brew_micro_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/mole.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_mole",
+      "target": "setup_brew_mole_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/obsidian.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_obsidian",
+      "target": "setup_brew_obsidian_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/openjdk.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_openjdk",
+      "target": "setup_brew_openjdk_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/openspec.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_openspec",
+      "target": "setup_brew_openspec_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "readme_secrets_defense",
+      "target": "setup_brew_pre_commit"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/pre-commit.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_pre_commit",
+      "target": "setup_brew_pre_commit_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/pulumi.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_pulumi",
+      "target": "setup_brew_pulumi_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/python.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_python",
+      "target": "setup_brew_python_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/raycast.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_raycast",
+      "target": "setup_brew_raycast_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/ruby.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_ruby",
+      "target": "setup_brew_ruby_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/rust.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_rust",
+      "target": "setup_brew_rust_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/spotify.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_spotify",
+      "target": "setup_brew_spotify_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/sshpass.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_sshpass",
+      "target": "setup_brew_sshpass_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/starship.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_starship",
+      "target": "setup_brew_starship_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/stats.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_stats",
+      "target": "setup_brew_stats_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/steam.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_steam",
+      "target": "setup_brew_steam_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/tailscale.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_tailscale",
+      "target": "setup_brew_tailscale_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/thunderbird.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_thunderbird",
+      "target": "setup_brew_thunderbird_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/tiger-cli.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_tiger_cli",
+      "target": "setup_brew_tiger_cli_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/topnotch.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_topnotch",
+      "target": "setup_brew_topnotch_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/transmission.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_transmission",
+      "target": "setup_brew_transmission_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/ultimaker-cura.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_ultimaker_cura",
+      "target": "setup_brew_ultimaker_cura_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/uv.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_uv",
+      "target": "setup_brew_uv_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/vivaldi.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_vivaldi",
+      "target": "setup_brew_vivaldi_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/brew/zed.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_brew_zed",
+      "target": "setup_brew_zed_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/tweak/.setup.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_tweak_setup",
+      "target": "setup_tweak_setup_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/tweak/betterdisplay-rgb.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_tweak_betterdisplay_rgb",
+      "target": "setup_tweak_betterdisplay_rgb_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/tweak/dock.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_tweak_dock",
+      "target": "setup_tweak_dock_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/tweak/duti.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_tweak_duti",
+      "target": "setup_tweak_duti_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/tweak/finder.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_tweak_finder",
+      "target": "setup_tweak_finder_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/tweak/ghostty.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_tweak_ghostty",
+      "target": "setup_tweak_ghostty_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/tweak/graphify.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_tweak_graphify",
+      "target": "setup_tweak_graphify_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".pre-commit-config.yaml",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "pre_commit_config_gitleaks_hook",
+      "target": "setup_tweak_pre_commit"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "readme_secrets_defense",
+      "target": "setup_tweak_pre_commit"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/tweak/pre-commit.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_tweak_pre_commit",
+      "target": "setup_tweak_pre_commit_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/tweak/screenshot-shortcuts.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_tweak_screenshot_shortcuts",
+      "target": "setup_tweak_screenshot_shortcuts_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/tweak/ssh-keypick.sh",
+      "source_location": "L48",
+      "weight": 1.0,
+      "source": "setup_tweak_ssh_keypick",
+      "target": "setup_tweak_ssh_keypick_has_private_keys",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/tweak/ssh-keypick.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_tweak_ssh_keypick",
+      "target": "setup_tweak_ssh_keypick_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/tweak/ssh-keypick.sh",
+      "source_location": "L58",
+      "weight": 1.0,
+      "context": "call",
+      "source": "setup_tweak_ssh_keypick_sh__entry",
+      "target": "setup_tweak_ssh_keypick_has_private_keys",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/tweak/update-schedule.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_tweak_update_schedule",
+      "target": "setup_tweak_update_schedule_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "setup/tweak/zsh.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "setup_tweak_zsh",
+      "target": "setup_tweak_zsh_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "zed/themes/One Dark Max.json",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "zed_themes_one_dark_max",
+      "target": "zed_themes_one_dark_max_author",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "zed/themes/One Dark Max.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "zed_themes_one_dark_max",
+      "target": "zed_themes_one_dark_max_name",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "zed/themes/One Dark Max.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "zed_themes_one_dark_max",
+      "target": "zed_themes_one_dark_max_schema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "zed/themes/One Dark Max.json",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "zed_themes_one_dark_max",
+      "target": "zed_themes_one_dark_max_themes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "AMBIGUOUS",
+      "confidence_score": 0.2,
+      "source_file": ".claude/CLAUDE.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "claude_claude_claude_graphify_trigger",
+      "target": "_claude_commands_opsx_explore_explore_mode"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/commands/opsx/apply.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_commands_opsx_apply_apply_change",
+      "target": "_claude_commands_opsx_apply_apply_instructions"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/commands/opsx/apply.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_commands_opsx_apply_apply_change",
+      "target": "_claude_commands_opsx_apply_status_json"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/commands/opsx/apply.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_commands_opsx_apply_apply_change",
+      "target": "_claude_commands_opsx_archive_archive_change"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": ".claude/commands/opsx/apply.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_commands_opsx_apply_apply_change",
+      "target": "_claude_commands_opsx_propose_tasks_md"
+    },
+    {
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": ".claude/commands/opsx/apply.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_commands_opsx_apply_apply_change",
+      "target": "_claude_skills_openspec_apply_change_skill_apply_skill"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/commands/opsx/apply.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_commands_opsx_apply_workspace_guard",
+      "target": "_claude_commands_opsx_apply_apply_change"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/commands/opsx/propose.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_commands_opsx_propose_propose_change",
+      "target": "_claude_commands_opsx_apply_apply_change"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": ".claude/commands/opsx/apply.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_commands_opsx_apply_apply_instructions",
+      "target": "_claude_skills_openspec_apply_change_skill_openspec_cli"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": ".claude/commands/opsx/apply.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_commands_opsx_apply_status_json",
+      "target": "_claude_skills_openspec_apply_change_skill_openspec_cli"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/commands/opsx/archive.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_commands_opsx_archive_archive_change",
+      "target": "_claude_commands_opsx_archive_delta_spec_sync"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/commands/opsx/archive.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_commands_opsx_archive_archive_change",
+      "target": "_claude_commands_opsx_propose_tasks_md"
+    },
+    {
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": ".claude/commands/opsx/archive.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_commands_opsx_archive_archive_change",
+      "target": "_claude_skills_openspec_archive_change_skill_archive_skill"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/commands/opsx/archive.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_commands_opsx_archive_delta_spec_sync",
+      "target": "_claude_skills_openspec_archive_change_openspec_sync_specs"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/commands/opsx/explore.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_commands_opsx_explore_thinking_not_implementing",
+      "target": "_claude_commands_opsx_explore_explore_mode"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/commands/opsx/explore.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_commands_opsx_explore_explore_mode",
+      "target": "_claude_commands_opsx_propose_propose_change"
+    },
+    {
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": ".claude/commands/opsx/explore.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_commands_opsx_explore_explore_mode",
+      "target": "_claude_skills_openspec_explore_skill_explore_skill"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/commands/opsx/propose.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_commands_opsx_propose_propose_change",
+      "target": "_claude_commands_opsx_propose_artifacts"
+    },
+    {
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": ".claude/commands/opsx/propose.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_commands_opsx_propose_propose_change",
+      "target": "_claude_skills_openspec_propose_skill_propose_skill"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/commands/opsx/propose.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_commands_opsx_propose_artifacts",
+      "target": "_claude_commands_opsx_propose_design_md"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/commands/opsx/propose.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_commands_opsx_propose_artifacts",
+      "target": "_claude_commands_opsx_propose_proposal_md"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/commands/opsx/propose.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_commands_opsx_propose_artifacts",
+      "target": "_claude_commands_opsx_propose_tasks_md"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_skill_graphify_pipeline",
+      "target": "_claude_skills_graphify_skill_detect_files"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_skill_graphify_pipeline",
+      "target": "_claude_skills_graphify_skill_fast_path"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_skill_graphify_pipeline",
+      "target": "_claude_skills_graphify_skill_interpreter_detection"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_skill_fast_path",
+      "target": "_claude_skills_graphify_references_query_query_flow"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_skill_detect_files",
+      "target": "_claude_skills_graphify_skill_corpus_size_gate"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_skill_detect_files",
+      "target": "_claude_skills_graphify_skill_extract_step"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_skill_extract_step",
+      "target": "_claude_skills_graphify_skill_ast_extraction"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_skill_extract_step",
+      "target": "_claude_skills_graphify_skill_deep_mode"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_skill_extract_step",
+      "target": "_claude_skills_graphify_skill_merge_ast_semantic"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_skill_extract_step",
+      "target": "_claude_skills_graphify_skill_no_api_key"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_skill_extract_step",
+      "target": "_claude_skills_graphify_skill_semantic_extraction"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/references/add-watch.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_add_watch_watch",
+      "target": "_claude_skills_graphify_skill_ast_extraction"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": ".claude/skills/graphify/references/extraction-spec.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_extraction_spec_node_id_format",
+      "target": "_claude_skills_graphify_skill_ast_extraction"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/references/hooks.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_hooks_commit_hook",
+      "target": "_claude_skills_graphify_skill_ast_extraction"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_skill_merge_ast_semantic",
+      "target": "_claude_skills_graphify_skill_ast_extraction"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/references/transcribe.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_transcribe_transcribe",
+      "target": "_claude_skills_graphify_skill_semantic_extraction"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_skill_merge_ast_semantic",
+      "target": "_claude_skills_graphify_skill_semantic_extraction"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_skill_semantic_extraction",
+      "target": "_claude_skills_graphify_references_extraction_spec_subagent_prompt"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_skill_semantic_extraction",
+      "target": "_claude_skills_graphify_skill_extraction_cache"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_skill_semantic_extraction",
+      "target": "_claude_skills_graphify_skill_parallel_subagents"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_skill_merge_ast_semantic",
+      "target": "_claude_skills_graphify_skill_build_cluster"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/references/update.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_update_incremental_update",
+      "target": "_claude_skills_graphify_skill_build_cluster"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_skill_build_cluster",
+      "target": "_claude_skills_graphify_skill_community_detection"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_skill_build_cluster",
+      "target": "_claude_skills_graphify_skill_directed_mode"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_skill_build_cluster",
+      "target": "_claude_skills_graphify_skill_empty_graph_guard"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_skill_build_cluster",
+      "target": "_claude_skills_graphify_skill_god_nodes"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_skill_build_cluster",
+      "target": "_claude_skills_graphify_skill_health_check"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_skill_build_cluster",
+      "target": "_claude_skills_graphify_skill_shrink_guard"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_skill_health_check",
+      "target": "_claude_skills_graphify_skill_label_communities"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/references/exports.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_exports_wiki",
+      "target": "_claude_skills_graphify_skill_label_communities"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_skill_label_communities",
+      "target": "_claude_skills_graphify_skill_community_detection"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_skill_label_communities",
+      "target": "_claude_skills_graphify_skill_obsidian_html"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_skill_obsidian_html",
+      "target": "_claude_skills_graphify_skill_manifest_cleanup"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_skill_manifest_cleanup",
+      "target": "_claude_skills_graphify_references_update_incremental_update"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_skill_confidence_taxonomy",
+      "target": "_claude_skills_graphify_skill_honesty_rules"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": ".claude/skills/graphify/references/extraction-spec.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_extraction_spec_confidence_rubric",
+      "target": "_claude_skills_graphify_skill_confidence_taxonomy"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/references/update.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_update_cluster_only",
+      "target": "_claude_skills_graphify_skill_community_detection"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/references/transcribe.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_transcribe_whisper_prompt",
+      "target": "_claude_skills_graphify_skill_god_nodes"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": ".claude/skills/graphify/references/extraction-spec.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_extraction_spec_source_file_rule",
+      "target": "_claude_skills_graphify_skill_root_relativization"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": ".claude/skills/graphify/SKILL.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_skill_root_relativization",
+      "target": "_claude_skills_graphify_references_update_build_merge"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/references/add-watch.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_add_watch_add_url",
+      "target": "_claude_skills_graphify_references_add_watch_ingest"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/references/add-watch.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_add_watch_add_url",
+      "target": "_claude_skills_graphify_references_update_incremental_update"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": ".claude/skills/graphify/references/add-watch.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_add_watch_ingest",
+      "target": "_claude_skills_graphify_references_transcribe_transcribe"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/references/add-watch.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_add_watch_watch",
+      "target": "_claude_skills_graphify_references_add_watch_debounce"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": ".claude/skills/graphify/references/hooks.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_hooks_commit_hook",
+      "target": "_claude_skills_graphify_references_add_watch_watch"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": ".claude/skills/graphify/references/exports.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_exports_neo4j",
+      "target": "_claude_skills_graphify_references_exports_falkordb"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": ".claude/skills/graphify/references/exports.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_exports_mcp_server",
+      "target": "_claude_skills_graphify_references_query_query_flow"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/references/extraction-spec.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_extraction_spec_subagent_prompt",
+      "target": "_claude_skills_graphify_references_extraction_spec_call_direction"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/references/extraction-spec.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_extraction_spec_subagent_prompt",
+      "target": "_claude_skills_graphify_references_extraction_spec_confidence_rubric"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/references/extraction-spec.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_extraction_spec_subagent_prompt",
+      "target": "_claude_skills_graphify_references_extraction_spec_hyperedge_rule"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/references/extraction-spec.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_extraction_spec_subagent_prompt",
+      "target": "_claude_skills_graphify_references_extraction_spec_node_id_format"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/references/extraction-spec.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_extraction_spec_subagent_prompt",
+      "target": "_claude_skills_graphify_references_extraction_spec_semantic_similarity"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/references/extraction-spec.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_extraction_spec_subagent_prompt",
+      "target": "_claude_skills_graphify_references_extraction_spec_source_file_rule"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/references/github-and-merge.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_github_and_merge_clone",
+      "target": "_claude_skills_graphify_references_github_and_merge_merge_graphs"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/references/github-and-merge.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_github_and_merge_merge_graphs",
+      "target": "_claude_skills_graphify_references_query_query_flow"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/references/github-and-merge.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_github_and_merge_monorepo",
+      "target": "_claude_skills_graphify_references_github_and_merge_merge_graphs"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/references/hooks.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_hooks_commit_hook",
+      "target": "_claude_skills_graphify_references_query_reflect_lessons"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/references/query.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_query_query_flow",
+      "target": "_claude_skills_graphify_references_query_bfs_dfs"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/references/query.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_query_query_flow",
+      "target": "_claude_skills_graphify_references_query_networkx_fallback"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/references/query.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_query_query_flow",
+      "target": "_claude_skills_graphify_references_query_query_expansion"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/references/query.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_query_query_flow",
+      "target": "_claude_skills_graphify_references_query_save_result"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/references/query.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_query_explain",
+      "target": "_claude_skills_graphify_references_query_networkx_fallback"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/references/query.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_query_path",
+      "target": "_claude_skills_graphify_references_query_networkx_fallback"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/references/query.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_query_save_result",
+      "target": "_claude_skills_graphify_references_query_work_memory"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/references/query.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_query_save_result",
+      "target": "_claude_skills_graphify_references_update_incremental_update"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/references/query.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_query_work_memory",
+      "target": "_claude_skills_graphify_references_query_reflect_lessons"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/references/transcribe.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_transcribe_transcribe",
+      "target": "_claude_skills_graphify_references_transcribe_whisper_prompt"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/references/update.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_update_code_only_skip",
+      "target": "_claude_skills_graphify_references_transcribe_transcribe"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/references/update.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_update_incremental_update",
+      "target": "_claude_skills_graphify_references_update_build_merge"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/references/update.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_update_incremental_update",
+      "target": "_claude_skills_graphify_references_update_code_only_skip"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/references/update.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_update_incremental_update",
+      "target": "_claude_skills_graphify_references_update_graph_diff"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/references/update.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_update_incremental_update",
+      "target": "_claude_skills_graphify_references_update_prune_sources"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/references/update.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_graphify_references_update_build_merge",
+      "target": "_claude_skills_graphify_references_update_prune_sources"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/openspec-apply-change/SKILL.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_openspec_apply_change_skill_apply_skill",
+      "target": "_claude_skills_openspec_apply_change_skill_openspec_cli"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/openspec-propose/SKILL.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_openspec_propose_skill_propose_skill",
+      "target": "_claude_skills_openspec_apply_change_skill_apply_skill"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/openspec-archive-change/SKILL.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_openspec_archive_change_skill_archive_skill",
+      "target": "_claude_skills_openspec_archive_change_openspec_sync_specs"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.65,
+      "source_file": ".claude/skills/openspec-explore/SKILL.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "_claude_skills_openspec_explore_skill_explore_skill",
+      "target": "_claude_skills_openspec_propose_skill_propose_skill"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".pre-commit-config.yaml",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "pre_commit_config_gitleaks_hook",
+      "target": "claude_secure_config_and_merge"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".pre-commit-config.yaml",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "pre_commit_config_gitleaks_hook",
+      "target": "readme_allowlist_gitignore"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "readme_secrets_defense",
+      "target": "pre_commit_config_gitleaks_hook"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "readme_secrets_defense",
+      "target": "readme_allowlist_gitignore"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": null,
+      "weight": 1.0,
+      "source": "readme_bootstrap",
+      "target": "readme_copy_install_model"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "What this repo is",
+      "weight": 1.0,
+      "source": "claude_config_dotfiles_repo",
+      "target": "claude_app_config_dirs"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "What this repo is",
+      "weight": 1.0,
+      "source": "claude_config_dotfiles_repo",
+      "target": "claude_bootstrap_flow"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "Branches",
+      "weight": 1.0,
+      "source": "claude_config_dotfiles_repo",
+      "target": "claude_branch_model"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "graphify",
+      "weight": 1.0,
+      "source": "claude_graphify_workflow",
+      "target": "claude_config_dotfiles_repo"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "Other notable bits",
+      "weight": 1.0,
+      "source": "claude_aerospace_fork",
+      "target": "claude_app_config_dirs"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "Adding things",
+      "weight": 1.0,
+      "source": "claude_gitignore_allowlist",
+      "target": "claude_app_config_dirs"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "Bootstrap flow step 1",
+      "weight": 1.0,
+      "source": "claude_bootstrap_flow",
+      "target": "claude_top_level_setup_sh"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "Bootstrap flow step 1",
+      "weight": 1.0,
+      "source": "claude_top_level_setup_sh",
+      "target": "claude_setup_dot_setup_sh"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "Bootstrap flow step 2",
+      "weight": 1.0,
+      "source": "claude_setup_dot_setup_sh",
+      "target": "claude_brew_setup_sh"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "Bootstrap flow step 2",
+      "weight": 1.0,
+      "source": "claude_setup_dot_setup_sh",
+      "target": "claude_order_array"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "Bootstrap flow step 2",
+      "weight": 1.0,
+      "source": "claude_setup_dot_setup_sh",
+      "target": "claude_tweak_setup_sh"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "Bootstrap flow step 2",
+      "weight": 1.0,
+      "source": "claude_order_array",
+      "target": "claude_brew_setup_sh"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "Bootstrap flow step 2",
+      "weight": 1.0,
+      "source": "claude_order_array",
+      "target": "claude_tweak_setup_sh"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "Bootstrap flow step 3",
+      "weight": 1.0,
+      "source": "claude_brew_skip_check",
+      "target": "claude_brew_setup_sh"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "Bootstrap flow",
+      "weight": 1.0,
+      "source": "claude_runner_logging_pattern",
+      "target": "claude_brew_setup_sh"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "CLAUDE.md",
+      "source_location": "Bootstrap flow",
+      "weight": 1.0,
+      "source": "claude_runner_logging_pattern",
+      "target": "claude_tweak_setup_sh"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "Bootstrap flow step 4",
+      "weight": 1.0,
+      "source": "claude_tweak_idempotency",
+      "target": "claude_tweak_setup_sh"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "CLAUDE.md",
+      "source_location": "zsh layout",
+      "weight": 1.0,
+      "source": "claude_tweak_zsh_sh",
+      "target": "claude_tweak_setup_sh"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "zsh layout",
+      "weight": 1.0,
+      "source": "claude_tweak_zsh_sh",
+      "target": "claude_zsh_layout"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "zsh layout",
+      "weight": 1.0,
+      "source": "claude_zsh_layout",
+      "target": "claude_zshrc_loader"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "zsh layout",
+      "weight": 1.0,
+      "source": "claude_zshrc_loader",
+      "target": "claude_rc_d_functions"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "CLAUDE.md",
+      "source_location": "Other notable bits",
+      "weight": 1.0,
+      "source": "claude_ghp_alias",
+      "target": "claude_rc_d_functions"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "CLAUDE.md",
+      "source_location": "Other notable bits",
+      "weight": 1.0,
+      "source": "claude_ghu_alias",
+      "target": "claude_rc_d_functions"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "CLAUDE.md",
+      "source_location": "Multi-account git",
+      "weight": 1.0,
+      "source": "claude_git_multi_account",
+      "target": "claude_rc_d_functions"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "Multi-account git",
+      "weight": 1.0,
+      "source": "claude_command_git_recursion_guard",
+      "target": "claude_git_multi_account"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "Multi-account git",
+      "weight": 1.0,
+      "source": "claude_ghs_alias",
+      "target": "claude_git_multi_account"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "Multi-account git",
+      "weight": 1.0,
+      "source": "claude_git_account_resolution",
+      "target": "claude_git_multi_account"
+    },
+    {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.7,
+      "source_file": "CLAUDE.md",
+      "source_location": "Other notable bits",
+      "weight": 1.0,
+      "source": "claude_ghp_alias",
+      "target": "claude_ghu_alias"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "Other notable bits",
+      "weight": 1.0,
+      "source": "claude_ultracode_activation",
+      "target": "claude_ai_alias"
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "opsx_change_lifecycle",
+      "label": "OpenSpec Change Lifecycle (explore, propose, apply, archive)",
+      "nodes": [
+        "_claude_commands_opsx_explore_explore_mode",
+        "_claude_commands_opsx_propose_propose_change",
+        "_claude_commands_opsx_apply_apply_change",
+        "_claude_commands_opsx_archive_archive_change"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": ".claude/commands/opsx/apply.md"
+    },
+    {
+      "id": "graphify_full_pipeline_flow",
+      "label": "graphify Full Build Pipeline",
+      "nodes": [
+        "_claude_skills_graphify_skill_detect_files",
+        "_claude_skills_graphify_skill_extract_step",
+        "_claude_skills_graphify_skill_merge_ast_semantic",
+        "_claude_skills_graphify_skill_build_cluster",
+        "_claude_skills_graphify_skill_label_communities",
+        "_claude_skills_graphify_skill_obsidian_html",
+        "_claude_skills_graphify_skill_manifest_cleanup"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/SKILL.md"
+    },
+    {
+      "id": "graphify_export_backends",
+      "label": "Graph Export Backends",
+      "nodes": [
+        "_claude_skills_graphify_references_exports_neo4j",
+        "_claude_skills_graphify_references_exports_falkordb",
+        "_claude_skills_graphify_references_exports_svg",
+        "_claude_skills_graphify_references_exports_graphml",
+        "_claude_skills_graphify_references_exports_wiki",
+        "_claude_skills_graphify_references_exports_mcp_server"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/references/exports.md"
+    },
+    {
+      "id": "graphify_query_interaction_flow",
+      "label": "Query / Path / Explain Interaction Flow",
+      "nodes": [
+        "_claude_skills_graphify_references_query_query_flow",
+        "_claude_skills_graphify_references_query_query_expansion",
+        "_claude_skills_graphify_references_query_bfs_dfs",
+        "_claude_skills_graphify_references_query_path",
+        "_claude_skills_graphify_references_query_explain",
+        "_claude_skills_graphify_references_query_save_result"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".claude/skills/graphify/references/query.md"
+    },
+    {
+      "id": "secrets_defense_pipeline",
+      "label": "Two-Layer Secrets Defense Pipeline",
+      "nodes": [
+        "readme_allowlist_gitignore",
+        "pre_commit_config_gitleaks_hook",
+        "setup_brew_gitleaks",
+        "setup_tweak_pre_commit"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md"
+    },
+    {
+      "id": "claude_bootstrap_cascade",
+      "label": "Bootstrap Cascade (setup.sh -> module runner -> package/tweak runners)",
+      "nodes": [
+        "claude_top_level_setup_sh",
+        "claude_setup_dot_setup_sh",
+        "claude_brew_setup_sh",
+        "claude_tweak_setup_sh"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md"
+    },
+    {
+      "id": "claude_zsh_config_chain",
+      "label": "zsh Config Chain (zsh.sh sets ZDOTDIR, .zshrc loads rc.d functions)",
+      "nodes": [
+        "claude_tweak_zsh_sh",
+        "claude_zshrc_loader",
+        "claude_rc_d_functions"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.85,
+      "source_file": "CLAUDE.md"
+    }
+  ],
+  "built_at_commit": "fc78912619df9cb0adfeaea821c88ece97f20a0b"
+}

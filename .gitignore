@@ -5,6 +5,7 @@
 !README.md
 !CLAUDE.md
 !.gitignore
+!.gitattributes
 !starship.toml
 !.pre-commit-config.yaml
 
@@ -29,9 +30,17 @@
 !aerospace/**
 !linearmouse/
 !linearmouse/**
+!graphify-out/
+# Track only the queryable graph (union-merged via .gitattributes). The rest of
+# graphify-out/ is machine-specific (.graphify_python/.graphify_root hold
+# absolute paths) or regenerable locally by the git hook (graph.html,
+# GRAPH_REPORT.md), so it stays ignored.
+!graphify-out/graph.json
+
 # Ignore these specific directories
 .DS_Store
 **/.DS_Store
+.claude/scheduled_tasks.lock
 zed/prompts/
 zsh/.zshrc.zwc
 zsh/.zcompdump

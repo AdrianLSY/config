@@ -1,0 +1,5 @@
+# Union-merge the knowledge graph instead of producing conflicts. The `graphify`
+# merge driver composes both sides' nodes/edges. The driver itself is registered
+# per machine in setup/tweak/graphify.sh (git config merge.graphify.*), since
+# .git/config is not version-controlled.
+graphify-out/graph.json merge=graphify
