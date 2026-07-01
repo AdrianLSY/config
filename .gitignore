@@ -1,54 +1,49 @@
-# Track these files
-*
-.DS_Store
-!setup.sh
-!README.md
-!CLAUDE.md
-!.gitignore
-!.gitattributes
-!starship.toml
-!.pre-commit-config.yaml
+# Conventional deny-list. The repo now lives at ~/.dotfiles (external) and holds
+# only what we put here: the macos/ and linux/ tiers, shared lib/, setup.sh, and
+# repo meta. No unmanaged ~/.config junk shares this root anymore, so the old
+# allowlist gymnastics (ignore *, then ! every managed dir) are gone — everything
+# is tracked by default and we deny-list only cruft, logs, and runtime state.
 
-# Track everything in these directories
-!bin/
-!bin/**
-!zed/
-!zed/**
-!zsh/
-!zsh/**
-!micro/
-!micro/**
-!setup/
-!setup/**
-!ghostty/
-!ghostty/**
-!.claude/
-!.claude/**
-!vivaldi/
-!vivaldi/**
-!aerospace/
-!aerospace/**
-!linearmouse/
-!linearmouse/**
-!graphify-out/
-# Track only the queryable graph (union-merged via .gitattributes). The rest of
-# graphify-out/ is machine-specific (.graphify_python/.graphify_root hold
-# absolute paths) or regenerable locally by the git hook (graph.html,
-# GRAPH_REPORT.md), so it stays ignored.
-!graphify-out/graph.json
-
-# Ignore these specific directories
+# ── OS / editor cruft ────────────────────────────────────────────────────────
 .DS_Store
 **/.DS_Store
-.claude/scheduled_tasks.lock
-zed/prompts/
-zsh/.zshrc.zwc
-zsh/.zcompdump
-zsh/.zsh_history
-zsh/.zsh_sessions/
-micro/backups/
-micro/buffers/
+*.swp
+*~
 
-# Machine-local / secret-bearing — must never be tracked (re-ignored despite !.claude/**)
+# ── Bootstrap runner logs ────────────────────────────────────────────────────
+# Runners tee each unit to <script>.log and delete it on success; a retained log
+# means that unit failed. Transient either way — never tracked.
+**/.setup.sh.log
+**/*.sh.log
+
+# ── Runtime / generated state routed into the repo via whole-dir symlinks ─────
+# Because ~/.config/<app> is a symlink into a tier dir, anything an app WRITES
+# into its config dir lands in this working tree. Keep per-machine state out of
+# git (or fold it per-file to ~/.local/state — see design.md). Globbed with **/
+# so the rules match under both macos/ and linux/.
+**/zsh/.zshrc.zwc
+**/zsh/*.zwc
+**/zsh/.zcompdump*
+**/zsh/.zsh_history
+**/zsh/.zsh_sessions/
+**/fish/fish_variables
+**/micro/backups/
+**/micro/buffers/
+**/micro/log.txt
+**/zed/prompts/
+
+# ── Machine-local / secret-bearing ───────────────────────────────────────────
 .claude/settings.local.json
-fish/fish_variables
+.claude/scheduled_tasks.lock
+
+# ── Caches ───────────────────────────────────────────────────────────────────
+**/__pycache__/
+*.pyc
+
+# ── graphify-out: track only the queryable graph (union-merged via
+# .gitattributes). The rest is machine-specific (.graphify_python/.graphify_root
+# hold absolute paths) or regenerable locally by the git hook (graph.html,
+# GRAPH_REPORT.md), so it stays ignored. NOTE: after this restructure the tracked
+# graph.json paths are stale — re-run `graphify update .` post-migration.
+graphify-out/*
+!graphify-out/graph.json
