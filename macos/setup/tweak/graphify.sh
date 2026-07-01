@@ -3,9 +3,13 @@ set -e
 
 uv tool install graphifyy
 
-# graphify hook install / git config both act on the current repo, so cd in.
+# graphify hook install / git config both act on the current repo. The repo now
+# lives externally (e.g. ~/.dotfiles) and deploys into ~/.config by symlink, so
+# cd to THIS repo's root — derived from the script's own location (three levels
+# up from macos/setup/tweak/), not the old hardcoded ~/.config.
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
+cd "$REPO_ROOT"
 # Resolve the launcher explicitly since ~/.local/bin may not be on PATH yet.
-cd "$HOME/.config"
 graphify_bin="$(command -v graphify || echo "$HOME/.local/bin/graphify")"
 
 # Auto-rebuild the knowledge graph after every commit and branch switch
