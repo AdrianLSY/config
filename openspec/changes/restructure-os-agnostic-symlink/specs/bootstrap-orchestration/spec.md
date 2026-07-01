@@ -1,7 +1,7 @@
 ## MODIFIED Requirements
 
 ### Requirement: Cascading module-runner structure
-`setup.sh` MUST first detect the operating system via `uname -s` and select the corresponding OS tier (`macos` or `linux`), then delegate to that tier's `setup/.setup.sh`, which runs bootstrap sub-modules in the order declared by its own `ORDER` array (macOS: `brew` then `tweak`; Linux: `yay` then `tweak`). Each sub-module is a directory containing its own `.setup.sh` runner that iterates its sibling `*.sh` scripts. Adding a unit of work MUST be possible by dropping a single `*.sh` file into the relevant module directory within a tier without editing the runners.
+`setup.sh` MUST first detect the operating system via `uname -s` and select the corresponding OS tier (`macos` or `linux`), then delegate to that tier's `setup/.setup.sh`, which runs bootstrap sub-modules in the order declared by its own `ORDER` array (macOS: `brew` then `tweak`; Linux: `pacman`, `yay`, `flatpak`, `app`, `asdf`, then `tweak`). Each sub-module is a directory containing its own `.setup.sh` runner that iterates its sibling `*.sh` scripts. Adding a unit of work MUST be possible by dropping a single `*.sh` file into the relevant module directory within a tier without editing the runners.
 
 #### Scenario: OS dispatch selects the tier
 - **WHEN** `setup.sh` runs on a machine where `uname -s` reports Darwin

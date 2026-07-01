@@ -14,7 +14,7 @@ This change restructures to an **external, tiered, symlink-deployed** repo. The 
 - Deploy by backup-then-link: never overwrite a real `~/.config` entry without a timestamped backup; relinking a correct symlink is a no-op; unmanaged `~/.config` dirs are untouched.
 - Eliminate the allowlist `.gitignore` in favor of a conventional deny-list over tier-plus-`lib` content.
 - Keep edit-live == edit-repo (symlinks preserve this; a copy/template tool would not).
-- Add Linux provisioning (`yay`) mirroring the brew model.
+- Adopt Linux provisioning wholesale from `cachyos-home`'s existing multi-module cascade (`pacman`/`yay`/`flatpak`/`app`/`asdf`/`tweak`), mirroring the brew model.
 - Keep the runtime/generated-state-out-of-git guarantee under the new symlink hazard.
 
 **Non-Goals:**
@@ -40,7 +40,7 @@ Repo has exactly two top-level tier dirs: `macos/` and `linux/`. Each holds its 
 - **Alternatives considered:** *A `common/`/`shared/` config tier* — rejected as not worth the indirection given tiny overlap. *chezmoi's single templated tier* — rejected (see Decision 5).
 
 ### Decision 3 — Option A tier layout: each OS owns its own `setup/`
-Within a tier, everything for that OS lives together: app configs **and** that OS's bootstrap tooling under `<tier>/setup/`. macOS: `macos/setup/{brew,tweak}`. Linux: `linux/setup/{yay,tweak}`.
+Within a tier, everything for that OS lives together: app configs **and** that OS's bootstrap tooling under `<tier>/setup/`. macOS: `macos/setup/{brew,tweak}`. Linux: `linux/setup/{pacman,yay,flatpak,app,asdf,tweak}` (adopted wholesale from `cachyos-home`).
 - **Rationale:** keeps one OS's full surface cohesive under one dir; tier selection picks up both configs and installers in one move.
 - **Reserved-name rule:** within a tier, `setup/` is bootstrap tooling and is **never** symlinked into `~/.config`. Only app config dirs are deployed.
 - **Alternatives considered (Option B):** a separated top-level `setup/<os>/` layout parallel to the config tiers — rejected; splits an OS's surface across two trees.
@@ -88,7 +88,7 @@ The change collapses `main` (macOS) and `cachyos-home` (Linux) onto one branch b
 
 **Fresh machine (happy path):**
 1. `git clone <remote> ~/.dotfiles`
-2. `~/.dotfiles/setup.sh` — detects OS via `uname -s`, selects the tier, symlinks each tier app dir into `~/.config` (backup-then-link handles any pre-existing entry), then runs `<tier>/setup/.setup.sh` (macOS: brew → tweak; Linux: yay → tweak).
+2. `~/.dotfiles/setup.sh` — detects OS via `uname -s`, selects the tier, symlinks each tier app dir into `~/.config` (backup-then-link handles any pre-existing entry), then runs `<tier>/setup/.setup.sh` (macOS: brew → tweak; Linux: pacman → yay → flatpak → app → asdf → tweak).
 3. Unmanaged `~/.config` dirs (`gh`, `uv`, `raycast`, …) are never touched.
 
 **Existing mac (repo currently IS `~/.config` on `main`) — ordered for data safety:**

@@ -1,0 +1,152 @@
+{
+  "cli_default_open_behavior": "new_window",
+  "project_panel": {
+    "dock": "left"
+  },
+  "git_panel": {
+    "dock": "left"
+  },
+  "terminal": {
+    "dock": "right",
+  },
+  "language_models": {
+    "openai_compatible": {
+      "Qwen Model": {
+        "api_url": "https://dashscope-intl.aliyuncs.com/compatible-mode/v1",
+        "available_models": [
+          {
+            "name": "qwen-plus",
+            "max_tokens": 1000000,
+            "max_output_tokens": 32768,
+            "max_completion_tokens": 1000000,
+            "capabilities": {
+              "tools": true,
+              "images": false,
+              "parallel_tool_calls": false,
+              "prompt_cache_key": false,
+            },
+          },
+          {
+            "name": "qwen-max",
+            "max_tokens": 32768,
+            "max_output_tokens": 8192,
+            "max_completion_tokens": 30720,
+            "capabilities": {
+              "tools": true,
+              "images": false,
+              "parallel_tool_calls": false,
+              "prompt_cache_key": false,
+            },
+          },
+        ],
+      },
+    },
+  },
+  "icon_theme": "Material Icon Theme",
+  "agent": {
+    "dock": "right",
+    "sidebar_side": "right",
+    "default_profile": "write",
+    "play_sound_when_agent_done": true,
+    "always_allow_tool_actions": true,
+    "model_parameters": [],
+    "default_model": {
+      "provider": "anthropic",
+      "model": "claude-sonnet-4-5-latest",
+    },
+  },
+  "agent_servers": {
+    "claude-acp": {
+      // Remove any other `claude-*` keys
+      "favorite_config_option_values": {
+        "mode": [
+          "bypassPermissions"
+        ]
+      },
+      "type": "registry",
+    },
+  },
+  "ui_font_size": 15,
+  "buffer_font_size": 14,
+  "buffer_font_family": "Noto Sans Mono",
+  "theme": {
+    "mode": "dark",
+    "light": "One Light",
+    "dark": "One Dark Max",
+  },
+  "autosave": "on_focus_change",
+  "languages": {
+    "Python": {
+      "language_servers": ["basedpyright"],
+    },
+  },
+  "lsp": {
+    "basedpyright": {
+      "settings": {
+        "basedpyright": {
+          "typeCheckingMode": "strict",
+        },
+      },
+    },
+  },
+  "ssh_connections": [
+    {
+      "host": "proxmox",
+      "username": "root",
+      "args": [],
+      "projects": [
+        {
+          "paths": ["/"],
+        },
+        {
+          "paths": ["/root"],
+        },
+      ],
+      "nickname": "proxmox",
+    },
+    {
+      "host": "development",
+      "username": "development",
+      "args": [],
+      "projects": [
+        {
+          "paths": ["/home/development/"],
+        },
+      ],
+      "nickname": "development",
+    },
+    {
+      "host": "staging",
+      "username": "staging",
+      "args": [],
+      "projects": [
+        {
+          "paths": ["/home/staging/"],
+        },
+      ],
+      "nickname": "staging",
+    },
+    {
+      "host": "production",
+      "username": "production",
+      "args": [],
+      "projects": [
+        {
+          "paths": ["/home/production/"],
+        },
+      ],
+      "nickname": "production",
+    },
+    {
+      "host": "utility",
+      "username": "utility",
+      "args": [],
+      "projects": [
+        {
+          "paths": ["/home/utility/"],
+        },
+      ],
+      "nickname": "utility",
+    },
+  ],
+}

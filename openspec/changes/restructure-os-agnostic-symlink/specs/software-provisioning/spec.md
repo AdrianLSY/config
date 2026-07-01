@@ -12,15 +12,15 @@ Within the macOS tier, the `brew` module MUST install Homebrew via the official 
 - **THEN** the install step is skipped
 
 ### Requirement: One install script per package
-Software MUST be expressed as one `<tier>/setup/<pkgmgr>/<pkg>.sh` script per package, invoking the active tier's package manager (macOS: `brew install` / `brew install --cask`; Linux: the AUR helper `yay`), not a single declarative manifest. This model provides per-package failure isolation and per-package logs: a single failing package MUST NOT abort the rest of the run. (The idempotent skip-check that prevents reinstalling an already-present package is specified by the bootstrap-reliability baseline.)
+Software MUST be expressed as one `<tier>/setup/<module>/<pkg>.sh` script per package, invoking that module's provisioning mechanism (macOS: `brew install` / `brew install --cask`; Linux: the tier's native mechanisms — `pacman`, the AUR helper `yay`, `flatpak`, `asdf` plugins, and script-based `app` installers), not a single declarative manifest. This model provides per-package failure isolation and per-package logs: a single failing package MUST NOT abort the rest of the run. (The idempotent skip-check that prevents reinstalling an already-present package is specified by the bootstrap-reliability baseline.)
 
 #### Scenario: One package fails
-- **WHEN** one `<tier>/setup/<pkgmgr>/<pkg>.sh` exits non-zero
+- **WHEN** one `<tier>/setup/<module>/<pkg>.sh` exits non-zero
 - **THEN** the remaining package scripts still run and the failure is reported in the summary
 
-#### Scenario: Package manager matches the tier
-- **WHEN** a package script runs in the Linux tier
-- **THEN** it installs via `yay`, whereas the equivalent macOS-tier script installs via `brew`
+#### Scenario: Mechanism matches the module
+- **WHEN** a package script runs in the Linux tier's `pacman` or `yay` module
+- **THEN** it installs via that module's mechanism (e.g. `pacman`/`yay`), whereas the equivalent macOS-tier script installs via `brew`
 
 ### Requirement: Trust non-official taps in-script
 Within the macOS/`brew` module, a package installed from a non-official tap MUST `brew tap` and `brew trust --tap` that tap inside its own install script, because current Homebrew refuses to load casks from untrusted taps — which would break both the install and the name-based skip-check on a fresh machine. This requirement is scoped to the brew module; the Linux `yay` module has its own AUR-repository handling.
@@ -31,13 +31,17 @@ Within the macOS/`brew` module, a package installed from a non-official tap MUST
 
 ## ADDED Requirements
 
-### Requirement: Linux provisioning via an AUR helper
-The Linux tier MUST provision software through an AUR helper (`yay`). The `yay` module MUST ensure `yay` (and its backing `pacman`) are present, then iterate one install script per package under `linux/setup/yay/`, with per-package failure isolation and per-package logs mirroring the macOS `brew` model. A single failing package MUST NOT abort the rest of the run.
+### Requirement: Linux provisioning via a multi-module package cascade
+The Linux tier MUST provision software through a multi-module cascade run in the order declared by `linux/setup/.setup.sh`'s `ORDER` array — `pacman`, `yay`, `flatpak`, `app`, `asdf`, `tweak` — where `pacman` installs official-repo packages (and bootstraps the AUR helper), `yay` installs AUR packages, `flatpak` installs Flatpak applications, `app` runs script-based installers for tools without a repo package, `asdf` installs language runtimes via asdf plugins, and `tweak` applies system tweaks. Every provisioning module MUST follow the one-script-per-package model with per-package failure isolation and per-package logs; a single failing package MUST NOT abort the rest of the run. The AUR helper `yay` MUST be ensured present (bootstrapped via `pacman`) before the `yay` module iterates its packages.
 
-#### Scenario: yay missing on Linux
-- **WHEN** the Linux tier's `yay` module runs on a machine without `yay`
-- **THEN** the module ensures `yay`/`pacman` are available before iterating package scripts
+#### Scenario: AUR helper bootstrapped before use
+- **WHEN** the Linux tier runs on a machine without `yay`
+- **THEN** the `pacman` module (running before `yay` in the `ORDER`) installs `yay` so the `yay` module can iterate its AUR packages
 
 #### Scenario: One Linux package fails
-- **WHEN** one `linux/setup/yay/<pkg>.sh` exits non-zero
+- **WHEN** one `linux/setup/<module>/<pkg>.sh` exits non-zero
 - **THEN** the remaining package scripts still run, the failing one retains its log, and the failure is reported in the summary
+
+#### Scenario: Module order preserved
+- **WHEN** the Linux tier cascade runs
+- **THEN** the modules execute in the `pacman → yay → flatpak → app → asdf → tweak` order declared by `linux/setup/.setup.sh`
