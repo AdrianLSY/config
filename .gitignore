@@ -38,3 +38,7 @@ zsh/.zsh_history
 zsh/.zsh_sessions/
 micro/backups/
 micro/buffers/
+
+# Machine-local / secret-bearing — must never be tracked (re-ignored despite !.claude/**)
+.claude/settings.local.json
+fish/fish_variables
