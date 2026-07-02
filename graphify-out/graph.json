@@ -3742,34 +3742,6 @@
       "norm_label": "go.sh script"
     },
     {
-      "label": "iina.sh",
-      "file_type": "code",
-      "source_file": "macos/setup/brew/iina.sh",
-      "source_location": "L1",
-      "metadata": {
-        "language": "bash",
-        "kind": "file"
-      },
-      "_origin": "ast",
-      "id": "macos_setup_brew_iina",
-      "community": 139,
-      "norm_label": "iina.sh"
-    },
-    {
-      "label": "iina.sh script",
-      "file_type": "code",
-      "source_file": "macos/setup/brew/iina.sh",
-      "source_location": "L1",
-      "metadata": {
-        "language": "bash",
-        "kind": "bash_entrypoint"
-      },
-      "_origin": "ast",
-      "id": "macos_setup_brew_iina_sh__entry",
-      "community": 139,
-      "norm_label": "iina.sh script"
-    },
-    {
       "label": "keepassxc.sh",
       "file_type": "code",
       "source_file": "macos/setup/brew/keepassxc.sh",
@@ -4582,6 +4554,34 @@
       "norm_label": "vivaldi.sh script"
     },
     {
+      "label": "vlc.sh",
+      "file_type": "code",
+      "source_file": "macos/setup/brew/vlc.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "macos_setup_brew_vlc",
+      "community": 139,
+      "norm_label": "vlc.sh"
+    },
+    {
+      "label": "vlc.sh script",
+      "file_type": "code",
+      "source_file": "macos/setup/brew/vlc.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "macos_setup_brew_vlc_sh__entry",
+      "community": 139,
+      "norm_label": "vlc.sh script"
+    },
+    {
       "label": "zed.sh",
       "file_type": "code",
       "source_file": "macos/setup/brew/zed.sh",
@@ -5176,6 +5176,1042 @@
       "id": "windows_setup_winget_setup_sh__entry",
       "community": 199,
       "norm_label": ".setup.sh script"
+    },
+    {
+      "label": "Amazon.AWSCLI.sh",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Amazon.AWSCLI.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_amazon_awscli",
+      "community": 201,
+      "norm_label": "amazon.awscli.sh"
+    },
+    {
+      "label": "Amazon.AWSCLI.sh script",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Amazon.AWSCLI.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_amazon_awscli_sh__entry",
+      "community": 201,
+      "norm_label": "amazon.awscli.sh script"
+    },
+    {
+      "label": "Anthropic.Claude.sh",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Anthropic.Claude.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_anthropic_claude",
+      "community": 202,
+      "norm_label": "anthropic.claude.sh"
+    },
+    {
+      "label": "Anthropic.Claude.sh script",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Anthropic.Claude.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_anthropic_claude_sh__entry",
+      "community": 202,
+      "norm_label": "anthropic.claude.sh script"
+    },
+    {
+      "label": "Anthropic.ClaudeCode.sh",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Anthropic.ClaudeCode.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_anthropic_claudecode",
+      "community": 203,
+      "norm_label": "anthropic.claudecode.sh"
+    },
+    {
+      "label": "Anthropic.ClaudeCode.sh script",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Anthropic.ClaudeCode.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_anthropic_claudecode_sh__entry",
+      "community": 203,
+      "norm_label": "anthropic.claudecode.sh script"
+    },
+    {
+      "label": "Bambulab.Bambustudio.sh",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Bambulab.Bambustudio.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_bambulab_bambustudio",
+      "community": 205,
+      "norm_label": "bambulab.bambustudio.sh"
+    },
+    {
+      "label": "Bambulab.Bambustudio.sh script",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Bambulab.Bambustudio.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_bambulab_bambustudio_sh__entry",
+      "community": 205,
+      "norm_label": "bambulab.bambustudio.sh script"
+    },
+    {
+      "label": "Bruno.Bruno.sh",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Bruno.Bruno.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_bruno_bruno",
+      "community": 206,
+      "norm_label": "bruno.bruno.sh"
+    },
+    {
+      "label": "Bruno.Bruno.sh script",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Bruno.Bruno.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_bruno_bruno_sh__entry",
+      "community": 206,
+      "norm_label": "bruno.bruno.sh script"
+    },
+    {
+      "label": "Cloudflare.cloudflared.sh",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Cloudflare.cloudflared.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_cloudflare_cloudflared",
+      "community": 207,
+      "norm_label": "cloudflare.cloudflared.sh"
+    },
+    {
+      "label": "Cloudflare.cloudflared.sh script",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Cloudflare.cloudflared.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_cloudflare_cloudflared_sh__entry",
+      "community": 207,
+      "norm_label": "cloudflare.cloudflared.sh script"
+    },
+    {
+      "label": "Cryptomator.Cryptomator.sh",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Cryptomator.Cryptomator.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_cryptomator_cryptomator",
+      "community": 208,
+      "norm_label": "cryptomator.cryptomator.sh"
+    },
+    {
+      "label": "Cryptomator.Cryptomator.sh script",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Cryptomator.Cryptomator.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_cryptomator_cryptomator_sh__entry",
+      "community": 208,
+      "norm_label": "cryptomator.cryptomator.sh script"
+    },
+    {
+      "label": "Docker.DockerDesktop.sh",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Docker.DockerDesktop.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_docker_dockerdesktop",
+      "community": 210,
+      "norm_label": "docker.dockerdesktop.sh"
+    },
+    {
+      "label": "Docker.DockerDesktop.sh script",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Docker.DockerDesktop.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_docker_dockerdesktop_sh__entry",
+      "community": 210,
+      "norm_label": "docker.dockerdesktop.sh script"
+    },
+    {
+      "label": "Dropbox.Dropbox.sh",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Dropbox.Dropbox.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_dropbox_dropbox",
+      "community": 211,
+      "norm_label": "dropbox.dropbox.sh"
+    },
+    {
+      "label": "Dropbox.Dropbox.sh script",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Dropbox.Dropbox.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_dropbox_dropbox_sh__entry",
+      "community": 211,
+      "norm_label": "dropbox.dropbox.sh script"
+    },
+    {
+      "label": "EclipseAdoptium.Temurin.26.JDK.sh",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/EclipseAdoptium.Temurin.26.JDK.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_eclipseadoptium_temurin_26_jdk",
+      "community": 212,
+      "norm_label": "eclipseadoptium.temurin.26.jdk.sh"
+    },
+    {
+      "label": "EclipseAdoptium.Temurin.26.JDK.sh script",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/EclipseAdoptium.Temurin.26.JDK.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_eclipseadoptium_temurin_26_jdk_sh__entry",
+      "community": 212,
+      "norm_label": "eclipseadoptium.temurin.26.jdk.sh script"
+    },
+    {
+      "label": "GitHub.GitHubDesktop.sh",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/GitHub.GitHubDesktop.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_github_githubdesktop",
+      "community": 213,
+      "norm_label": "github.githubdesktop.sh"
+    },
+    {
+      "label": "GitHub.GitHubDesktop.sh script",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/GitHub.GitHubDesktop.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_github_githubdesktop_sh__entry",
+      "community": 213,
+      "norm_label": "github.githubdesktop.sh script"
+    },
+    {
+      "label": "Gitleaks.Gitleaks.sh",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Gitleaks.Gitleaks.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_gitleaks_gitleaks",
+      "community": 214,
+      "norm_label": "gitleaks.gitleaks.sh"
+    },
+    {
+      "label": "Gitleaks.Gitleaks.sh script",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Gitleaks.Gitleaks.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_gitleaks_gitleaks_sh__entry",
+      "community": 214,
+      "norm_label": "gitleaks.gitleaks.sh script"
+    },
+    {
+      "label": "GoLang.Go.sh",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/GoLang.Go.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_golang_go",
+      "community": 215,
+      "norm_label": "golang.go.sh"
+    },
+    {
+      "label": "GoLang.Go.sh script",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/GoLang.Go.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_golang_go_sh__entry",
+      "community": 215,
+      "norm_label": "golang.go.sh script"
+    },
+    {
+      "label": "KeePassXCTeam.KeePassXC.sh",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/KeePassXCTeam.KeePassXC.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_keepassxcteam_keepassxc",
+      "community": 216,
+      "norm_label": "keepassxcteam.keepassxc.sh"
+    },
+    {
+      "label": "KeePassXCTeam.KeePassXC.sh script",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/KeePassXCTeam.KeePassXC.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_keepassxcteam_keepassxc_sh__entry",
+      "community": 216,
+      "norm_label": "keepassxcteam.keepassxc.sh script"
+    },
+    {
+      "label": "LocalSend.LocalSend.sh",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/LocalSend.LocalSend.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_localsend_localsend",
+      "community": 217,
+      "norm_label": "localsend.localsend.sh"
+    },
+    {
+      "label": "LocalSend.LocalSend.sh script",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/LocalSend.LocalSend.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_localsend_localsend_sh__entry",
+      "community": 217,
+      "norm_label": "localsend.localsend.sh script"
+    },
+    {
+      "label": "Logitech.GHUB.sh",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Logitech.GHUB.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_logitech_ghub",
+      "community": 218,
+      "norm_label": "logitech.ghub.sh"
+    },
+    {
+      "label": "Logitech.GHUB.sh script",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Logitech.GHUB.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_logitech_ghub_sh__entry",
+      "community": 218,
+      "norm_label": "logitech.ghub.sh script"
+    },
+    {
+      "label": "Mozilla.Thunderbird.sh",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Mozilla.Thunderbird.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_mozilla_thunderbird",
+      "community": 219,
+      "norm_label": "mozilla.thunderbird.sh"
+    },
+    {
+      "label": "Mozilla.Thunderbird.sh script",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Mozilla.Thunderbird.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_mozilla_thunderbird_sh__entry",
+      "community": 219,
+      "norm_label": "mozilla.thunderbird.sh script"
+    },
+    {
+      "label": "Obsidian.Obsidian.sh",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Obsidian.Obsidian.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_obsidian_obsidian",
+      "community": 220,
+      "norm_label": "obsidian.obsidian.sh"
+    },
+    {
+      "label": "Obsidian.Obsidian.sh script",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Obsidian.Obsidian.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_obsidian_obsidian_sh__entry",
+      "community": 220,
+      "norm_label": "obsidian.obsidian.sh script"
+    },
+    {
+      "label": "Oven-sh.Bun.sh",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Oven-sh.Bun.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_oven_sh_bun",
+      "community": 221,
+      "norm_label": "oven-sh.bun.sh"
+    },
+    {
+      "label": "Oven-sh.Bun.sh script",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Oven-sh.Bun.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_oven_sh_bun_sh__entry",
+      "community": 221,
+      "norm_label": "oven-sh.bun.sh script"
+    },
+    {
+      "label": "PostgreSQL.PostgreSQL.18.sh",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/PostgreSQL.PostgreSQL.18.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_postgresql_postgresql_18",
+      "community": 222,
+      "norm_label": "postgresql.postgresql.18.sh"
+    },
+    {
+      "label": "PostgreSQL.PostgreSQL.18.sh script",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/PostgreSQL.PostgreSQL.18.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_postgresql_postgresql_18_sh__entry",
+      "community": 222,
+      "norm_label": "postgresql.postgresql.18.sh script"
+    },
+    {
+      "label": "Pulumi.Pulumi.sh",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Pulumi.Pulumi.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_pulumi_pulumi",
+      "community": 223,
+      "norm_label": "pulumi.pulumi.sh"
+    },
+    {
+      "label": "Pulumi.Pulumi.sh script",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Pulumi.Pulumi.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_pulumi_pulumi_sh__entry",
+      "community": 223,
+      "norm_label": "pulumi.pulumi.sh script"
+    },
+    {
+      "label": "Python.Python.3.14.sh",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Python.Python.3.14.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_python_python_3_14",
+      "community": 224,
+      "norm_label": "python.python.3.14.sh"
+    },
+    {
+      "label": "Python.Python.3.14.sh script",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Python.Python.3.14.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_python_python_3_14_sh__entry",
+      "community": 224,
+      "norm_label": "python.python.3.14.sh script"
+    },
+    {
+      "label": "RubyInstallerTeam.RubyWithDevKit.4.0.sh",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/RubyInstallerTeam.RubyWithDevKit.4.0.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_rubyinstallerteam_rubywithdevkit_4_0",
+      "community": 225,
+      "norm_label": "rubyinstallerteam.rubywithdevkit.4.0.sh"
+    },
+    {
+      "label": "RubyInstallerTeam.RubyWithDevKit.4.0.sh script",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/RubyInstallerTeam.RubyWithDevKit.4.0.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_rubyinstallerteam_rubywithdevkit_4_0_sh__entry",
+      "community": 225,
+      "norm_label": "rubyinstallerteam.rubywithdevkit.4.0.sh script"
+    },
+    {
+      "label": "Rustlang.Rustup.sh",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Rustlang.Rustup.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_rustlang_rustup",
+      "community": 226,
+      "norm_label": "rustlang.rustup.sh"
+    },
+    {
+      "label": "Rustlang.Rustup.sh script",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Rustlang.Rustup.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_rustlang_rustup_sh__entry",
+      "community": 226,
+      "norm_label": "rustlang.rustup.sh script"
+    },
+    {
+      "label": "Spotify.Spotify.sh",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Spotify.Spotify.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_spotify_spotify",
+      "community": 227,
+      "norm_label": "spotify.spotify.sh"
+    },
+    {
+      "label": "Spotify.Spotify.sh script",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Spotify.Spotify.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_spotify_spotify_sh__entry",
+      "community": 227,
+      "norm_label": "spotify.spotify.sh script"
+    },
+    {
+      "label": "Starship.Starship.sh",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Starship.Starship.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_starship_starship",
+      "community": 228,
+      "norm_label": "starship.starship.sh"
+    },
+    {
+      "label": "Starship.Starship.sh script",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Starship.Starship.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_starship_starship_sh__entry",
+      "community": 228,
+      "norm_label": "starship.starship.sh script"
+    },
+    {
+      "label": "Tailscale.Tailscale.sh",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Tailscale.Tailscale.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_tailscale_tailscale",
+      "community": 229,
+      "norm_label": "tailscale.tailscale.sh"
+    },
+    {
+      "label": "Tailscale.Tailscale.sh script",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Tailscale.Tailscale.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_tailscale_tailscale_sh__entry",
+      "community": 229,
+      "norm_label": "tailscale.tailscale.sh script"
+    },
+    {
+      "label": "Transmission.Transmission.sh",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Transmission.Transmission.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_transmission_transmission",
+      "community": 230,
+      "norm_label": "transmission.transmission.sh"
+    },
+    {
+      "label": "Transmission.Transmission.sh script",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Transmission.Transmission.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_transmission_transmission_sh__entry",
+      "community": 230,
+      "norm_label": "transmission.transmission.sh script"
+    },
+    {
+      "label": "Ultimaker.Cura.sh",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Ultimaker.Cura.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_ultimaker_cura",
+      "community": 231,
+      "norm_label": "ultimaker.cura.sh"
+    },
+    {
+      "label": "Ultimaker.Cura.sh script",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Ultimaker.Cura.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_ultimaker_cura_sh__entry",
+      "community": 231,
+      "norm_label": "ultimaker.cura.sh script"
+    },
+    {
+      "label": "Valve.Steam.sh",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Valve.Steam.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_valve_steam",
+      "community": 232,
+      "norm_label": "valve.steam.sh"
+    },
+    {
+      "label": "Valve.Steam.sh script",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Valve.Steam.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_valve_steam_sh__entry",
+      "community": 232,
+      "norm_label": "valve.steam.sh script"
+    },
+    {
+      "label": "VideoLAN.VLC.sh",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/VideoLAN.VLC.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_videolan_vlc",
+      "community": 236,
+      "norm_label": "videolan.vlc.sh"
+    },
+    {
+      "label": "VideoLAN.VLC.sh script",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/VideoLAN.VLC.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_videolan_vlc_sh__entry",
+      "community": 236,
+      "norm_label": "videolan.vlc.sh script"
+    },
+    {
+      "label": "Vivaldi.Vivaldi.sh",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Vivaldi.Vivaldi.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_vivaldi_vivaldi",
+      "community": 233,
+      "norm_label": "vivaldi.vivaldi.sh"
+    },
+    {
+      "label": "Vivaldi.Vivaldi.sh script",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/Vivaldi.Vivaldi.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_vivaldi_vivaldi_sh__entry",
+      "community": 233,
+      "norm_label": "vivaldi.vivaldi.sh script"
+    },
+    {
+      "label": "ZedIndustries.Zed.sh",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/ZedIndustries.Zed.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_zedindustries_zed",
+      "community": 234,
+      "norm_label": "zedindustries.zed.sh"
+    },
+    {
+      "label": "ZedIndustries.Zed.sh script",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/ZedIndustries.Zed.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_zedindustries_zed_sh__entry",
+      "community": 234,
+      "norm_label": "zedindustries.zed.sh script"
+    },
+    {
+      "label": "ajeetdsouza.zoxide.sh",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/ajeetdsouza.zoxide.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_ajeetdsouza_zoxide",
+      "community": 200,
+      "norm_label": "ajeetdsouza.zoxide.sh"
+    },
+    {
+      "label": "ajeetdsouza.zoxide.sh script",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/ajeetdsouza.zoxide.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_ajeetdsouza_zoxide_sh__entry",
+      "community": 200,
+      "norm_label": "ajeetdsouza.zoxide.sh script"
+    },
+    {
+      "label": "astral-sh.uv.sh",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/astral-sh.uv.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_astral_sh_uv",
+      "community": 204,
+      "norm_label": "astral-sh.uv.sh"
+    },
+    {
+      "label": "astral-sh.uv.sh script",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/astral-sh.uv.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_astral_sh_uv_sh__entry",
+      "community": 204,
+      "norm_label": "astral-sh.uv.sh script"
+    },
+    {
+      "label": "direnv.direnv.sh",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/direnv.direnv.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_direnv_direnv",
+      "community": 209,
+      "norm_label": "direnv.direnv.sh"
+    },
+    {
+      "label": "direnv.direnv.sh script",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/direnv.direnv.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_direnv_direnv_sh__entry",
+      "community": 209,
+      "norm_label": "direnv.direnv.sh script"
+    },
+    {
+      "label": "zyedidia.micro.sh",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/zyedidia.micro.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_zyedidia_micro",
+      "community": 235,
+      "norm_label": "zyedidia.micro.sh"
+    },
+    {
+      "label": "zyedidia.micro.sh script",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/zyedidia.micro.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_zyedidia_micro_sh__entry",
+      "community": 235,
+      "norm_label": "zyedidia.micro.sh script"
     },
     {
       "label": "CLAUDE.md",
@@ -8271,16 +9307,6 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "macos/setup/brew/iina.sh",
-      "source_location": "L1",
-      "weight": 1.0,
-      "source": "macos_setup_brew_iina",
-      "target": "macos_setup_brew_iina_sh__entry",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
       "source_file": "macos/setup/brew/keepassxc.sh",
       "source_location": "L1",
       "weight": 1.0,
@@ -8571,6 +9597,16 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "macos/setup/brew/vlc.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "macos_setup_brew_vlc",
+      "target": "macos_setup_brew_vlc_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "macos/setup/brew/zed.sh",
       "source_location": "L1",
       "weight": 1.0,
@@ -8849,6 +9885,376 @@
       "weight": 1.0,
       "source": "windows_setup_winget_setup",
       "target": "windows_setup_winget_setup_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "windows/setup/winget/Amazon.AWSCLI.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "windows_setup_winget_amazon_awscli",
+      "target": "windows_setup_winget_amazon_awscli_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "windows/setup/winget/Anthropic.Claude.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "windows_setup_winget_anthropic_claude",
+      "target": "windows_setup_winget_anthropic_claude_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "windows/setup/winget/Anthropic.ClaudeCode.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "windows_setup_winget_anthropic_claudecode",
+      "target": "windows_setup_winget_anthropic_claudecode_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "windows/setup/winget/Bambulab.Bambustudio.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "windows_setup_winget_bambulab_bambustudio",
+      "target": "windows_setup_winget_bambulab_bambustudio_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "windows/setup/winget/Bruno.Bruno.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "windows_setup_winget_bruno_bruno",
+      "target": "windows_setup_winget_bruno_bruno_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "windows/setup/winget/Cloudflare.cloudflared.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "windows_setup_winget_cloudflare_cloudflared",
+      "target": "windows_setup_winget_cloudflare_cloudflared_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "windows/setup/winget/Cryptomator.Cryptomator.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "windows_setup_winget_cryptomator_cryptomator",
+      "target": "windows_setup_winget_cryptomator_cryptomator_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "windows/setup/winget/Docker.DockerDesktop.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "windows_setup_winget_docker_dockerdesktop",
+      "target": "windows_setup_winget_docker_dockerdesktop_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "windows/setup/winget/Dropbox.Dropbox.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "windows_setup_winget_dropbox_dropbox",
+      "target": "windows_setup_winget_dropbox_dropbox_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "windows/setup/winget/EclipseAdoptium.Temurin.26.JDK.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "windows_setup_winget_eclipseadoptium_temurin_26_jdk",
+      "target": "windows_setup_winget_eclipseadoptium_temurin_26_jdk_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "windows/setup/winget/GitHub.GitHubDesktop.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "windows_setup_winget_github_githubdesktop",
+      "target": "windows_setup_winget_github_githubdesktop_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "windows/setup/winget/Gitleaks.Gitleaks.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "windows_setup_winget_gitleaks_gitleaks",
+      "target": "windows_setup_winget_gitleaks_gitleaks_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "windows/setup/winget/GoLang.Go.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "windows_setup_winget_golang_go",
+      "target": "windows_setup_winget_golang_go_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "windows/setup/winget/KeePassXCTeam.KeePassXC.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "windows_setup_winget_keepassxcteam_keepassxc",
+      "target": "windows_setup_winget_keepassxcteam_keepassxc_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "windows/setup/winget/LocalSend.LocalSend.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "windows_setup_winget_localsend_localsend",
+      "target": "windows_setup_winget_localsend_localsend_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "windows/setup/winget/Logitech.GHUB.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "windows_setup_winget_logitech_ghub",
+      "target": "windows_setup_winget_logitech_ghub_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "windows/setup/winget/Mozilla.Thunderbird.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "windows_setup_winget_mozilla_thunderbird",
+      "target": "windows_setup_winget_mozilla_thunderbird_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "windows/setup/winget/Obsidian.Obsidian.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "windows_setup_winget_obsidian_obsidian",
+      "target": "windows_setup_winget_obsidian_obsidian_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "windows/setup/winget/Oven-sh.Bun.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "windows_setup_winget_oven_sh_bun",
+      "target": "windows_setup_winget_oven_sh_bun_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "windows/setup/winget/PostgreSQL.PostgreSQL.18.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "windows_setup_winget_postgresql_postgresql_18",
+      "target": "windows_setup_winget_postgresql_postgresql_18_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "windows/setup/winget/Pulumi.Pulumi.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "windows_setup_winget_pulumi_pulumi",
+      "target": "windows_setup_winget_pulumi_pulumi_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "windows/setup/winget/Python.Python.3.14.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "windows_setup_winget_python_python_3_14",
+      "target": "windows_setup_winget_python_python_3_14_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "windows/setup/winget/RubyInstallerTeam.RubyWithDevKit.4.0.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "windows_setup_winget_rubyinstallerteam_rubywithdevkit_4_0",
+      "target": "windows_setup_winget_rubyinstallerteam_rubywithdevkit_4_0_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "windows/setup/winget/Rustlang.Rustup.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "windows_setup_winget_rustlang_rustup",
+      "target": "windows_setup_winget_rustlang_rustup_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "windows/setup/winget/Spotify.Spotify.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "windows_setup_winget_spotify_spotify",
+      "target": "windows_setup_winget_spotify_spotify_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "windows/setup/winget/Starship.Starship.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "windows_setup_winget_starship_starship",
+      "target": "windows_setup_winget_starship_starship_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "windows/setup/winget/Tailscale.Tailscale.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "windows_setup_winget_tailscale_tailscale",
+      "target": "windows_setup_winget_tailscale_tailscale_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "windows/setup/winget/Transmission.Transmission.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "windows_setup_winget_transmission_transmission",
+      "target": "windows_setup_winget_transmission_transmission_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "windows/setup/winget/Ultimaker.Cura.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "windows_setup_winget_ultimaker_cura",
+      "target": "windows_setup_winget_ultimaker_cura_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "windows/setup/winget/Valve.Steam.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "windows_setup_winget_valve_steam",
+      "target": "windows_setup_winget_valve_steam_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "windows/setup/winget/VideoLAN.VLC.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "windows_setup_winget_videolan_vlc",
+      "target": "windows_setup_winget_videolan_vlc_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "windows/setup/winget/Vivaldi.Vivaldi.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "windows_setup_winget_vivaldi_vivaldi",
+      "target": "windows_setup_winget_vivaldi_vivaldi_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "windows/setup/winget/ZedIndustries.Zed.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "windows_setup_winget_zedindustries_zed",
+      "target": "windows_setup_winget_zedindustries_zed_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "windows/setup/winget/ajeetdsouza.zoxide.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "windows_setup_winget_ajeetdsouza_zoxide",
+      "target": "windows_setup_winget_ajeetdsouza_zoxide_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "windows/setup/winget/astral-sh.uv.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "windows_setup_winget_astral_sh_uv",
+      "target": "windows_setup_winget_astral_sh_uv_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "windows/setup/winget/direnv.direnv.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "windows_setup_winget_direnv_direnv",
+      "target": "windows_setup_winget_direnv_direnv_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "windows/setup/winget/zyedidia.micro.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "windows_setup_winget_zyedidia_micro",
+      "target": "windows_setup_winget_zyedidia_micro_sh__entry",
       "confidence_score": 1.0
     },
     {
@@ -10163,5 +11569,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "5186f7f866e8cbee9c4b1d17dd5b4c1ff1df63de"
+  "built_at_commit": "bd700c6e9203087bb9390edaa8220829f9ffcbb0"
 }
