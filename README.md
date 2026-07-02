@@ -1,16 +1,18 @@
-# config
+# Device Onbording
 
-My personal dotfiles for **macOS and Linux**, plus a `setup.sh` bootstrap that
-provisions a fresh machine (packages + system tweaks) and deploys these configs.
+My personal dotfiles for **macOS, Linux, and Windows**, plus a `setup.sh`
+bootstrap that provisions a fresh machine (packages + system tweaks) and deploys
+these configs.
 
 The repo lives at an **external** path (e.g. `~/.dotfiles`), **not** at
-`~/.config`. It deploys config *into* `~/.config` by per-app **symlink**
-(`~/.config/<app>` → `~/.dotfiles/<tier>/<app>`), so editing through the symlink
-is still editing the repo.
+`~/.config`. On macOS/Linux it deploys config *into* `~/.config` by per-app
+**symlink** (`~/.config/<app>` → `~/.dotfiles/<tier>/<app>`), so editing through
+the symlink is still editing the repo. Windows has no single `~/.config`, so it
+deploys by an explicit manifest to per-app targets (see below).
 
 ## Layout
 
-Content is split into two OS **tiers**; the OS is chosen at runtime via `uname`:
+Content is split into OS **tiers**; the OS is chosen at runtime via `uname`:
 
 - `macos/` — the macOS machine: `zsh/`, `zed/`, `ghostty/`, `aerospace/`,
   `linearmouse/`, `vivaldi/`, `bin/`, `micro/`, `starship.toml`, and its own
@@ -19,6 +21,10 @@ Content is split into two OS **tiers**; the OS is chosen at runtime via `uname`:
   `kitty/`, `mako/`, `rofi/`, `swaylock/`, `nvim/`, `btop/`, `tmux/`, `gtk-*`,
   `qt5ct/`, `qt6ct/`, `zed/`, `micro/`, `mimeapps.list`, and its own `setup/`
   (`pacman`, `yay`, `flatpak`, `app`, `asdf`, `tweak`).
+- `windows/` — the native-Windows (Git Bash/MSYS) machine: its `setup/`
+  (`winget`, `tweak`) and a `.links` deploy manifest. Selected when `uname -s`
+  reports `MINGW*`/`MSYS*`/`CYGWIN*` (WSL reports `Linux` → the `linux` tier).
+  Currently a stub — cascade + deploy plumbing, no app configs yet.
 - `lib/link.sh` — the shared symlink helper (bootstrap code, not config).
 - Repo meta at the root (`setup.sh`, `README.md`, `CLAUDE.md`, `.gitignore`, …)
   is never symlinked into `~/.config`.
@@ -39,15 +45,18 @@ git clone https://github.com/AdrianLSY/config.git ~/.dotfiles
 `setup.sh`:
 
 1. **Refuses to run as root** — never `sudo ./setup.sh`.
-2. **Detects the OS** via `uname -s` and selects the `macos` or `linux` tier
-   (errors on anything else).
-3. Runs a **repo-scoped** `chmod` (never touches `~/.config` or `.git`).
-4. On macOS, **ensures Command Line Tools** (git + clang, which Homebrew needs).
-5. **Symlinks the tier's app dirs into `~/.config`** via backup-then-link (see
-   below), skipping the reserved `setup/` dir.
-6. Runs the tier's `setup/.setup.sh` cascade (macOS: `brew` → `tweak`; Linux:
-   `pacman` → `yay` → `flatpak` → `app` → `asdf` → `tweak`), then exits with the
-   cascade's true status.
+2. **Detects the OS** via `uname -s` and selects the `macos`, `linux`, or
+   `windows` tier (errors on anything else).
+3. On Windows, runs a **preflight** (before any change): errors out if `winget`
+   is missing or a native symlink can't be created (Developer Mode off).
+4. Runs a **repo-scoped** `chmod` (never touches `~/.config` or `.git`).
+5. On macOS, **ensures Command Line Tools** (git + clang, which Homebrew needs).
+6. **Deploys the tier's configs** — macOS/Linux symlink each app dir into
+   `~/.config` via backup-then-link (skipping the reserved `setup/`); Windows
+   links each app to its manifest destination (`windows/.links`).
+7. Runs the tier's `setup/.setup.sh` cascade (macOS: `brew` → `tweak`; Linux:
+   `pacman` → `yay` → `flatpak` → `app` → `asdf` → `tweak`; Windows: `winget` →
+   `tweak`), then exits with the cascade's true status.
 
 ### Backup-then-link (safe on a machine with an existing `~/.config`)
 
@@ -62,21 +71,32 @@ Nothing is ever overwritten without a timestamped backup, and **unmanaged
 `~/.config` entries** (`gh/`, `uv/`, `raycast/`, …) are never touched. Re-running
 is idempotent. To roll back an app: remove its symlink and restore the `.bak.<ts>`.
 
-### Prerequisite
+### Prerequisites
 
-**macOS Command Line Tools** — `setup.sh` installs them for you; if the automated
-install stalls, run `xcode-select --install` and re-run. On Linux, a working
-`pacman` (CachyOS/Arch base) is assumed; the bootstrap installs `yay` and the rest.
+- **macOS** — Command Line Tools (git + clang); `setup.sh` installs them for you;
+  if the automated install stalls, run `xcode-select --install` and re-run.
+- **Linux** — a working `pacman` (CachyOS/Arch base) is assumed; the bootstrap
+  installs `yay` and the rest.
+- **Windows** — install **Git for Windows** (Git Bash) and the **`winget`
+  client** (App Installer / Windows Package Manager), and enable **Developer
+  Mode** (Settings → Privacy & security → For developers) so native symlinks can
+  be created without elevation. Then clone to `~/.dotfiles` and run
+  `./setup.sh` **from Git Bash**. The preflight verifies these before any change.
 
 ## Adding things
 
 - **Package:** create `<tier>/setup/<pkgmgr>/<pkg>.sh` (macOS `brew`; Linux
-  `pacman`/`yay`/`flatpak`/`asdf`/`app`). For name-based managers **the filename
-  minus `.sh` must equal the package's leaf name** — it drives the skip-check.
+  `pacman`/`yay`/`flatpak`/`asdf`/`app`; Windows `winget`). For name-based
+  managers **the filename minus `.sh` must equal the skip-check identifier** —
+  the package leaf name for brew/pacman/yay, the full dotted winget id for winget
+  (e.g. `Mozilla.Firefox.sh`).
 - **System tweak:** create `<tier>/setup/tweak/<name>.sh`. Runs every bootstrap,
   so make it idempotent.
-- **New app config:** create `<app>/` under the relevant tier. No `.gitignore`
-  edits needed — the conventional deny-list tracks it automatically.
+- **New app config:** create `<app>/` under the relevant tier. On macOS/Linux no
+  `.gitignore` edits are needed — the conventional deny-list tracks it, and it's
+  symlinked into `~/.config` automatically. On Windows, also add a
+  `windows/.links` line mapping the app to its destination (Windows configs are
+  not auto-deployed by directory).
 
 ## Runtime state & secrets
 
@@ -89,7 +109,12 @@ default; cruft, logs, and runtime state ignored).
 A **gitleaks pre-commit hook** (`.pre-commit-config.yaml`, installed by the
 bootstrap) scans every staged change and blocks commits containing secrets.
 
+Tracked shell scripts (`*.sh`, `setup.sh`) and the Windows manifest
+(`windows/.links`) are pinned to **LF** line endings via `.gitattributes`, so
+they keep working under bash — including Git Bash on Windows — regardless of
+your local `core.autocrlf` setting.
+
 ## Branches
 
-A **single branch** carries both machines; the OS is selected at runtime by
+A **single branch** carries all machines; the OS is selected at runtime by
 `setup.sh`. (This replaced the old branch-per-machine model.)

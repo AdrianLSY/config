@@ -3,3 +3,11 @@
 # per machine in setup/tweak/graphify.sh (git config merge.graphify.*), since
 # .git/config is not version-controlled.
 graphify-out/graph.json merge=graphify
+
+# Bootstrap shell code and the Windows deploy manifest MUST stay LF-only. They
+# run under bash (macOS/Linux and Git Bash on Windows); a stray CRLF would break
+# shebang parsing and leave a trailing \r on parsed manifest fields. (The Windows
+# manifest parser also strips \r defensively; this keeps the tracked files clean.)
+*.sh            text eol=lf
+setup.sh        text eol=lf
+windows/.links  text eol=lf

@@ -1,0 +1,21 @@
+# windows/.links — Windows tier deploy manifest.
+#
+# One line per managed app:   <app><TAB><destination>
+#   - <app> is a dir or file under windows/ (e.g. `starship.toml`, `gh`).
+#   - <destination> is an absolute path whose LEADING env reference is
+#     expanded at deploy time. Recognized (prefix only, no other expansion,
+#     no eval, no globbing): $HOME/.config, $HOME, $APPDATA, $LOCALAPPDATA,
+#     $USERPROFILE.
+#   - Fields are separated by a single TAB, so destinations may contain spaces.
+#   - Blank lines and lines starting with # are ignored; surrounding
+#     whitespace is trimmed.
+#
+# deploy_manifest (lib/link.sh) links each destination -> windows/<app> using
+# backup-then-link. The manifest itself and windows/setup/ are never deployed.
+#
+# No app configs ship in this stub yet. Add lines as Windows configs land —
+# uncomment/adjust the examples below (they already use a real TAB separator):
+#
+# starship.toml	$HOME/.config/starship.toml	# XDG-aware CLI
+# gh	$HOME/.config/gh	# XDG-aware CLI
+# code	$APPDATA/Code/User	# GUI app (VS Code)

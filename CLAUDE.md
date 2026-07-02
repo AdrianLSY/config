@@ -4,12 +4,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repo is
 
-Personal dotfiles plus a bootstrap installer (`setup.sh`) for setting up a fresh machine on **macOS or Linux**. The repo lives at an **external** path (canonically `~/.dotfiles`), **not** at `~/.config` — `setup.sh` deploys config *into* `~/.config` by per-app **symlink** (`~/.config/<app>` → `~/.dotfiles/<tier>/<app>`), so editing through the symlink is still a repo edit.
+Personal dotfiles plus a bootstrap installer (`setup.sh`) for setting up a fresh machine on **macOS, Linux, or Windows**. The repo lives at an **external** path (canonically `~/.dotfiles`), **not** at `~/.config` — on macOS/Linux `setup.sh` deploys config *into* `~/.config` by per-app **symlink** (`~/.config/<app>` → `~/.dotfiles/<tier>/<app>`), so editing through the symlink is still a repo edit. Windows has no single `~/.config`, so it deploys by an explicit manifest to heterogeneous targets (see the Windows tier below).
 
-Content is split into two OS **tiers**:
+Content is split into OS **tiers**:
 
 - `macos/` — the macOS machine's world: app configs (`zsh/`, `zed/`, `ghostty/`, `aerospace/`, `linearmouse/`, `vivaldi/`, `bin/`, `micro/`, `starship.toml`) **and** its own `setup/` (`brew`, `tweak`).
 - `linux/` — the Linux (Arch/CachyOS) machine's world: app configs (`fish/`, `hypr/`, `waybar/`, `kitty/`, `mako/`, `rofi/`, `swaylock/`, `nvim/`, `btop/`, `tmux/`, `gtk-3.0/`, `gtk-4.0/`, `qt5ct/`, `qt6ct/`, `zed/`, `micro/`, `mimeapps.list`) **and** its own `setup/` (`pacman`, `yay`, `flatpak`, `app`, `asdf`, `tweak`).
+- `windows/` — the native-Windows (Git Bash/MSYS) machine's world: its `setup/` (`winget`, `tweak`) plus a `.links` deploy manifest. **Runs under Git Bash**, selected when `uname -s` reports `MINGW*`/`MSYS*`/`CYGWIN*` (WSL reports `Linux` and gets the `linux` tier). App configs are deployed per the `windows/.links` manifest (`<app>\t<destination>`, destinations under `$HOME/.config`/`$APPDATA`/`$LOCALAPPDATA`/`$USERPROFILE`) rather than enumerated into one `~/.config`. Ships as a stub: cascade + deploy plumbing, no app configs yet. **Prerequisites:** Git Bash, the `winget` client, and Developer Mode (for native symlinks).
 
 `lib/link.sh` is the shared symlink helper (bootstrap *code*, not config). Repo meta lives at the root and is **never** symlinked into `~/.config`: `setup.sh`, `README.md`, `CLAUDE.md`, `.gitignore`, `.claude/`, `graphify-out/`, `SECURE_BOOT.md`, `.gitattributes`, `.pre-commit-config.yaml`. (`openspec/` also sits at the root but is **gitignored** — local-only change proposals/specs, not part of the deployed dotfiles.)
 
@@ -23,26 +24,32 @@ There is intentionally **no `common/`/`shared/` config tier**. Genuinely-shared 
 
 `./setup.sh` is the entry point. Clone the repo anywhere (canonically `~/.dotfiles`) and run it — there is no in-place/skip case; it always deploys by symlink. It cascades:
 
-1. **Top-level `setup.sh`** (the dispatcher) — refuses to run as root; detects the OS via `uname -s` → tier (`macos`|`linux`); runs a **repo-scoped** `chmod 700` (a `find` over the repo that **prunes `.git`**, never touching `~/.config`); on macOS **ensures Command Line Tools**; then sources `lib/link.sh` and calls `deploy_tier "$TIER_DIR" "$HOME/.config"` to symlink the tier's app dirs into `~/.config`; then runs `<tier>/setup/.setup.sh` capturing the real status through the `tee` pipe (guarded by `if` so `set -euo pipefail` can't abort before `${PIPESTATUS[0]}` is read) and exits with that true status.
-2. **`<tier>/setup/.setup.sh`** — runs sub-modules in the order declared by its own `ORDER` array. macOS: `brew` then `tweak`. Linux: `pacman`, `yay`, `flatpak`, `app`, `asdf`, then `tweak`. Each module is a directory with its own `.setup.sh`.
-3. **`<tier>/setup/<pkgmgr>/.setup.sh`** — iterates its sibling `*.sh` scripts. For the name-based skip-checks (brew, pacman, yay), **the filename minus `.sh` must equal the package's leaf name** so `brew list` / `pacman -Q` / `yay -Q` recognizes an already-installed package and doesn't reinstall it.
+1. **Top-level `setup.sh`** (the dispatcher) — refuses to run as root; detects the OS via `uname -s` → tier (`macos`|`linux`|`windows`); on Windows runs a **preflight** first (fails fast, before any mutation, if `winget` is missing or a native symlink can't be created — i.e. Developer Mode off); runs a **repo-scoped** `chmod 700` (a `find` over the repo that **prunes `.git`**, never touching `~/.config`; a no-op on Windows/NTFS); on macOS **ensures Command Line Tools**; then sources `lib/link.sh` and deploys — macOS/Linux call `deploy_tier "$TIER_DIR" "$HOME/.config"`; Windows exports `MSYS=winsymlinks:nativestrict` and calls `deploy_manifest "$TIER_DIR" "$TIER_DIR/.links"`; then runs `<tier>/setup/.setup.sh` capturing the real status through the `tee` pipe (guarded by `if` so `set -euo pipefail` can't abort before `${PIPESTATUS[0]}` is read) and exits with that true status.
+2. **`<tier>/setup/.setup.sh`** — runs sub-modules in the order declared by its own `ORDER` array. macOS: `brew` then `tweak`. Linux: `pacman`, `yay`, `flatpak`, `app`, `asdf`, then `tweak`. Windows: `winget` then `tweak`. Each module is a directory with its own `.setup.sh`.
+3. **`<tier>/setup/<pkgmgr>/.setup.sh`** — iterates its sibling `*.sh` scripts. For the name-based skip-checks (brew, pacman, yay, winget), **the filename minus `.sh` must equal the identifier the manager lists by** so an already-installed package isn't reinstalled: `brew list` / `pacman -Q` / `yay -Q` match a package **leaf name**, while `winget list --id "$PKG" -e` matches the **full dotted winget id** (so a Windows install script is named e.g. `Mozilla.Firefox.sh`).
 4. **`<tier>/setup/tweak/.setup.sh`** — same iteration, no skip-check; tweaks must be idempotent (`defaults write`, `duti -s` on macOS; `systemctl`, `ufw`, etc. on Linux).
 
 Each runner captures stdout+stderr to `<script>.log` via `tee`, uses `${PIPESTATUS[0]}` for the real exit (not `tee`'s), deletes the log on success, retains it on failure, and prints an aggregate `❌ Failed: …` / `✅ Installed: …` summary. **Preserve this pattern when editing.**
 
-## Symlink deploy (`lib/link.sh` → `deploy_tier`)
+## Symlink deploy (`lib/link.sh`)
 
-`deploy_tier <tier_dir> <target_dir>` enumerates the **direct children** of the tier dir, skipping the reserved `setup/` dir, and for each app dir/file applies **backup-then-link**:
+Both deploy modes share ONE backup-then-link primitive, `_link_one <src> <dst>`:
 
 - already the correct symlink → **no-op** (idempotent; creates no backup);
 - exists as a real dir/file, a foreign symlink, or a broken symlink → `mv` to `<dst>.bak.<timestamp>` (with a numeric suffix if that name is taken), then symlink;
-- absent → symlink.
+- absent → symlink (creating the destination's parent dir first, for nested Windows targets).
 
-It is **non-destructive** (never `rm -rf` a real target) and **never touches unmanaged `~/.config` entries** (it only iterates tier entries, so `gh/`, `uv/`, `raycast/`, etc. are left alone). Rollback is per-app: remove the symlink, restore its `.bak.<ts>`.
+`_link_one` is **non-destructive** (never `rm -rf` a real target). Two callers:
+
+- **`deploy_tier <tier_dir> <target_dir>`** (macOS/Linux) — enumerates the **direct children** of the tier dir, skipping the reserved `setup/` dir, and links each into the single `<target_dir>` (`~/.config`). It **never touches unmanaged `~/.config` entries** (only iterates tier entries, so `gh/`, `uv/`, `raycast/`, etc. are left alone).
+- **`deploy_manifest <tier_dir> <manifest>`** (Windows) — reads `windows/.links` (`<app>\t<destination>`, `#` comments, blank lines skipped, whitespace trimmed), expands a **leading** env reference in the destination via `_expand_dest` (only `$HOME/.config`/`$HOME`/`$APPDATA`/`$LOCALAPPDATA`/`$USERPROFILE`; no `eval`, no globbing), and links each app to its own destination. A manifest line whose source is missing (or which has no destination) is reported and skipped without aborting the rest, and makes the function return non-zero. The manifest file and `windows/setup/` are never deployed.
+
+Rollback is per-app in both modes: remove the symlink, restore its `.bak.<ts>`.
 
 ## Adding things
 
-- **New package:** create `<tier>/setup/<pkgmgr>/<pkg>.sh` (macOS `brew`; Linux `pacman`/`yay`/`flatpak`/`asdf`/`app`) that installs it. For name-based managers the **filename minus `.sh` must equal the package leaf name** (drives the skip-check). For tapped brew casks, `brew tap` + `brew trust --tap` inside the script.
+- **New package:** create `<tier>/setup/<pkgmgr>/<pkg>.sh` (macOS `brew`; Linux `pacman`/`yay`/`flatpak`/`asdf`/`app`; Windows `winget`) that installs it. For name-based managers the **filename minus `.sh` must equal the skip-check identifier** — the package leaf name for brew/pacman/yay, the **full dotted winget id** for winget (e.g. `Mozilla.Firefox.sh`, installed with `winget install --id "$PKG" -e --accept-package-agreements --accept-source-agreements`). For tapped brew casks, `brew tap` + `brew trust --tap` inside the script.
+- **New Windows app config:** create `windows/<app>/`, then add a `windows/.links` line mapping it to its destination — unlike macOS/Linux, Windows config is NOT auto-tracked-and-deployed by directory; it needs an explicit manifest line.
 - **New system tweak:** create `<tier>/setup/tweak/<name>.sh`. Runs every bootstrap — make it idempotent.
 - **New app config:** create `<app>/` under the relevant tier (`macos/` or `linux/`). **No `.gitignore` allowlisting needed** — the conventional deny-list tracks it automatically. It's symlinked into `~/.config/<app>` on the next `setup.sh`.
 - **New zsh function/alias (macOS):** drop a `<name>.zsh` in `macos/zsh/rc.d/`. `.zshrc` sources all of them. The Linux/fish equivalent is a `<name>.fish` in `linux/fish/conf.d/`.
@@ -70,6 +77,7 @@ Because `~/.config/<app>` is a whole-dir symlink, anything an app **writes** int
 - `ai`: alias for `claude --settings '{"ultracode":true}' --dangerously-skip-permissions`. The `--settings '{"ultracode":true}'` turns on ultracode (xhigh effort + standing dynamic-workflow orchestration) at launch — the only way to activate it from the CLI (`--effort ultracode` collapses to plain `xhigh`; ultracode is session-scoped).
 - `macos/aerospace/aerospace.toml` references `adrianlsy.github.io/AeroSpace` — a personal fork (`AdrianLSY/tap/aerospace-adrianlsy`), not upstream `nikitabobko/AeroSpace`. Hover-to-raise (`[auto-raise]`) is fork-specific.
 - Secrets: a **gitleaks pre-commit hook** (`.pre-commit-config.yaml`, wired up by the brew module) scans staged changes and blocks commits containing secrets. Unlike the old allowlist, the conventional `.gitignore` no longer gates tracking by directory, so the gitleaks hook is the primary content-level defense — keep it installed (`pre-commit install`).
+- **Line endings:** `.gitattributes` pins `*.sh`, `setup.sh`, and `windows/.links` to **`eol=lf`** — all three are parsed by bash (macOS/Linux, and Git Bash/MSYS on Windows), where a stray CRLF breaks shebang parsing and leaves a trailing `\r` on manifest fields. `deploy_manifest` strips `\r` defensively anyway, but the attribute keeps the tracked files clean at the source. (The same file also carries the pre-existing `graphify-out/graph.json merge=graphify` union-merge driver.)
 
 ## graphify
 

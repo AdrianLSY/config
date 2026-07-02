@@ -35,7 +35,7 @@
       "label": "_link_backup_path()",
       "file_type": "code",
       "source_file": "lib/link.sh",
-      "source_location": "L22",
+      "source_location": "L30",
       "metadata": {
         "language": "bash",
         "kind": "bash_function"
@@ -46,10 +46,38 @@
       "norm_label": "_link_backup_path()"
     },
     {
+      "label": "_link_one()",
+      "file_type": "code",
+      "source_file": "lib/link.sh",
+      "source_location": "L55",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "_origin": "ast",
+      "id": "lib_link_link_one",
+      "community": 15,
+      "norm_label": "_link_one()"
+    },
+    {
+      "label": "_expand_dest()",
+      "file_type": "code",
+      "source_file": "lib/link.sh",
+      "source_location": "L115",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "_origin": "ast",
+      "id": "lib_link_expand_dest",
+      "community": 15,
+      "norm_label": "_expand_dest()"
+    },
+    {
       "label": "deploy_tier()",
       "file_type": "code",
       "source_file": "lib/link.sh",
-      "source_location": "L41",
+      "source_location": "L141",
       "metadata": {
         "language": "bash",
         "kind": "bash_function"
@@ -58,6 +86,20 @@
       "id": "lib_link_deploy_tier",
       "community": 15,
       "norm_label": "deploy_tier()"
+    },
+    {
+      "label": "deploy_manifest()",
+      "file_type": "code",
+      "source_file": "lib/link.sh",
+      "source_location": "L200",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "_origin": "ast",
+      "id": "lib_link_deploy_manifest",
+      "community": 15,
+      "norm_label": "deploy_manifest()"
     },
     {
       "label": "init.lua",
@@ -4996,10 +5038,24 @@
       "norm_label": "setup.sh script"
     },
     {
+      "label": "preflight_windows()",
+      "file_type": "code",
+      "source_file": "setup.sh",
+      "source_location": "L56",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "_origin": "ast",
+      "id": "setup_preflight_windows",
+      "community": 23,
+      "norm_label": "preflight_windows()"
+    },
+    {
       "label": "ensure_clt()",
       "file_type": "code",
       "source_file": "setup.sh",
-      "source_location": "L54",
+      "source_location": "L95",
       "metadata": {
         "language": "bash",
         "kind": "bash_function"
@@ -5008,6 +5064,90 @@
       "id": "setup_ensure_clt",
       "community": 23,
       "norm_label": "ensure_clt()"
+    },
+    {
+      "label": ".setup.sh",
+      "file_type": "code",
+      "source_file": "windows/setup/.setup.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_setup",
+      "community": 197,
+      "norm_label": ".setup.sh"
+    },
+    {
+      "label": ".setup.sh script",
+      "file_type": "code",
+      "source_file": "windows/setup/.setup.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_setup_sh__entry",
+      "community": 197,
+      "norm_label": ".setup.sh script"
+    },
+    {
+      "label": ".setup.sh",
+      "file_type": "code",
+      "source_file": "windows/setup/tweak/.setup.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_tweak_setup",
+      "community": 198,
+      "norm_label": ".setup.sh"
+    },
+    {
+      "label": ".setup.sh script",
+      "file_type": "code",
+      "source_file": "windows/setup/tweak/.setup.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_tweak_setup_sh__entry",
+      "community": 198,
+      "norm_label": ".setup.sh script"
+    },
+    {
+      "label": ".setup.sh",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/.setup.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_setup",
+      "community": 199,
+      "norm_label": ".setup.sh"
+    },
+    {
+      "label": ".setup.sh script",
+      "file_type": "code",
+      "source_file": "windows/setup/winget/.setup.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "windows_setup_winget_setup_sh__entry",
+      "community": 199,
+      "norm_label": ".setup.sh script"
     },
     {
       "label": "CLAUDE.md",
@@ -5953,7 +6093,7 @@
       "label": "Design decision: two tiers, no shared config tier",
       "file_type": "document",
       "source_file": "CLAUDE.md",
-      "source_location": "L18",
+      "source_location": "L19",
       "_origin": "ast",
       "id": "claude_design_decision_two_tiers_no_shared_config_tier",
       "community": 2,
@@ -5963,27 +6103,27 @@
       "label": "Bootstrap flow",
       "file_type": "document",
       "source_file": "CLAUDE.md",
-      "source_location": "L22",
+      "source_location": "L23",
       "_origin": "ast",
       "id": "claude_bootstrap_flow",
       "community": 2,
       "norm_label": "bootstrap flow"
     },
     {
-      "label": "Symlink deploy (`lib/link.sh` \u2192 `deploy_tier`)",
+      "label": "Symlink deploy (`lib/link.sh`)",
       "file_type": "document",
       "source_file": "CLAUDE.md",
-      "source_location": "L33",
+      "source_location": "L34",
       "_origin": "ast",
-      "id": "claude_symlink_deploy_lib_link_sh_deploy_tier",
+      "id": "claude_symlink_deploy_lib_link_sh",
       "community": 2,
-      "norm_label": "symlink deploy (`lib/link.sh` \u2192 `deploy_tier`)"
+      "norm_label": "symlink deploy (`lib/link.sh`)"
     },
     {
       "label": "Adding things",
       "file_type": "document",
       "source_file": "CLAUDE.md",
-      "source_location": "L43",
+      "source_location": "L49",
       "_origin": "ast",
       "id": "claude_adding_things",
       "community": 2,
@@ -5993,7 +6133,7 @@
       "label": "Runtime-state hazard (important)",
       "file_type": "document",
       "source_file": "CLAUDE.md",
-      "source_location": "L50",
+      "source_location": "L57",
       "_origin": "ast",
       "id": "claude_runtime_state_hazard_important",
       "community": 2,
@@ -6003,7 +6143,7 @@
       "label": "`.gitignore` (conventional deny-list)",
       "file_type": "document",
       "source_file": "CLAUDE.md",
-      "source_location": "L54",
+      "source_location": "L61",
       "_origin": "ast",
       "id": "claude_gitignore_conventional_deny_list",
       "community": 2,
@@ -6013,7 +6153,7 @@
       "label": "zsh layout (macOS)",
       "file_type": "document",
       "source_file": "CLAUDE.md",
-      "source_location": "L58",
+      "source_location": "L65",
       "_origin": "ast",
       "id": "claude_zsh_layout_macos",
       "community": 2,
@@ -6023,7 +6163,7 @@
       "label": "Multi-account git (`macos/zsh/rc.d/git-multi-account.zsh`, `linux/fish/conf.d/git-multi-account.fish`)",
       "file_type": "document",
       "source_file": "CLAUDE.md",
-      "source_location": "L62",
+      "source_location": "L69",
       "_origin": "ast",
       "id": "claude_multi_account_git_macos_zsh_rc_d_git_multi_account_zsh_linux_fish_conf_d_git_multi_account_fish",
       "community": 2,
@@ -6033,7 +6173,7 @@
       "label": "Other notable bits",
       "file_type": "document",
       "source_file": "CLAUDE.md",
-      "source_location": "L66",
+      "source_location": "L73",
       "_origin": "ast",
       "id": "claude_other_notable_bits",
       "community": 2,
@@ -6043,7 +6183,7 @@
       "label": "graphify",
       "file_type": "document",
       "source_file": "CLAUDE.md",
-      "source_location": "L74",
+      "source_location": "L82",
       "_origin": "ast",
       "id": "claude_graphify",
       "community": 2,
@@ -6073,7 +6213,7 @@
       "label": "Layout",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L11",
+      "source_location": "L13",
       "_origin": "ast",
       "id": "readme_layout",
       "community": 6,
@@ -6083,7 +6223,7 @@
       "label": "Bootstrap",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L29",
+      "source_location": "L35",
       "_origin": "ast",
       "id": "readme_bootstrap",
       "community": 6,
@@ -6093,27 +6233,27 @@
       "label": "Backup-then-link (safe on a machine with an existing `~/.config`)",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L52",
+      "source_location": "L61",
       "_origin": "ast",
       "id": "readme_backup_then_link_safe_on_a_machine_with_an_existing_config",
       "community": 6,
       "norm_label": "backup-then-link (safe on a machine with an existing `~/.config`)"
     },
     {
-      "label": "Prerequisite",
+      "label": "Prerequisites",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L65",
+      "source_location": "L74",
       "_origin": "ast",
-      "id": "readme_prerequisite",
+      "id": "readme_prerequisites",
       "community": 6,
-      "norm_label": "prerequisite"
+      "norm_label": "prerequisites"
     },
     {
       "label": "Adding things",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L71",
+      "source_location": "L86",
       "_origin": "ast",
       "id": "readme_adding_things",
       "community": 6,
@@ -6123,7 +6263,7 @@
       "label": "Runtime state & secrets",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L81",
+      "source_location": "L101",
       "_origin": "ast",
       "id": "readme_runtime_state_secrets",
       "community": 6,
@@ -6133,7 +6273,7 @@
       "label": "Branches",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L92",
+      "source_location": "L112",
       "_origin": "ast",
       "id": "readme_branches",
       "community": 6,
@@ -6565,7 +6705,17 @@
       "relation": "defines",
       "confidence": "EXTRACTED",
       "source_file": "lib/link.sh",
-      "source_location": "L41",
+      "source_location": "L200",
+      "weight": 1.0,
+      "source": "lib_link",
+      "target": "lib_link_deploy_manifest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/link.sh",
+      "source_location": "L141",
       "weight": 1.0,
       "source": "lib_link",
       "target": "lib_link_deploy_tier",
@@ -6575,10 +6725,30 @@
       "relation": "defines",
       "confidence": "EXTRACTED",
       "source_file": "lib/link.sh",
-      "source_location": "L22",
+      "source_location": "L115",
+      "weight": 1.0,
+      "source": "lib_link",
+      "target": "lib_link_expand_dest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/link.sh",
+      "source_location": "L30",
       "weight": 1.0,
       "source": "lib_link",
       "target": "lib_link_link_backup_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/link.sh",
+      "source_location": "L55",
+      "weight": 1.0,
+      "source": "lib_link",
+      "target": "lib_link_link_one",
       "confidence_score": 1.0
     },
     {
@@ -6589,6 +6759,28 @@
       "weight": 1.0,
       "source": "lib_link",
       "target": "lib_link_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/link.sh",
+      "source_location": "L253",
+      "weight": 1.0,
+      "context": "call",
+      "source": "lib_link_deploy_manifest",
+      "target": "lib_link_link_one",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/link.sh",
+      "source_location": "L176",
+      "weight": 1.0,
+      "context": "call",
+      "source": "lib_link_deploy_tier",
+      "target": "lib_link_link_one",
       "confidence_score": 1.0
     },
     {
@@ -8522,10 +8714,20 @@
       "relation": "defines",
       "confidence": "EXTRACTED",
       "source_file": "setup.sh",
-      "source_location": "L54",
+      "source_location": "L95",
       "weight": 1.0,
       "source": "setup",
       "target": "setup_ensure_clt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "setup.sh",
+      "source_location": "L56",
+      "weight": 1.0,
+      "source": "setup",
+      "target": "setup_preflight_windows",
       "confidence_score": 1.0
     },
     {
@@ -8542,11 +8744,52 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "setup.sh",
-      "source_location": "L73",
+      "source_location": "L114",
       "weight": 1.0,
       "context": "call",
       "source": "setup_sh__entry",
       "target": "setup_ensure_clt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "setup.sh",
+      "source_location": "L83",
+      "weight": 1.0,
+      "context": "call",
+      "source": "setup_sh__entry",
+      "target": "setup_preflight_windows",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "windows/setup/.setup.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "windows_setup_setup",
+      "target": "windows_setup_setup_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "windows/setup/tweak/.setup.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "windows_setup_tweak_setup",
+      "target": "windows_setup_tweak_setup_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "windows/setup/winget/.setup.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "windows_setup_winget_setup",
+      "target": "windows_setup_winget_setup_sh__entry",
       "confidence_score": 1.0
     },
     {
@@ -9273,7 +9516,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CLAUDE.md",
-      "source_location": "L43",
+      "source_location": "L49",
       "weight": 1.0,
       "source": "claude_md_claude_claude",
       "target": "claude_adding_things",
@@ -9283,7 +9526,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CLAUDE.md",
-      "source_location": "L22",
+      "source_location": "L23",
       "weight": 1.0,
       "source": "claude_md_claude_claude",
       "target": "claude_bootstrap_flow",
@@ -9293,7 +9536,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CLAUDE.md",
-      "source_location": "L18",
+      "source_location": "L19",
       "weight": 1.0,
       "source": "claude_md_claude_claude",
       "target": "claude_design_decision_two_tiers_no_shared_config_tier",
@@ -9303,7 +9546,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CLAUDE.md",
-      "source_location": "L54",
+      "source_location": "L61",
       "weight": 1.0,
       "source": "claude_md_claude_claude",
       "target": "claude_gitignore_conventional_deny_list",
@@ -9313,7 +9556,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CLAUDE.md",
-      "source_location": "L74",
+      "source_location": "L82",
       "weight": 1.0,
       "source": "claude_md_claude_claude",
       "target": "claude_graphify",
@@ -9323,7 +9566,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CLAUDE.md",
-      "source_location": "L62",
+      "source_location": "L69",
       "weight": 1.0,
       "source": "claude_md_claude_claude",
       "target": "claude_multi_account_git_macos_zsh_rc_d_git_multi_account_zsh_linux_fish_conf_d_git_multi_account_fish",
@@ -9333,7 +9576,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CLAUDE.md",
-      "source_location": "L66",
+      "source_location": "L73",
       "weight": 1.0,
       "source": "claude_md_claude_claude",
       "target": "claude_other_notable_bits",
@@ -9343,7 +9586,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CLAUDE.md",
-      "source_location": "L50",
+      "source_location": "L57",
       "weight": 1.0,
       "source": "claude_md_claude_claude",
       "target": "claude_runtime_state_hazard_important",
@@ -9353,10 +9596,10 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CLAUDE.md",
-      "source_location": "L33",
+      "source_location": "L34",
       "weight": 1.0,
       "source": "claude_md_claude_claude",
-      "target": "claude_symlink_deploy_lib_link_sh_deploy_tier",
+      "target": "claude_symlink_deploy_lib_link_sh",
       "confidence_score": 1.0
     },
     {
@@ -9373,7 +9616,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CLAUDE.md",
-      "source_location": "L58",
+      "source_location": "L65",
       "weight": 1.0,
       "source": "claude_md_claude_claude",
       "target": "claude_zsh_layout_macos",
@@ -9393,7 +9636,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L71",
+      "source_location": "L86",
       "weight": 1.0,
       "source": "readme_config",
       "target": "readme_adding_things",
@@ -9403,7 +9646,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L29",
+      "source_location": "L35",
       "weight": 1.0,
       "source": "readme_config",
       "target": "readme_bootstrap",
@@ -9413,7 +9656,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L92",
+      "source_location": "L112",
       "weight": 1.0,
       "source": "readme_config",
       "target": "readme_branches",
@@ -9423,7 +9666,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L11",
+      "source_location": "L13",
       "weight": 1.0,
       "source": "readme_config",
       "target": "readme_layout",
@@ -9433,7 +9676,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L81",
+      "source_location": "L101",
       "weight": 1.0,
       "source": "readme_config",
       "target": "readme_runtime_state_secrets",
@@ -9443,7 +9686,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L52",
+      "source_location": "L61",
       "weight": 1.0,
       "source": "readme_bootstrap",
       "target": "readme_backup_then_link_safe_on_a_machine_with_an_existing_config",
@@ -9453,10 +9696,10 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L65",
+      "source_location": "L74",
       "weight": 1.0,
       "source": "readme_bootstrap",
-      "target": "readme_prerequisite",
+      "target": "readme_prerequisites",
       "confidence_score": 1.0
     },
     {
@@ -9861,5 +10104,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "1ec668a2a51169c9b3c6aec813879cbc8a4840aa"
+  "built_at_commit": "3cfdf29757d1d963ec005784f18b9fe65cae201a"
 }

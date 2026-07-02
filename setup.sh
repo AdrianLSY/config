@@ -25,11 +25,16 @@ fi
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # --- Detect OS / select tier ----------------------------------------------
+# Git Bash/MSYS/Cygwin report a `*_NT-…` uname (e.g. MINGW64_NT-10.0) → the
+# native-Windows `windows` tier. NOTE: WSL reports `Linux`, so it correctly
+# selects the `linux` tier — the `windows` tier is for native Windows reached
+# through Git Bash/MSYS, not WSL.
 case "$(uname -s)" in
-    Darwin) TIER="macos" ;;
-    Linux)  TIER="linux" ;;
+    Darwin)              TIER="macos" ;;
+    Linux)               TIER="linux" ;;
+    MINGW*|MSYS*|CYGWIN*) TIER="windows" ;;
     *)
-        echo "🔴 Unsupported OS: $(uname -s). Only macOS (Darwin) and Linux are supported." >&2
+        echo "🔴 Unsupported OS: $(uname -s). Only macOS (Darwin), Linux, and Windows (Git Bash/MSYS) are supported." >&2
         exit 1
         ;;
 esac
@@ -42,9 +47,45 @@ fi
 
 echo "🔧 Bootstrapping tier: $TIER"
 
+# --- Windows: preflight BEFORE any mutation --------------------------------
+# On the Windows (Git Bash/MSYS) tier, fail fast — before the chmod pass, any
+# backup, any symlink, or any install — if prerequisites are missing: winget
+# must be on PATH, and the shell must be able to create a NATIVE symlink
+# (Developer Mode on, or an elevated shell). The symlink probe is self-contained
+# and removes its test artifact regardless of outcome. No-op off Windows.
+preflight_windows() {
+    [ "$TIER" = "windows" ] || return 0
+
+    if ! command -v winget >/dev/null 2>&1; then
+        echo "🔴 winget not found on PATH. Install the App Installer (Windows Package Manager) and re-run." >&2
+        exit 1
+    fi
+
+    local probe target link
+    probe="$(mktemp -d 2>/dev/null || echo "${TMPDIR:-${TMP:-/tmp}}/dotfiles-preflight.$$")"
+    mkdir -p "$probe" 2>/dev/null || true
+    target="$probe/target"
+    link="$probe/link"
+    if [ ! -d "$probe" ] || ! : > "$target" 2>/dev/null; then
+        rm -rf "$probe" 2>/dev/null || true
+        echo "🔴 Windows preflight: could not create a temp dir to test symlink capability." >&2
+        exit 1
+    fi
+    MSYS=winsymlinks:nativestrict ln -s "$target" "$link" 2>/dev/null || true
+    if [ ! -L "$link" ]; then
+        rm -rf "$probe" 2>/dev/null || true
+        echo "🔴 Cannot create a native symlink. Enable Developer Mode (Settings → Privacy & security → For developers) or run from an elevated shell, then re-run." >&2
+        exit 1
+    fi
+    rm -rf "$probe" 2>/dev/null || true
+    echo "🟢 Windows preflight passed (winget present, native symlinks OK)."
+}
+preflight_windows
+
 # --- Repo-scoped permissions -----------------------------------------------
 # Make repo files user-executable/readable. SCOPED TO THE REPO ONLY (never
 # ~/.config, never .git internals). The -prune drops the whole .git subtree.
+# (On Windows/NTFS chmod is a harmless no-op; left in place unconditionally.)
 find "$DIR" -path "$DIR/.git" -prune -o -type f -exec chmod 700 {} +
 
 # --- macOS: ensure Apple Command Line Tools --------------------------------
@@ -79,10 +120,23 @@ ensure_clt
 # shellcheck disable=SC1091
 . "$DIR/lib/link.sh"
 
-echo "🔗 Deploying $TIER config into $HOME/.config ..."
-if ! deploy_tier "$TIER_DIR" "$HOME/.config"; then
-    echo "🔴 Symlink deployment failed." >&2
-    exit 1
+# macOS/Linux link every tier app dir into the single ~/.config target. Windows
+# has no single target (config scatters across %APPDATA%, %LOCALAPPDATA%, …), so
+# it deploys from an explicit windows/.links manifest to per-app destinations,
+# with MSYS=winsymlinks:nativestrict exported so `ln -s` creates native symlinks.
+if [ "$TIER" = "windows" ]; then
+    export MSYS=winsymlinks:nativestrict
+    echo "🔗 Deploying $TIER config from $TIER_DIR/.links ..."
+    if ! deploy_manifest "$TIER_DIR" "$TIER_DIR/.links"; then
+        echo "🔴 Symlink deployment failed." >&2
+        exit 1
+    fi
+else
+    echo "🔗 Deploying $TIER config into $HOME/.config ..."
+    if ! deploy_tier "$TIER_DIR" "$HOME/.config"; then
+        echo "🔴 Symlink deployment failed." >&2
+        exit 1
+    fi
 fi
 
 # --- Run the tier's own bootstrap cascade ----------------------------------
