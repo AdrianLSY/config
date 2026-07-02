@@ -36,6 +36,10 @@
 .claude/settings.local.json
 .claude/scheduled_tasks.lock
 
+# ── OpenSpec (local-only change tooling) ──────────────────────────────────────
+# Change proposals/specs are working notes, not part of the deployed dotfiles.
+openspec/
+
 # ── Caches ───────────────────────────────────────────────────────────────────
 **/__pycache__/
 *.pyc
