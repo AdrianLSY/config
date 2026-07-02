@@ -14,8 +14,8 @@ after-startup-command = []
 # Start AeroSpace at login
 start-at-login = true
 
-# Notify Sketchybar about workspace change and update icons
-exec-on-workspace-change = ['/bin/bash', '-c']
+# Run a command on workspace change (e.g. notify a status bar). Empty = disabled.
+exec-on-workspace-change = []
 
 # Normalizations. See: https://adrianlsy.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers = false

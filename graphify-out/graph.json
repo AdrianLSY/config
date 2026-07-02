@@ -3210,34 +3210,6 @@
       "norm_label": "aldente.sh script"
     },
     {
-      "label": "appcleaner.sh",
-      "file_type": "code",
-      "source_file": "macos/setup/brew/appcleaner.sh",
-      "source_location": "L1",
-      "metadata": {
-        "language": "bash",
-        "kind": "file"
-      },
-      "_origin": "ast",
-      "id": "macos_setup_brew_appcleaner",
-      "community": 119,
-      "norm_label": "appcleaner.sh"
-    },
-    {
-      "label": "appcleaner.sh script",
-      "file_type": "code",
-      "source_file": "macos/setup/brew/appcleaner.sh",
-      "source_location": "L1",
-      "metadata": {
-        "language": "bash",
-        "kind": "bash_entrypoint"
-      },
-      "_origin": "ast",
-      "id": "macos_setup_brew_appcleaner_sh__entry",
-      "community": 119,
-      "norm_label": "appcleaner.sh script"
-    },
-    {
       "label": "awscli.sh",
       "file_type": "code",
       "source_file": "macos/setup/brew/awscli.sh",
@@ -4636,6 +4608,34 @@
       "id": "macos_setup_brew_zed_sh__entry",
       "community": 170,
       "norm_label": "zed.sh script"
+    },
+    {
+      "label": "zoxide.sh",
+      "file_type": "code",
+      "source_file": "macos/setup/brew/zoxide.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "macos_setup_brew_zoxide",
+      "community": 119,
+      "norm_label": "zoxide.sh"
+    },
+    {
+      "label": "zoxide.sh script",
+      "file_type": "code",
+      "source_file": "macos/setup/brew/zoxide.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "macos_setup_brew_zoxide_sh__entry",
+      "community": 119,
+      "norm_label": "zoxide.sh script"
     },
     {
       "label": ".setup.sh",
@@ -8081,16 +8081,6 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "macos/setup/brew/appcleaner.sh",
-      "source_location": "L1",
-      "weight": 1.0,
-      "source": "macos_setup_brew_appcleaner",
-      "target": "macos_setup_brew_appcleaner_sh__entry",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
       "source_file": "macos/setup/brew/awscli.sh",
       "source_location": "L1",
       "weight": 1.0,
@@ -8586,6 +8576,16 @@
       "weight": 1.0,
       "source": "macos_setup_brew_zed",
       "target": "macos_setup_brew_zed_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "macos/setup/brew/zoxide.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "macos_setup_brew_zoxide",
+      "target": "macos_setup_brew_zoxide_sh__entry",
       "confidence_score": 1.0
     },
     {
@@ -10163,5 +10163,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "663b4b9a42dff2c0e9fbff4efa9af38410908ba8"
+  "built_at_commit": "5186f7f866e8cbee9c4b1d17dd5b4c1ff1df63de"
 }

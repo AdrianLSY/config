@@ -37,4 +37,4 @@ if [[ ! -f $ZDOTDIR/.zshrc.zwc || $ZDOTDIR/.zshrc -nt $ZDOTDIR/.zshrc.zwc ]]; th
   zcompile $ZDOTDIR/.zshrc
 fi
 
-. "$HOME/.local/bin/env"
+[ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
