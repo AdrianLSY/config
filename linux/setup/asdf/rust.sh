@@ -1,7 +1,9 @@
 #!/bin/bash
 set -e
 
-asdf plugin add rust
+# Tolerate the partial state where the plugin was added but the version
+# install failed — a bare `plugin add` errors on an already-added plugin.
+asdf plugin list | grep -qx "rust" || asdf plugin add rust
 asdf install rust latest
 
 VERSION=$(asdf list rust | tail -1 | tr -d ' *')

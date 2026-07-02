@@ -7,6 +7,8 @@
 #     no eval, no globbing): $HOME/.config, $HOME, $APPDATA, $LOCALAPPDATA,
 #     $USERPROFILE.
 #   - Fields are separated by a single TAB, so destinations may contain spaces.
+#   - Anything after a SECOND TAB is an inline comment and is ignored, so a
+#     line may carry a trailing note: <app><TAB><destination><TAB># note
 #   - Blank lines and lines starting with # are ignored; surrounding
 #     whitespace is trimmed.
 #

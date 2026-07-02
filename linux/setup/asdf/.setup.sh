@@ -4,6 +4,11 @@
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SELF="$(basename "$0")"
 
+# The scripts below edit ~/.tool-versions with sed -i, which errors if the
+# file is missing — and asdf never creates it on install, so a fresh machine
+# starts without one. An empty file is valid to asdf.
+[ -f "$HOME/.tool-versions" ] || touch "$HOME/.tool-versions"
+
 echo "Starting asdf installs..."
 
 FAILED=()

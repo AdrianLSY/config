@@ -1,6 +1,7 @@
 #!/bin/bash
-
-set -e
+# Deliberately NO `set -e` — matching the macOS/Linux tweak runners: each
+# tweak is failure-isolated via PIPESTATUS + FAILED/SUCCESS accounting, and
+# one failing tweak must not abort the loop.
 
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SELF="$(basename "$0")"

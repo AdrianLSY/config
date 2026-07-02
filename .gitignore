@@ -47,7 +47,6 @@ openspec/
 # ── graphify-out: track only the queryable graph (union-merged via
 # .gitattributes). The rest is machine-specific (.graphify_python/.graphify_root
 # hold absolute paths) or regenerable locally by the git hook (graph.html,
-# GRAPH_REPORT.md), so it stays ignored. NOTE: after this restructure the tracked
-# graph.json paths are stale — re-run `graphify update .` post-migration.
+# GRAPH_REPORT.md), so it stays ignored.
 graphify-out/*
 !graphify-out/graph.json

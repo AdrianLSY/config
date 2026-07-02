@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+# NOTE: the double-y is intentional — the PyPI package is `graphifyy`
+# (plain `graphify` does not exist on PyPI). Verified 2026-07-02.
 uv tool install graphifyy
 
 # graphify hook install / git config both act on the current repo. The repo now

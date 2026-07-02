@@ -49,14 +49,20 @@ git clone https://github.com/AdrianLSY/config.git ~/.dotfiles
    `windows` tier (errors on anything else).
 3. On Windows, runs a **preflight** (before any change): errors out if `winget`
    is missing or a native symlink can't be created (Developer Mode off).
-4. Runs a **repo-scoped** `chmod` (never touches `~/.config` or `.git`).
+4. Runs a **repo-scoped, mode-preserving** `chmod u+rwX` (never touches
+   `~/.config` or `.git`, and never flips git-tracked file modes — a bootstrap
+   leaves `git status` clean).
 5. On macOS, **ensures Command Line Tools** (git + clang, which Homebrew needs).
 6. **Deploys the tier's configs** — macOS/Linux symlink each app dir into
    `~/.config` via backup-then-link (skipping the reserved `setup/`); Windows
    links each app to its manifest destination (`windows/.links`).
 7. Runs the tier's `setup/.setup.sh` cascade (macOS: `brew` → `tweak`; Linux:
    `pacman` → `yay` → `flatpak` → `app` → `asdf` → `tweak`; Windows: `winget` →
-   `tweak`), then exits with the cascade's true status.
+   `tweak`), then exits with the cascade's true status. The runners provision
+   what a fresh machine lacks: the macOS runner puts brew on `PATH` for the
+   tweak phase (a first run from a stock terminal works end-to-end), the
+   flatpak runner adds the `flathub` remote, and the asdf runner creates
+   `~/.tool-versions`.
 
 ### Backup-then-link (safe on a machine with an existing `~/.config`)
 
@@ -70,6 +76,11 @@ For each app dir/file in the tier, `setup.sh`:
 Nothing is ever overwritten without a timestamped backup, and **unmanaged
 `~/.config` entries** (`gh/`, `uv/`, `raycast/`, …) are never touched. Re-running
 is idempotent. To roll back an app: remove its symlink and restore the `.bak.<ts>`.
+
+The same rule extends to the tweaks: the macOS zsh tweak backs up a
+pre-existing `~/.zshrc`/`~/.zprofile` to `<file>.bak.<timestamp>` instead of
+deleting it, and a re-run of the whole bootstrap makes zero changes — no new
+backups, no package reinstalls, and a clean `git status` in the repo.
 
 ### Prerequisites
 
@@ -88,7 +99,8 @@ is idempotent. To roll back an app: remove its symlink and restore the `.bak.<ts
 - **Package:** create `<tier>/setup/<pkgmgr>/<pkg>.sh` (macOS `brew`; Linux
   `pacman`/`yay`/`flatpak`/`asdf`/`app`; Windows `winget`). For name-based
   managers **the filename minus `.sh` must equal the skip-check identifier** —
-  the package leaf name for brew/pacman/yay, the full dotted winget id for winget
+  the package leaf name for brew/pacman/yay (e.g. `aws-cli-v2.sh` to match
+  `pacman -Q aws-cli-v2`), the full dotted winget id for winget
   (e.g. `Mozilla.Firefox.sh`).
 - **System tweak:** create `<tier>/setup/tweak/<name>.sh`. Runs every bootstrap,
   so make it idempotent.

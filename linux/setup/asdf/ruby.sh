@@ -1,7 +1,9 @@
 #!/bin/bash
 set -e
 
-asdf plugin add ruby
+# Tolerate the partial state where the plugin was added but the version
+# install failed — a bare `plugin add` errors on an already-added plugin.
+asdf plugin list | grep -qx "ruby" || asdf plugin add ruby
 asdf install ruby latest
 
 VERSION=$(asdf list ruby | tail -1 | tr -d ' *')

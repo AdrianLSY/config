@@ -5,6 +5,21 @@ set -e
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SELF="$(basename "$0")"
 
+# Modules run as SIBLING processes, so the shellenv the brew module evals
+# internally never reaches the tweak module. On a fresh machine (stock
+# terminal, .zprofile not yet in effect) tweaks that call brew-installed CLIs
+# (duti, uv, pre-commit → the gitleaks hook) would fail or silently skip.
+# Re-checked before every module so the run right after brew's first install
+# picks it up. Probes both prefixes (Apple Silicon / Intel).
+ensure_brew_path() {
+    command -v brew &>/dev/null && return 0
+    if [ -x /opt/homebrew/bin/brew ]; then
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+    elif [ -x /usr/local/bin/brew ]; then
+        eval "$(/usr/local/bin/brew shellenv)"
+    fi
+}
+
 echo "Starting setup for all modules..."
 
 ORDER=(
@@ -14,8 +29,10 @@ ORDER=(
 
 FAILED=()
 SUCCESS=()
+SKIPPED=()
 
 for BASENAME in "${ORDER[@]}"; do
+    ensure_brew_path
     SUBDIR="$DIR/$BASENAME"
     SETUP_SH="$SUBDIR/.setup.sh"
 

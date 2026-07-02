@@ -23,7 +23,8 @@ fi
 
 export ELIXIR_OTP_RELEASE="$OTP_VERSION"
 
-asdf plugin add elixir
+# Same partial-state guard as erlang above.
+asdf plugin list | grep -qx "elixir" || asdf plugin add elixir
 asdf install elixir latest
 
 VERSION=$(asdf list elixir | tail -1 | tr -d ' *')

@@ -2,4 +2,5 @@
 set -e
 
 defaults write com.apple.Finder AppleShowAllFiles true
-killall Finder
+# Finder may not be running (e.g. bootstrap over SSH) — don't fail the tweak.
+killall Finder || true

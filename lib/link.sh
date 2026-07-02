@@ -189,9 +189,11 @@ deploy_tier() {
 
 # deploy_manifest <tier_dir> <manifest>
 # Windows deploy: link each app named in <manifest> to its own destination via
-# _link_one. Manifest lines are TAB-separated "<app>\t<destination>"; blank lines
-# and lines beginning with `#` are skipped; leading/trailing whitespace in each
-# field is stripped; the destination's LEADING env reference is expanded by
+# _link_one. Manifest lines are TAB-separated "<app>\t<destination>[\t# comment]";
+# everything after the SECOND tab is an inline comment and is discarded (a
+# destination can never legitimately contain a tab — NTFS forbids it). Blank
+# lines and lines beginning with `#` are skipped; leading/trailing whitespace in
+# each field is stripped; the destination's LEADING env reference is expanded by
 # _expand_dest. The manifest file itself and the reserved `setup/` dir are never
 # deployed (deploy is manifest-line-driven, not child-enumeration). A line whose
 # <app> source is missing (or which has no destination) is reported and skipped —
@@ -199,7 +201,7 @@ deploy_tier() {
 # so the caller surfaces the manifest error. Does not `exit` (safe to source).
 deploy_manifest() {
     local _dm_tier_dir _dm_manifest _dm_linked _dm_backed _dm_ok _dm_err
-    local app dest src
+    local app dest src _dm_comment
     _dm_tier_dir="$1"
     _dm_manifest="$2"
 
@@ -217,9 +219,13 @@ deploy_manifest() {
     _dm_ok=0
     _dm_err=0
 
-    # IFS=tab splits each line into <app> and <dest> on the field separator; the
-    # `|| [ -n "$app" ]` tail processes a final line lacking a trailing newline.
-    while IFS=$'\t' read -r app dest || [ -n "$app" ]; do
+    # IFS=tab splits each line into <app>, <dest>, and a throwaway third field
+    # that swallows any inline `# comment` after the second tab (read gives the
+    # last variable ALL remaining fields, so without it the comment would be
+    # glued onto <dest> and corrupt the symlink target). The `|| [ -n "$app" ]`
+    # tail processes a final line lacking a trailing newline.
+    # shellcheck disable=SC2034  # _dm_comment is intentionally unused
+    while IFS=$'\t' read -r app dest _dm_comment || [ -n "$app" ]; do
         # Strip CR (a .links saved with CRLF endings on Windows leaves a trailing
         # \r on the last field; GNU sed's [[:space:]] does NOT match \r, so a
         # stray CR would silently corrupt the symlink target) then trim

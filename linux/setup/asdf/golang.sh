@@ -1,7 +1,9 @@
 #!/bin/bash
 set -e
 
-asdf plugin add golang
+# Tolerate the partial state where the plugin was added but the version
+# install failed — a bare `plugin add` errors on an already-added plugin.
+asdf plugin list | grep -qx "golang" || asdf plugin add golang
 asdf install golang latest
 
 VERSION=$(asdf list golang | tail -1 | tr -d ' *')

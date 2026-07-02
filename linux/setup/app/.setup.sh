@@ -6,6 +6,12 @@ set -e
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SELF="$(basename "$0")"
 
+# The installers below drop binaries into user-local dirs (~/.local/bin for
+# zed/claude/zoxide, ~/.pulumi/bin for pulumi) that a non-login bash won't
+# have on PATH — without this the `command -v` skip-check misses them and
+# every bootstrap re-downloads. Matches the interactive-shell PATH fish sets.
+export PATH="$HOME/.local/bin:$HOME/.pulumi/bin:$PATH"
+
 echo "Starting generic app installs..."
 
 FAILED=()

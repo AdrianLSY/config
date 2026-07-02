@@ -18,6 +18,7 @@ ORDER=(
 
 FAILED=()
 SUCCESS=()
+SKIPPED=()
 
 for BASENAME in "${ORDER[@]}"; do
     SUBDIR="$DIR/$BASENAME"

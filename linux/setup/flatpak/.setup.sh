@@ -10,6 +10,11 @@ fi
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SELF="$(basename "$0")"
 
+# Arch's flatpak package configures NO remotes — every install script below
+# names flathub explicitly, so make sure it exists on a fresh machine.
+echo "Ensuring flathub remote..."
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
 echo "Updating flatpak remotes..."
 flatpak update --appstream -y
 
@@ -17,9 +22,6 @@ echo "Starting Flatpak installs..."
 
 FAILED=()
 SUCCESS=()
-
-LOGDIR="$DIR/logs"
-mkdir -p "$LOGDIR"
 
 for file in "$DIR"/*.sh; do
     BASENAME="$(basename "$file")"
@@ -36,7 +38,8 @@ for file in "$DIR"/*.sh; do
         continue
     fi
 
-    LOGFILE="$LOGDIR/$BASENAME.log"
+    # Log beside the script like every other runner (retained log = failure).
+    LOGFILE="$DIR/$BASENAME.log"
     echo "Installing $APP_ID..."
     bash "$file" 2>&1 | tee "$LOGFILE"
     STATUS=${PIPESTATUS[0]}

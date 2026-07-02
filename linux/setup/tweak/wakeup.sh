@@ -23,9 +23,10 @@
 
 set -e
 
-# Disables all USB devices from waking the system
-if [ ! -f "/etc/systemd/system/wakeup.service" ]; then
-    sudo tee /etc/systemd/system/wakeup.service > /dev/null << EOF
+# Disables all USB devices from waking the system.
+# The unit is (re)written on every run so content edits here actually deploy;
+# the old [ ! -f ] guard silently pinned machines to the first-ever version.
+sudo tee /etc/systemd/system/wakeup.service > /dev/null << EOF
 [Unit]
 Description=Disable ACPI wakeup devices after boot
 After=multi-user.target
@@ -37,7 +38,8 @@ ExecStart=$HOME/.config/hypr/scripts/wakeup
 [Install]
 WantedBy=multi-user.target
 EOF
-    sudo systemctl enable wakeup.service
-fi
+
+sudo systemctl daemon-reload
+sudo systemctl enable wakeup.service
 
 "$HOME/.config/hypr/scripts/wakeup"

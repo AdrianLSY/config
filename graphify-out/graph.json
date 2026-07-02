@@ -91,7 +91,7 @@
       "label": "deploy_manifest()",
       "file_type": "code",
       "source_file": "lib/link.sh",
-      "source_location": "L200",
+      "source_location": "L202",
       "metadata": {
         "language": "bash",
         "kind": "bash_function"
@@ -468,6 +468,20 @@
       "id": "linux_setup_app_setup_sh__entry",
       "community": 32,
       "norm_label": ".setup.sh script"
+    },
+    {
+      "label": "PATH",
+      "file_type": "code",
+      "source_file": "linux/setup/app/.setup.sh",
+      "source_location": "L13",
+      "metadata": {
+        "language": "bash",
+        "kind": "code"
+      },
+      "_origin": "ast",
+      "id": "linux_setup_app_setup_path",
+      "community": 32,
+      "norm_label": "path"
     },
     {
       "label": "claude.sh",
@@ -1240,32 +1254,32 @@
       "norm_label": ".setup.sh script"
     },
     {
-      "label": "aws.sh",
+      "label": "aws-cli-v2.sh",
       "file_type": "code",
-      "source_file": "linux/setup/pacman/aws.sh",
+      "source_file": "linux/setup/pacman/aws-cli-v2.sh",
       "source_location": "L1",
       "metadata": {
         "language": "bash",
         "kind": "file"
       },
       "_origin": "ast",
-      "id": "linux_setup_pacman_aws",
+      "id": "linux_setup_pacman_aws_cli_v2",
       "community": 54,
-      "norm_label": "aws.sh"
+      "norm_label": "aws-cli-v2.sh"
     },
     {
-      "label": "aws.sh script",
+      "label": "aws-cli-v2.sh script",
       "file_type": "code",
-      "source_file": "linux/setup/pacman/aws.sh",
+      "source_file": "linux/setup/pacman/aws-cli-v2.sh",
       "source_location": "L1",
       "metadata": {
         "language": "bash",
         "kind": "bash_entrypoint"
       },
       "_origin": "ast",
-      "id": "linux_setup_pacman_aws_sh__entry",
+      "id": "linux_setup_pacman_aws_cli_v2_sh__entry",
       "community": 54,
-      "norm_label": "aws.sh script"
+      "norm_label": "aws-cli-v2.sh script"
     },
     {
       "label": "blueman.sh",
@@ -3096,6 +3110,20 @@
       "id": "macos_setup_setup_sh__entry",
       "community": 171,
       "norm_label": ".setup.sh script"
+    },
+    {
+      "label": "ensure_brew_path()",
+      "file_type": "code",
+      "source_file": "macos/setup/.setup.sh",
+      "source_location": "L14",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_function"
+      },
+      "_origin": "ast",
+      "id": "macos_setup_setup_ensure_brew_path",
+      "community": 171,
+      "norm_label": "ensure_brew_path()"
     },
     {
       "label": ".setup.sh",
@@ -5055,7 +5083,7 @@
       "label": "ensure_clt()",
       "file_type": "code",
       "source_file": "setup.sh",
-      "source_location": "L95",
+      "source_location": "L99",
       "metadata": {
         "language": "bash",
         "kind": "bash_function"
@@ -6200,14 +6228,14 @@
       "norm_label": "readme.md"
     },
     {
-      "label": "config",
+      "label": "Device Onbording",
       "file_type": "document",
       "source_file": "README.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "readme_config",
+      "id": "readme_device_onbording",
       "community": 6,
-      "norm_label": "config"
+      "norm_label": "device onbording"
     },
     {
       "label": "Layout",
@@ -6233,7 +6261,7 @@
       "label": "Backup-then-link (safe on a machine with an existing `~/.config`)",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L61",
+      "source_location": "L67",
       "_origin": "ast",
       "id": "readme_backup_then_link_safe_on_a_machine_with_an_existing_config",
       "community": 6,
@@ -6243,7 +6271,7 @@
       "label": "Prerequisites",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L74",
+      "source_location": "L85",
       "_origin": "ast",
       "id": "readme_prerequisites",
       "community": 6,
@@ -6253,7 +6281,7 @@
       "label": "Adding things",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L86",
+      "source_location": "L97",
       "_origin": "ast",
       "id": "readme_adding_things",
       "community": 6,
@@ -6263,7 +6291,7 @@
       "label": "Runtime state & secrets",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L101",
+      "source_location": "L113",
       "_origin": "ast",
       "id": "readme_runtime_state_secrets",
       "community": 6,
@@ -6273,7 +6301,7 @@
       "label": "Branches",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L112",
+      "source_location": "L129",
       "_origin": "ast",
       "id": "readme_branches",
       "community": 6,
@@ -6705,7 +6733,7 @@
       "relation": "defines",
       "confidence": "EXTRACTED",
       "source_file": "lib/link.sh",
-      "source_location": "L200",
+      "source_location": "L202",
       "weight": 1.0,
       "source": "lib_link",
       "target": "lib_link_deploy_manifest",
@@ -6765,7 +6793,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "lib/link.sh",
-      "source_location": "L253",
+      "source_location": "L259",
       "weight": 1.0,
       "context": "call",
       "source": "lib_link_deploy_manifest",
@@ -6986,6 +7014,16 @@
       "weight": 1.0,
       "source": "linux_setup_setup",
       "target": "linux_setup_setup_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "linux/setup/app/.setup.sh",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "linux_setup_app_setup",
+      "target": "linux_setup_app_setup_path",
       "confidence_score": 1.0
     },
     {
@@ -7281,11 +7319,11 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "linux/setup/pacman/aws.sh",
+      "source_file": "linux/setup/pacman/aws-cli-v2.sh",
       "source_location": "L1",
       "weight": 1.0,
-      "source": "linux_setup_pacman_aws",
-      "target": "linux_setup_pacman_aws_sh__entry",
+      "source": "linux_setup_pacman_aws_cli_v2",
+      "target": "linux_setup_pacman_aws_cli_v2_sh__entry",
       "confidence_score": 1.0
     },
     {
@@ -7980,6 +8018,16 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "source_file": "macos/setup/.setup.sh",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "macos_setup_setup",
+      "target": "macos_setup_setup_ensure_brew_path",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "macos/setup/.setup.sh",
@@ -7987,6 +8035,17 @@
       "weight": 1.0,
       "source": "macos_setup_setup",
       "target": "macos_setup_setup_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "macos/setup/.setup.sh",
+      "source_location": "L35",
+      "weight": 1.0,
+      "context": "call",
+      "source": "macos_setup_setup_sh__entry",
+      "target": "macos_setup_setup_ensure_brew_path",
       "confidence_score": 1.0
     },
     {
@@ -8714,7 +8773,7 @@
       "relation": "defines",
       "confidence": "EXTRACTED",
       "source_file": "setup.sh",
-      "source_location": "L95",
+      "source_location": "L99",
       "weight": 1.0,
       "source": "setup",
       "target": "setup_ensure_clt",
@@ -8744,7 +8803,7 @@
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "setup.sh",
-      "source_location": "L114",
+      "source_location": "L118",
       "weight": 1.0,
       "context": "call",
       "source": "setup_sh__entry",
@@ -9629,16 +9688,16 @@
       "source_location": "L1",
       "weight": 1.0,
       "source": "readme",
-      "target": "readme_config",
+      "target": "readme_device_onbording",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L86",
+      "source_location": "L97",
       "weight": 1.0,
-      "source": "readme_config",
+      "source": "readme_device_onbording",
       "target": "readme_adding_things",
       "confidence_score": 1.0
     },
@@ -9648,7 +9707,7 @@
       "source_file": "README.md",
       "source_location": "L35",
       "weight": 1.0,
-      "source": "readme_config",
+      "source": "readme_device_onbording",
       "target": "readme_bootstrap",
       "confidence_score": 1.0
     },
@@ -9656,9 +9715,9 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L112",
+      "source_location": "L129",
       "weight": 1.0,
-      "source": "readme_config",
+      "source": "readme_device_onbording",
       "target": "readme_branches",
       "confidence_score": 1.0
     },
@@ -9668,7 +9727,7 @@
       "source_file": "README.md",
       "source_location": "L13",
       "weight": 1.0,
-      "source": "readme_config",
+      "source": "readme_device_onbording",
       "target": "readme_layout",
       "confidence_score": 1.0
     },
@@ -9676,9 +9735,9 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L101",
+      "source_location": "L113",
       "weight": 1.0,
-      "source": "readme_config",
+      "source": "readme_device_onbording",
       "target": "readme_runtime_state_secrets",
       "confidence_score": 1.0
     },
@@ -9686,7 +9745,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L61",
+      "source_location": "L67",
       "weight": 1.0,
       "source": "readme_bootstrap",
       "target": "readme_backup_then_link_safe_on_a_machine_with_an_existing_config",
@@ -9696,7 +9755,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L74",
+      "source_location": "L85",
       "weight": 1.0,
       "source": "readme_bootstrap",
       "target": "readme_prerequisites",
@@ -10104,5 +10163,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "3cfdf29757d1d963ec005784f18b9fe65cae201a"
+  "built_at_commit": "663b4b9a42dff2c0e9fbff4efa9af38410908ba8"
 }

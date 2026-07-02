@@ -83,10 +83,14 @@ preflight_windows() {
 preflight_windows
 
 # --- Repo-scoped permissions -----------------------------------------------
-# Make repo files user-executable/readable. SCOPED TO THE REPO ONLY (never
-# ~/.config, never .git internals). The -prune drops the whole .git subtree.
+# Make repo files user-read/writable WITHOUT touching the executable bit git
+# tracks: `u+rwX` (capital X) adds execute only to files that are already
+# executable, so tracked-as-644 files stay 644 and a bootstrap never dirties
+# `git status` with mode-only diffs (chmod 700 here used to flip every 644
+# file to 755). SCOPED TO THE REPO ONLY (never ~/.config, never .git
+# internals). The -prune drops the whole .git subtree.
 # (On Windows/NTFS chmod is a harmless no-op; left in place unconditionally.)
-find "$DIR" -path "$DIR/.git" -prune -o -type f -exec chmod 700 {} +
+find "$DIR" -path "$DIR/.git" -prune -o -type f -exec chmod u+rwX {} +
 
 # --- macOS: ensure Apple Command Line Tools --------------------------------
 # A bare macOS machine has neither git nor clang and Homebrew needs them. No-op

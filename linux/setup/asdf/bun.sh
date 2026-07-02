@@ -1,7 +1,9 @@
 #!/bin/bash
 set -e
 
-asdf plugin add bun
+# Tolerate the partial state where the plugin was added but the version
+# install failed — a bare `plugin add` errors on an already-added plugin.
+asdf plugin list | grep -qx "bun" || asdf plugin add bun
 asdf install bun latest
 
 VERSION=$(asdf list bun | tail -1 | tr -d ' *')
