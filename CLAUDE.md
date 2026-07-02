@@ -11,7 +11,7 @@ Content is split into two OS **tiers**:
 - `macos/` — the macOS machine's world: app configs (`zsh/`, `zed/`, `ghostty/`, `aerospace/`, `linearmouse/`, `vivaldi/`, `bin/`, `micro/`, `starship.toml`) **and** its own `setup/` (`brew`, `tweak`).
 - `linux/` — the Linux (Arch/CachyOS) machine's world: app configs (`fish/`, `hypr/`, `waybar/`, `kitty/`, `mako/`, `rofi/`, `swaylock/`, `nvim/`, `btop/`, `tmux/`, `gtk-3.0/`, `gtk-4.0/`, `qt5ct/`, `qt6ct/`, `zed/`, `micro/`, `mimeapps.list`) **and** its own `setup/` (`pacman`, `yay`, `flatpak`, `app`, `asdf`, `tweak`).
 
-`lib/link.sh` is the shared symlink helper (bootstrap *code*, not config). Repo meta lives at the root and is **never** symlinked into `~/.config`: `setup.sh`, `README.md`, `CLAUDE.md`, `.gitignore`, `.claude/`, `openspec/`, `graphify-out/`, `SECURE_BOOT.md`, `.gitattributes`, `.pre-commit-config.yaml`.
+`lib/link.sh` is the shared symlink helper (bootstrap *code*, not config). Repo meta lives at the root and is **never** symlinked into `~/.config`: `setup.sh`, `README.md`, `CLAUDE.md`, `.gitignore`, `.claude/`, `graphify-out/`, `SECURE_BOOT.md`, `.gitattributes`, `.pre-commit-config.yaml`. (`openspec/` also sits at the root but is **gitignored** — local-only change proposals/specs, not part of the deployed dotfiles.)
 
 **Branches:** a **single branch** now carries both machines; OS is chosen at **runtime** via `uname -s`, not by a branch checkout. (This retired the old branch-per-OS model where `main` = macOS and `cachyos-home` = Linux, which carried a "never merge wholesale" footgun — impossible now that OS-specific files live in disjoint tier dirs.)
 
