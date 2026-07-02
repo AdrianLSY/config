@@ -3742,6 +3742,34 @@
       "norm_label": "go.sh script"
     },
     {
+      "label": "iina.sh",
+      "file_type": "code",
+      "source_file": "macos/setup/brew/iina.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "file"
+      },
+      "_origin": "ast",
+      "id": "macos_setup_brew_iina",
+      "community": 139,
+      "norm_label": "iina.sh"
+    },
+    {
+      "label": "iina.sh script",
+      "file_type": "code",
+      "source_file": "macos/setup/brew/iina.sh",
+      "source_location": "L1",
+      "metadata": {
+        "language": "bash",
+        "kind": "bash_entrypoint"
+      },
+      "_origin": "ast",
+      "id": "macos_setup_brew_iina_sh__entry",
+      "community": 139,
+      "norm_label": "iina.sh script"
+    },
+    {
       "label": "keepassxc.sh",
       "file_type": "code",
       "source_file": "macos/setup/brew/keepassxc.sh",
@@ -4552,34 +4580,6 @@
       "id": "macos_setup_brew_vivaldi_sh__entry",
       "community": 169,
       "norm_label": "vivaldi.sh script"
-    },
-    {
-      "label": "vlc.sh",
-      "file_type": "code",
-      "source_file": "macos/setup/brew/vlc.sh",
-      "source_location": "L1",
-      "metadata": {
-        "language": "bash",
-        "kind": "file"
-      },
-      "_origin": "ast",
-      "id": "macos_setup_brew_vlc",
-      "community": 139,
-      "norm_label": "vlc.sh"
-    },
-    {
-      "label": "vlc.sh script",
-      "file_type": "code",
-      "source_file": "macos/setup/brew/vlc.sh",
-      "source_location": "L1",
-      "metadata": {
-        "language": "bash",
-        "kind": "bash_entrypoint"
-      },
-      "_origin": "ast",
-      "id": "macos_setup_brew_vlc_sh__entry",
-      "community": 139,
-      "norm_label": "vlc.sh script"
     },
     {
       "label": "zed.sh",
@@ -7287,7 +7287,7 @@
       "label": "Bootstrap",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L35",
+      "source_location": "L36",
       "_origin": "ast",
       "id": "readme_bootstrap",
       "community": 6,
@@ -7297,7 +7297,7 @@
       "label": "Backup-then-link (safe on a machine with an existing `~/.config`)",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L67",
+      "source_location": "L68",
       "_origin": "ast",
       "id": "readme_backup_then_link_safe_on_a_machine_with_an_existing_config",
       "community": 6,
@@ -7307,7 +7307,7 @@
       "label": "Prerequisites",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L85",
+      "source_location": "L86",
       "_origin": "ast",
       "id": "readme_prerequisites",
       "community": 6,
@@ -7317,7 +7317,7 @@
       "label": "Adding things",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L97",
+      "source_location": "L98",
       "_origin": "ast",
       "id": "readme_adding_things",
       "community": 6,
@@ -7327,7 +7327,7 @@
       "label": "Runtime state & secrets",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L113",
+      "source_location": "L114",
       "_origin": "ast",
       "id": "readme_runtime_state_secrets",
       "community": 6,
@@ -7337,7 +7337,7 @@
       "label": "Branches",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L129",
+      "source_location": "L130",
       "_origin": "ast",
       "id": "readme_branches",
       "community": 6,
@@ -9307,6 +9307,16 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "macos/setup/brew/iina.sh",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "macos_setup_brew_iina",
+      "target": "macos_setup_brew_iina_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "macos/setup/brew/keepassxc.sh",
       "source_location": "L1",
       "weight": 1.0,
@@ -9592,16 +9602,6 @@
       "weight": 1.0,
       "source": "macos_setup_brew_vivaldi",
       "target": "macos_setup_brew_vivaldi_sh__entry",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "macos/setup/brew/vlc.sh",
-      "source_location": "L1",
-      "weight": 1.0,
-      "source": "macos_setup_brew_vlc",
-      "target": "macos_setup_brew_vlc_sh__entry",
       "confidence_score": 1.0
     },
     {
@@ -11101,7 +11101,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L97",
+      "source_location": "L98",
       "weight": 1.0,
       "source": "readme_device_onbording",
       "target": "readme_adding_things",
@@ -11111,7 +11111,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L35",
+      "source_location": "L36",
       "weight": 1.0,
       "source": "readme_device_onbording",
       "target": "readme_bootstrap",
@@ -11121,7 +11121,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L129",
+      "source_location": "L130",
       "weight": 1.0,
       "source": "readme_device_onbording",
       "target": "readme_branches",
@@ -11141,7 +11141,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L113",
+      "source_location": "L114",
       "weight": 1.0,
       "source": "readme_device_onbording",
       "target": "readme_runtime_state_secrets",
@@ -11151,7 +11151,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L67",
+      "source_location": "L68",
       "weight": 1.0,
       "source": "readme_bootstrap",
       "target": "readme_backup_then_link_safe_on_a_machine_with_an_existing_config",
@@ -11161,7 +11161,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
-      "source_location": "L85",
+      "source_location": "L86",
       "weight": 1.0,
       "source": "readme_bootstrap",
       "target": "readme_prerequisites",
@@ -11569,5 +11569,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "bd700c6e9203087bb9390edaa8220829f9ffcbb0"
+  "built_at_commit": "fd4e9a605e5c8beb5387a931d26f275bf12dc73f"
 }
